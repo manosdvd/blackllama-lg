@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#16382b" />
+  <meta name="description" content="Interactive preview of the Camp Lawton 2027 Leader Hub." />
+  <title>Camp Lawton Leader Hub · 2027 Preview</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="prototype-banner" role="status">
+    <span class="prototype-dot" aria-hidden="true"></span>
+    <strong>Working prototype</strong>
+    <span>This preview shows what Codex completed. Data is illustrative and nothing is submitted or stored.</span>
+  </div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Camp Lawton home">
+      <img class="brand-logo" src="https://raw.githubusercontent.com/manosdvd/blackllama-lg/main/CLlogo.png" alt="" />
+      <span><strong>Camp Lawton</strong><small>Leader Hub · 2027</small></span>
+    </a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span><span class="sr-only">Open navigation</span>
+    </button>
+    <nav id="main-nav" aria-label="Main navigation">
+      <a href="#guide">Guide</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#badges">Programs</a>
+      <a href="#alerts">Alerts</a>
+    </nav>
+    <a class="button button-small header-cta" href="#preregister">Pre-register</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <img src="https://raw.githubusercontent.com/manosdvd/blackllama-lg/main/public/images/camp-sign.jpg" alt="The wooden Camp Lawton entrance sign among ponderosa pines" />
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Catalina Council · Scouting America</p>
+        <h1 id="hero-title">Prepare for a week<br />that stays with them.</h1>
+        <p class="hero-copy">Everything leaders need to plan a safe, memorable 2027 summer camp in the Catalina Mountains.</p>
+        <div class="hero-actions">
+          <a class="button" href="#guide">Open the leader’s guide</a>
+          <a class="text-link" href="#schedule">Explore the week <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="session-strip" aria-label="2027 session dates">
+        <div><span>Week 1</span><strong>Jun 1–5</strong><small>Tue–Sat · condensed</small></div>
+        <div><span>Week 2</span><strong>Jun 6–12</strong><small>Sun–Sat</small></div>
+        <div><span>Week 3</span><strong>Jun 13–19</strong><small>Sun–Sat</small></div>
+        <div class="session-meta"><span>Check-in</span><strong>1–3 PM</strong><small>Arrival day</small></div>
+      </div>
+    </section>
+
+    <section class="quick-links" aria-label="Leader shortcuts">
+      <a href="#guide"><span>01</span><strong>Before you leave</strong><small>Packing, forms & policies</small></a>
+      <a href="#schedule"><span>02</span><strong>Plan the week</strong><small>Schedules & transitions</small></a>
+      <a href="#badges"><span>03</span><strong>Build a Scout plan</strong><small>Programs & conflicts</small></a>
+      <a href="#preregister"><span>04</span><strong>Tell us you’re interested</strong><small>Non-binding pre-registration</small></a>
+    </section>
+
+    <section class="section intro-section">
+      <div class="section-kicker">Camp at a glance</div>
+      <div class="intro-grid">
+        <div>
+          <h2>A small camp with room for a big experience.</h2>
+          <p>Camp Lawton combines six daily merit badge blocks with outdoor skills, campwide challenges, evening programs, and the close-knit character of a century-old mountain camp.</p>
+        </div>
+        <div class="fact-grid">
+          <div><strong>1921</strong><span>Camp established</span></div>
+          <div><strong>6</strong><span>Daily badge blocks</span></div>
+          <div><strong>10 min</strong><span>Built-in transitions</span></div>
+          <div><strong>USFS</strong><span>National Forest land</span></div>
+        </div>
+      </div>
+      <div class="critical-card">
+        <div class="critical-label">Read before arrival</div>
+        <div class="critical-content">
+          <h3>Four details that change how you pack and plan</h3>
+          <ul>
+            <li><strong>No aquatics:</strong> Camp Lawton has no pool or waterfront.</li>
+            <li><strong>Carry-in gear:</strong> Vehicles remain in the designated parking area.</li>
+            <li><strong>Fire restrictions:</strong> Conditions can change without warning; always plan a no-flame alternative.</li>
+            <li><strong>Medications:</strong> Prescription medications go to the Camp Health Officer at check-in.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section guide-section" id="guide" aria-labelledby="guide-title">
+      <div class="section-heading">
+        <div><div class="section-kicker">Leader’s guide</div><h2 id="guide-title">Find the answer. Keep planning.</h2></div>
+        <label class="search-box">
+          <span class="sr-only">Search the leader’s guide</span>
+          <span aria-hidden="true">⌕</span>
+          <input id="guide-search" type="search" placeholder="Search forms, fire, arrival…" autocomplete="off" />
+        </label>
+      </div>
+      <div class="guide-layout">
+        <div class="guide-list" id="guide-list"></div>
+        <aside class="photo-card">
+          <img src="https://raw.githubusercontent.com/manosdvd/blackllama-lg/main/public/images/camp-office.jpg" alt="Historic log cabin camp office beneath tall pine trees" loading="lazy" />
+          <div><span>On the mountain since 1921</span><p>Historic buildings, shaded campsites, and a program designed around personal attention.</p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="schedule-section" id="schedule" aria-labelledby="schedule-title">
+      <div class="section schedule-inner">
+        <div class="section-heading light">
+          <div><div class="section-kicker">Week at a glance</div><h2 id="schedule-title">A steady rhythm. Plenty to discover.</h2></div>
+          <p>Standard Monday–Thursday pattern from the 2027 guide. Ten-minute transitions and meal cleanup buffers are already included.</p>
+        </div>
+        <div class="day-tabs" role="tablist" aria-label="Choose a schedule day" id="day-tabs"></div>
+        <div class="schedule-panel" role="tabpanel" aria-live="polite">
+          <div class="schedule-date">
+            <span>Standard day</span><strong id="selected-day">Monday</strong><small>Exact offerings may change before camp.</small>
+          </div>
+          <div class="timeline" id="timeline"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section program-section" id="badges" aria-labelledby="program-title">
+      <div class="section-heading">
+        <div><div class="section-kicker">Program planner</div><h2 id="program-title">Build a better day for every Scout.</h2></div>
+        <p class="heading-note">Prototype offerings show how the planner will work. The final badge catalog and capacities will be published separately.</p>
+      </div>
+      <div class="planner-grid">
+        <div class="catalog">
+          <div class="catalog-tools">
+            <strong>Program preview</strong>
+            <select id="area-filter" aria-label="Filter by program area"></select>
+          </div>
+          <div class="offering-list" id="offering-list"></div>
+        </div>
+        <aside class="my-plan" aria-labelledby="plan-title">
+          <div class="plan-title"><span id="plan-title">My sample plan</span><strong id="selection-count">0 selections</strong></div>
+          <div id="conflict-message"></div>
+          <div class="plan-list" id="plan-list"></div>
+          <button class="button plan-button" id="review-plan" type="button">Review conflict-free plan</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="story-band">
+      <img src="https://raw.githubusercontent.com/manosdvd/blackllama-lg/main/public/images/campsite.jpg" alt="Camp Lawton cabins arranged around a campsite fire ring" loading="lazy" />
+      <div class="story-copy">
+        <div class="section-kicker">Life at Lawton</div>
+        <h2>Cabins under the pines.<br />A whole camp within reach.</h2>
+        <p>Each campsite is a home base for the week. Adirondack-style structures include wooden sleeping platforms; leaders should plan buddy assignments and bring sleeping pads and bags for comfort.</p>
+        <a href="#guide" class="text-link">Read campsite guidance <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="section alerts-section" id="alerts" aria-labelledby="alerts-title">
+      <div class="section-heading">
+        <div><div class="section-kicker">Conditions & notices</div><h2 id="alerts-title">Know before you go.</h2></div>
+        <span class="prototype-pill">Prototype data</span>
+      </div>
+      <div class="alert-grid">
+        <article><span class="alert-icon sky">°</span><div><small>Weather</small><h3>Feed connection pending</h3><p>The production site will show Camp Lawton observations, forecast, source, and last-updated time.</p></div></article>
+        <article><span class="alert-icon amber">▲</span><div><small>Fire restrictions</small><h3>Verify daily with camp staff</h3><p>Restrictions can change without warning. Missing online data never means fires are permitted.</p></div></article>
+        <article><span class="alert-icon green">i</span><div><small>Camp notice</small><h3>2027 schedules are preliminary</h3><p>Final program details, capacities, and fees will be published before official registration.</p></div></article>
+      </div>
+    </section>
+
+    <section class="preregister" id="preregister" aria-labelledby="preregister-title">
+      <div class="preregister-image"><img src="https://raw.githubusercontent.com/manosdvd/blackllama-lg/main/public/images/program.jpg" alt="Scouts and leaders taking part in an outdoor camp activity" loading="lazy" /></div>
+      <div class="preregister-copy">
+        <div class="section-kicker">Plan with us</div>
+        <h2 id="preregister-title">Help shape the 2027 program.</h2>
+        <p>Share your unit’s estimated attendance and program interests. This early signal helps camp staff plan staffing and program capacity.</p>
+        <div class="disclaimer"><strong>Planning only</strong><span>This is not official registration, does not reserve a campsite or badge seat, and does not collect payment. Official registration will be available through Black Pug in spring.</span></div>
+        <form id="interest-form">
+          <label><span>Unit type & number</span><input required placeholder="Troop 123" /></label>
+          <label><span>Primary leader email</span><input required type="email" placeholder="leader@example.org" /></label>
+          <label><span>Preferred session</span><select required><option value="" selected disabled>Select a week</option><option>Week 1 · Jun 1–5</option><option>Week 2 · Jun 6–12</option><option>Week 3 · Jun 13–19</option></select></label>
+          <label><span>Estimated Scouts</span><input required type="number" min="1" placeholder="12" /></label>
+          <button class="button" type="submit">Preview pre-registration</button>
+        </form>
+        <div class="form-success" id="form-success" role="status" hidden>
+          <strong>Prototype submission complete.</strong>
+          <span>No information was sent or stored. This demonstrates the confirmation experience.</span>
+          <button type="button" id="start-over">Start over</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <img class="footer-logo" src="https://raw.githubusercontent.com/manosdvd/blackllama-lg/main/cllogospin.gif" alt="" />
+      <div><strong>Camp Lawton</strong><small>Catalina Mountains · Arizona</small></div>
+    </div>
+    <div><strong>Leader resources</strong><a href="#guide">Leader’s guide</a><a href="#schedule">Schedule</a><a href="#badges">Program planner</a></div>
+    <div><strong>Prepare</strong><a href="#guide">Packing & paperwork</a><a href="#alerts">Conditions & notices</a><a href="#preregister">Pre-register</a></div>
+    <p>Recovered interactive preview based on the current repository. Dates and program details remain subject to final approval.</p>
+  </footer>
+
+  <dialog class="event-dialog" id="event-dialog" aria-labelledby="dialog-title">
+    <button class="dialog-close" type="button" aria-label="Close event details">×</button>
+    <span class="dialog-kicker" id="dialog-time"></span>
+    <h2 id="dialog-title"></h2>
+    <p id="dialog-detail"></p>
+    <div class="dialog-note">This is the beginning of the planned event-detail experience. Capacity, eligibility, location, prerequisites, and what-to-bring fields are not connected yet.</div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
