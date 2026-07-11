@@ -1,0 +1,35 @@
+Promotional material front page
+	Dynamic animations, modern and useful layout
+	Image placeholders
+Wiki for leaders guide content
+	Program
+	Policies
+	Packing List
+	Fee Schedule
+	Paperwork
+	Editor (camp and program director only)
+		full wysiwyg (full word/docs formatting options)
+		& Markdown
+		& html
+		images
+		video embeds
+Scheduler
+	week schedule
+		click on events for details
+	merit badge schedule
+		by time
+		by badge
+		by area
+	Plan individual schedule, warning of conflicts - suggest alternatives (AI?)
+Alerts
+	Weather (nws QSLA3)
+	Fire Danger (Coronado National Forest alerts)
+	Notice from camp or program director (manually generated, schedulable, set duration, set urgency) 
+Reserve spot
+	Note that this is a pre-registration - official registration will be available through Black Pug in spring
+	merit badge survey (lists all merit badges ranked by viability at camp, enter number of scouts interested in each badge)
+	Troop roster 
+	contact info
+
+	
+	
