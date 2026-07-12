@@ -1,0 +1,16 @@
+{
+  "name": "Camp Lawton Leader Hub",
+  "short_name": "Camp Lawton",
+  "description": "Leader guide and tools for Camp Lawton",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#081510",
+  "icons": [
+    {
+      "src": "/images/CLlogo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

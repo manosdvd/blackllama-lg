@@ -26,6 +26,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 img { display: block; max-width: 100%; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 
+.hud-bar { min-height: 38px; background: #081510; color: #fff; display: flex; align-items: center; justify-content: center; gap: 24px; padding: 8px 5vw; font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+.hud-item { display: flex; align-items: center; gap: 8px; }
+.hud-icon { color: var(--gold); font-size: 14px; }
 .notice-bar { min-height: 38px; background: #f4e8c8; color: #4c3a18; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 8px 5vw; font-size: 12px; letter-spacing: .01em; }
 .notice-dot { width: 7px; height: 7px; border-radius: 50%; background: #b56d12; box-shadow: 0 0 0 4px rgba(181,109,18,.13); }
 .notice-bar a { margin-left: 8px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
@@ -59,6 +62,7 @@ img { display: block; max-width: 100%; }
 .hero-copy { max-width: 570px; margin: 25px 0 30px; color: rgba(255,255,255,.84); font: 17px/1.65 Georgia, serif; }
 .hero-actions { display: flex; align-items: center; gap: 28px; }
 .hero-actions .text-link { color: white; }
+.spinning-badge { width: 1.4em; height: 1.4em; display: inline-block; vertical-align: text-bottom; mix-blend-mode: screen; border-radius: 50%; }
 .session-strip { position: absolute; z-index: 2; left: 50%; bottom: 0; transform: translateX(-50%); width: min(100% - 64px, 1256px); min-height: 120px; display: grid; grid-template-columns: repeat(4, 1fr); background: rgba(247,244,236,.96); color: var(--ink); backdrop-filter: blur(10px); box-shadow: var(--shadow); }
 .session-strip > div { display: flex; flex-direction: column; justify-content: center; padding: 22px 30px; border-right: 1px solid var(--line); }
 .session-strip > div:last-child { border: 0; background: var(--pine-900); color: white; }

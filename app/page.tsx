@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useMemo, useState, useEffect } from "react";
 
 type DayKey = "Monday" | "Tuesday" | "Wednesday" | "Thursday";
 
@@ -154,12 +154,82 @@ const guideSections = [
   },
 ];
 
+type WeatherData = { temp: number | null; text: string; time: string };
+
+function HeaderHUD({ weather, error }: { weather: WeatherData | null; error: boolean }) {
+  return (
+    <div className="hud-bar" role="status">
+      <div className="hud-item">
+        <span className="hud-icon" aria-hidden="true">°</span>
+        <span>Weather: {error ? "Unavailable" : weather ? `${weather.temp !== null ? weather.temp + "°F" : "N/A"} · ${weather.text}` : "Loading..."}</span>
+      </div>
+      <div className="hud-item">
+        <span className="hud-icon" aria-hidden="true">▲</span>
+        <span>Fire Danger: Verify locally</span>
+      </div>
+    </div>
+  );
+}
+
+function WeatherAlert({ weather, error }: { weather: WeatherData | null; error: boolean }) {
+  if (error) {
+    return (
+      <article>
+        <span className="alert-icon sky">°</span>
+        <div><small>Weather</small><h3>Feed unavailable</h3><p>Could not connect to NWS station QSLA3 at this time.</p></div>
+      </article>
+    );
+  }
+
+  return (
+    <article>
+      <span className="alert-icon sky">°</span>
+      <div>
+        <small>Weather (Mt. Lemmon)</small>
+        {weather ? (
+          <>
+            <h3>{weather.temp !== null ? `${weather.temp}°F` : "N/A"} · {weather.text}</h3>
+            <p>Observations from NWS station QSLA3. Updated at {weather.time}.</p>
+          </>
+        ) : (
+          <>
+            <h3>Loading...</h3>
+            <p>Fetching latest conditions from NWS...</p>
+          </>
+        )}
+      </div>
+    </article>
+  );
+}
+
 export default function Home() {
   const [selectedDay, setSelectedDay] = useState<DayKey>("Monday");
   const [guideQuery, setGuideQuery] = useState("");
   const [area, setArea] = useState("All areas");
   const [plan, setPlan] = useState<string[]>(["first-aid", "astronomy"]);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [weatherError, setWeatherError] = useState(false);
+
+  useEffect(() => {
+    fetch("https://api.weather.gov/stations/QSLA3/observations/latest")
+      .then(res => {
+        if (!res.ok) throw new Error("Weather API failed");
+        return res.json();
+      })
+      .then(data => {
+        const props = data.properties;
+        const tempC = props.temperature.value;
+        const tempF = tempC !== null ? Math.round((tempC * 9) / 5 + 32) : null;
+        const text = props.textDescription || "Unknown";
+        const time = new Date(props.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        setWeather({ temp: tempF, text, time });
+      })
+      .catch(() => {
+        setWeatherError(true);
+      });
+  }, []);
 
   const filteredGuide = useMemo(() => {
     const query = guideQuery.toLowerCase().trim();
@@ -185,6 +255,8 @@ export default function Home() {
 
   return (
     <main>
+      <HeaderHUD weather={weather} error={weatherError} />
+      
       <div className="notice-bar" role="status">
         <span className="notice-dot" aria-hidden="true" />
         <strong>Planning notice</strong>
@@ -194,7 +266,7 @@ export default function Home() {
 
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Camp Lawton home">
-          <span className="brand-mark">CL</span>
+          <img src="/images/CLlogo.png" alt="CL Logo" className="brand-mark" />
           <span><strong>Camp Lawton</strong><small>Leader Hub · 2027</small></span>
         </a>
         <nav aria-label="Main navigation">
@@ -207,11 +279,11 @@ export default function Home() {
       </header>
 
       <section className="hero" id="top">
-        <img src="/images/camp-sign.jpg" alt="The wooden Camp Lawton entrance sign among ponderosa pines" />
+        <img src="/images/PXL_20260612_151123910~2.jpg" alt="The wooden Camp Lawton entrance sign among ponderosa pines" />
         <div className="hero-shade" />
         <div className="hero-content">
           <p className="eyebrow">Catalina Council · Scouting America</p>
-          <h1>Prepare for a week<br />that stays with them.</h1>
+          <h1>Prepare for a week<br />that stays with them. <img src="/images/cllogospin.gif" alt="" className="spinning-badge" /></h1>
           <p className="hero-copy">Everything leaders need to plan a safe, memorable 2027 summer camp in the Catalina Mountains.</p>
           <div className="hero-actions">
             <a className="button" href="#guide">Open the leader’s guide</a>
@@ -284,7 +356,7 @@ export default function Home() {
             {filteredGuide.length === 0 && <p className="empty-state">No guide sections match “{guideQuery}”. Try a broader term.</p>}
           </div>
           <aside className="photo-card">
-            <img src="/images/camp-office.jpg" alt="Historic log cabin camp office beneath tall pine trees" loading="lazy" />
+            <img src="/images/Image_5.jpg" alt="Historic log cabin camp office beneath tall pine trees" loading="lazy" />
             <div><span>On the mountain since 1921</span><p>Historic buildings, shaded campsites, and a program designed around personal attention.</p></div>
           </aside>
         </div>
@@ -350,7 +422,7 @@ export default function Home() {
       </section>
 
       <section className="story-band">
-        <img src="/images/campsite.jpg" alt="Camp Lawton cabins arranged around a campsite fire ring" loading="lazy" />
+        <img src="/images/PXL_20260605_172059179.PANO.jpg" alt="Camp Lawton cabins arranged around a campsite fire ring" loading="lazy" />
         <div className="story-copy">
           <div className="section-kicker">Life at Lawton</div>
           <h2>Cabins under the pines.<br />A whole camp within reach.</h2>
@@ -365,14 +437,14 @@ export default function Home() {
           <span className="prototype-pill">Prototype data</span>
         </div>
         <div className="alert-grid">
-          <article><span className="alert-icon sky">°</span><div><small>Weather</small><h3>Feed connection pending</h3><p>The production site will show Camp Lawton observations, forecast, source, and last-updated time.</p></div></article>
+          <WeatherAlert weather={weather} error={weatherError} />
           <article><span className="alert-icon amber">▲</span><div><small>Fire restrictions</small><h3>Verify daily with camp staff</h3><p>Restrictions can change without warning. Missing online data never means fires are permitted.</p></div></article>
           <article><span className="alert-icon green">i</span><div><small>Camp notice</small><h3>2027 schedules are preliminary</h3><p>Final program details, capacities, and fees will be published before official registration.</p></div></article>
         </div>
       </section>
 
       <section className="preregister" id="preregister">
-        <div className="preregister-image"><img src="/images/program.jpg" alt="Scouts and leaders taking part in an outdoor camp activity" loading="lazy" /></div>
+        <div className="preregister-image"><img src="/images/PXL_20260607_155608710.jpg" alt="Scouts and leaders taking part in an outdoor camp activity" loading="lazy" /></div>
         <div className="preregister-copy">
           <div className="section-kicker">Plan with us</div>
           <h2>Help shape the 2027 program.</h2>
@@ -393,7 +465,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <div className="footer-brand"><span className="brand-mark">CL</span><div><strong>Camp Lawton</strong><small>Catalina Mountains · Arizona</small></div></div>
+        <div className="footer-brand"><img src="/images/CLlogo.png" alt="CL Logo" className="brand-mark" /><div><strong>Camp Lawton</strong><small>Catalina Mountains · Arizona</small></div></div>
         <div><strong>Leader resources</strong><a href="#guide">Leader’s guide</a><a href="#schedule">Schedule</a><a href="#badges">Program planner</a></div>
         <div><strong>Prepare</strong><a href="#guide">Packing & paperwork</a><a href="#alerts">Conditions & notices</a><a href="#preregister">Pre-register</a></div>
         <p>Prototype based on the 2027 leader’s guide. Dates and program details remain subject to final approval.</p>
