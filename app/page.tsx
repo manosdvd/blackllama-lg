@@ -203,10 +203,7 @@ function WeatherAlert({ weather, error }: { weather: WeatherData | null; error: 
 }
 
 export default function Home() {
-  const [selectedDay, setSelectedDay] = useState<DayKey>("Monday");
   const [guideQuery, setGuideQuery] = useState("");
-  const [area, setArea] = useState("All areas");
-  const [plan, setPlan] = useState<string[]>(["first-aid", "astronomy"]);
   const [formSubmitted, setFormSubmitted] = useState(false);
   
   const [weather, setWeather] = useState<WeatherData | null>(null);
@@ -237,16 +234,7 @@ export default function Home() {
     return guideSections.filter((item) => `${item.title} ${item.summary} ${item.tags}`.toLowerCase().includes(query));
   }, [guideQuery]);
 
-  const filteredOfferings = area === "All areas" ? offerings : offerings.filter((item) => item.area === area);
-  const selectedOfferings = offerings.filter((item) => plan.includes(item.id)).sort((a, b) => a.start - b.start);
-  const conflicts = selectedOfferings.filter((item, index) => {
-    const next = selectedOfferings[index + 1];
-    return next && item.end > next.start;
-  });
 
-  function togglePlan(id: string) {
-    setPlan((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
-  }
 
   function submitInterest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -271,8 +259,8 @@ export default function Home() {
         </a>
         <nav aria-label="Main navigation">
           <a href="#guide">Guide</a>
-          <a href="#schedule">Schedule</a>
-          <a href="#badges">Programs</a>
+          <a href="/schedule">Schedule</a>
+          <a href="/merit-badges">Programs</a>
           <a href="#alerts">Alerts</a>
         </nav>
         <a className="button button-small" href="#preregister">Pre-register</a>
@@ -287,7 +275,7 @@ export default function Home() {
           <p className="hero-copy">Everything leaders need to plan a safe, memorable 2027 summer camp in the Catalina Mountains.</p>
           <div className="hero-actions">
             <a className="button" href="#guide">Open the leader’s guide</a>
-            <a className="text-link" href="#schedule">Explore the week <span aria-hidden="true">→</span></a>
+            <a className="text-link" href="/schedule">Explore the week <span aria-hidden="true">→</span></a>
           </div>
         </div>
         <div className="session-strip" aria-label="2027 session dates">
@@ -300,8 +288,8 @@ export default function Home() {
 
       <section className="quick-links" aria-label="Leader shortcuts">
         <a href="#guide"><span>01</span><strong>Before you leave</strong><small>Packing, forms & policies</small></a>
-        <a href="#schedule"><span>02</span><strong>Plan the week</strong><small>Schedules & transitions</small></a>
-        <a href="#badges"><span>03</span><strong>Build a Scout plan</strong><small>Programs & conflicts</small></a>
+        <a href="/schedule"><span>02</span><strong>Plan the week</strong><small>Schedules & transitions</small></a>
+        <a href="/merit-badges"><span>03</span><strong>Build a Scout plan</strong><small>Programs & conflicts</small></a>
         <a href="#preregister"><span>04</span><strong>Tell us you’re interested</strong><small>Non-binding pre-registration</small></a>
       </section>
 
@@ -362,64 +350,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="schedule-section" id="schedule">
-        <div className="section schedule-inner">
-          <div className="section-heading light">
-            <div><div className="section-kicker">Week at a glance</div><h2>A steady rhythm. Plenty to discover.</h2></div>
-            <p>Standard Monday–Thursday pattern from the 2027 guide. Ten-minute transitions and meal cleanup buffers are already included.</p>
-          </div>
-          <div className="day-tabs" role="tablist" aria-label="Choose a schedule day">
-            {days.map((day) => <button key={day} role="tab" aria-selected={selectedDay === day} onClick={() => setSelectedDay(day)}>{day}</button>)}
-          </div>
-          <div className="schedule-panel">
-            <div className="schedule-date">
-              <span>Standard day</span><strong>{selectedDay}</strong><small>Exact offerings may change before camp.</small>
-            </div>
-            <div className="timeline">
-              {scheduleByDay[selectedDay].map((event) => (
-                <button className={`timeline-item ${event.kind}`} key={`${event.time}-${event.title}`}>
-                  <time>{event.time}</time><span><strong>{event.title}</strong><small>{event.detail}</small></span><i aria-hidden="true">→</i>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section program-section" id="badges">
-        <div className="section-heading">
-          <div><div className="section-kicker">Program planner</div><h2>Build a better day for every Scout.</h2></div>
-          <p className="heading-note">Prototype offerings show how the planner will work. The final badge catalog and capacities will be published separately.</p>
-        </div>
-        <div className="planner-grid">
-          <div className="catalog">
-            <div className="catalog-tools">
-              <strong>Program preview</strong>
-              <select value={area} onChange={(event) => setArea(event.target.value)} aria-label="Filter by program area">
-                {["All areas", ...Array.from(new Set(offerings.map((item) => item.area)))].map((item) => <option key={item}>{item}</option>)}
-              </select>
-            </div>
-            <div className="offering-list">
-              {filteredOfferings.map((item) => {
-                const selected = plan.includes(item.id);
-                return <article className={`offering ${selected ? "selected" : ""}`} key={item.id}>
-                  <div><span>{item.area}</span><h3>{item.title}</h3><p>{item.time} · {item.note}</p></div>
-                  <button onClick={() => togglePlan(item.id)} aria-pressed={selected}>{selected ? "Added" : "Add"}</button>
-                </article>;
-              })}
-            </div>
-          </div>
-          <aside className="my-plan">
-            <div className="plan-title"><span>My sample plan</span><strong>{selectedOfferings.length} selections</strong></div>
-            {conflicts.length > 0 && <div className="conflict" role="alert"><strong>Schedule conflict</strong><span>{conflicts[0].title} overlaps another selection. Remove one or choose another session.</span></div>}
-            <div className="plan-list">
-              {selectedOfferings.length === 0 && <p className="empty-state">Add programs to begin a sample plan.</p>}
-              {selectedOfferings.map((item) => <div key={item.id}><time>{item.time}</time><span><strong>{item.title}</strong><small>{item.area}</small></span><button aria-label={`Remove ${item.title}`} onClick={() => togglePlan(item.id)}>×</button></div>)}
-            </div>
-            <button className="button plan-button" disabled={selectedOfferings.length === 0 || conflicts.length > 0}>Review conflict-free plan</button>
-          </aside>
-        </div>
-      </section>
+      
 
       <section className="story-band">
         <img src="/images/PXL_20260605_172059179.PANO.jpg" alt="Camp Lawton cabins arranged around a campsite fire ring" loading="lazy" />
@@ -466,7 +397,7 @@ export default function Home() {
 
       <footer>
         <div className="footer-brand"><img src="/images/CLlogo.png" alt="CL Logo" className="brand-mark" /><div><strong>Camp Lawton</strong><small>Catalina Mountains · Arizona</small></div></div>
-        <div><strong>Leader resources</strong><a href="#guide">Leader’s guide</a><a href="#schedule">Schedule</a><a href="#badges">Program planner</a></div>
+        <div><strong>Leader resources</strong><a href="#guide">Leader’s guide</a><a href="/schedule">Schedule</a><a href="/merit-badges">Program planner</a></div>
         <div><strong>Prepare</strong><a href="#guide">Packing & paperwork</a><a href="#alerts">Conditions & notices</a><a href="#preregister">Pre-register</a></div>
         <p>Prototype based on the 2027 leader’s guide. Dates and program details remain subject to final approval.</p>
       </footer>

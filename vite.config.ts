@@ -13,7 +13,8 @@ const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
 
 const localBindingConfig = {
   main: "./worker/index.ts",
-  compatibility_flags: ["nodejs_compat"],
+  compatibility_date: "2024-09-23",
+  compatibility_flags: ["nodejs_compat", "nodejs_compat_v2"],
   d1_databases: d1
     ? [
         {
@@ -55,5 +56,8 @@ export default defineConfig(async () => {
         config: localBindingConfig,
       }),
     ],
+    optimizeDeps: {
+      exclude: ["@cloudflare/unenv-preset"],
+    },
   };
 });
