@@ -1,5 +1,30 @@
 import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 
+export const users = sqliteTable("users", {
+  id: text("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  displayName: text("display_name").notNull(),
+  createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+  lastLoginAt: integer("last_login_at", { mode: "timestamp" }).notNull(),
+});
+
+export const staffRoles = sqliteTable("staff_roles", {
+  email: text("email").primaryKey(),
+  role: text("role").notNull(),
+  grantedBy: text("granted_by").notNull(),
+  createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+});
+
+export const campSessions = sqliteTable("camp_sessions", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  programType: text("program_type").notNull(),
+  startsOn: text("starts_on").notNull(),
+  endsOn: text("ends_on").notNull(),
+  arrivalWindow: text("arrival_window").notNull(),
+  status: text("status").notNull().default("planning"),
+});
+
 export const articles = sqliteTable("articles", {
   id: text("id").primaryKey(),
   title: text("title").notNull(),
@@ -107,5 +132,81 @@ export const eventRevisions = sqliteTable("event_revisions", {
   endTime: text("end_time").notNull(),
   status: text("status").notNull(),
   author: text("author").notNull(),
+  createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+});
+
+export const unitWorkspaces = sqliteTable("unit_workspaces", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  council: text("council"),
+  unitType: text("unit_type").notNull(),
+  unitNumber: text("unit_number").notNull(),
+  city: text("city"),
+  state: text("state"),
+  sessionId: text("session_id"),
+  ownerEmail: text("owner_email").notNull(),
+  estimatedYouth: integer("estimated_youth").notNull().default(0),
+  estimatedAdults: integer("estimated_adults").notNull().default(0),
+  status: text("status").notNull().default("draft"),
+  createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).notNull(),
+});
+
+export const workspaceMembers = sqliteTable("workspace_members", {
+  id: text("id").primaryKey(),
+  workspaceId: text("workspace_id").notNull().references(() => unitWorkspaces.id),
+  email: text("email").notNull(),
+  role: text("role").notNull().default("planner"),
+  invitedBy: text("invited_by").notNull(),
+  createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+});
+
+export const participants = sqliteTable("participants", {
+  id: text("id").primaryKey(),
+  workspaceId: text("workspace_id").notNull().references(() => unitWorkspaces.id),
+  displayName: text("display_name").notNull(),
+  program: text("program").notNull(),
+  rank: text("rank"),
+  createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+});
+
+export const interests = sqliteTable("interests", {
+  id: text("id").primaryKey(),
+  workspaceId: text("workspace_id").notNull().references(() => unitWorkspaces.id),
+  offeringId: text("offering_id").notNull(),
+  interestedCount: integer("interested_count").notNull().default(0),
+  priority: text("priority").notNull().default("nice-to-have"),
+  note: text("note"),
+});
+
+export const planSelections = sqliteTable("plan_selections", {
+  id: text("id").primaryKey(),
+  participantId: text("participant_id").notNull().references(() => participants.id),
+  eventId: text("event_id").notNull(),
+  warningAcknowledged: integer("warning_acknowledged", { mode: "boolean" }).notNull().default(false),
+  createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+});
+
+export const submissions = sqliteTable("submissions", {
+  id: text("id").primaryKey(),
+  reference: text("reference").notNull().unique(),
+  workspaceId: text("workspace_id"),
+  contactName: text("contact_name").notNull(),
+  contactEmail: text("contact_email").notNull(),
+  contactPhone: text("contact_phone"),
+  snapshot: text("snapshot").notNull(),
+  consentedAt: integer("consented_at", { mode: "timestamp" }).notNull(),
+  status: text("status").notNull().default("new"),
+  createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+  deleteAfter: integer("delete_after", { mode: "timestamp" }).notNull(),
+});
+
+export const auditLogs = sqliteTable("audit_logs", {
+  id: text("id").primaryKey(),
+  actorEmail: text("actor_email").notNull(),
+  action: text("action").notNull(),
+  objectType: text("object_type").notNull(),
+  objectId: text("object_id").notNull(),
+  detail: text("detail"),
   createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
 });

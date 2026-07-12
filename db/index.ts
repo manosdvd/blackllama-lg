@@ -11,3 +11,7 @@ export function getDb() {
 
   return drizzle(env.DB, { schema });
 }
+
+export function getRuntimeSetting(name: string): string | undefined {
+  return (env as unknown as Record<string, unknown>)[name] as string | undefined;
+}

@@ -9,6 +9,7 @@ import {
   type PublicNotice,
   type PublicScheduleEvent,
 } from "./public-content";
+import { bsaSchedule, cubSchedule, findGuideArticle } from "./camp-catalog";
 
 export async function getPublishedArticle(slug: string): Promise<PublicArticle | null> {
   try {
@@ -24,7 +25,7 @@ export async function getPublishedArticle(slug: string): Promise<PublicArticle |
   } catch {
     // The canonical fallback keeps the public guide usable before local D1 is migrated.
   }
-  return slug === arrivalArticle.slug ? arrivalArticle : null;
+  return findGuideArticle(slug) ?? null;
 }
 
 export async function getArticleForEditor(slug: string) {
@@ -49,7 +50,16 @@ export async function getArticleForEditor(slug: string) {
   } catch {
     // The staff editor can still open before local D1 is migrated.
   }
-  return { article: arrivalArticle, revisions: [] };
+  return { article: findGuideArticle(slug) ?? arrivalArticle, revisions: [] };
+}
+
+export async function getEventForEditor(id: string) {
+  try {
+    const [event] = await getDb().select().from(events).where(eq(events.id, id)).limit(1);
+    if (event) return event;
+  } catch {}
+  const fallback = [...bsaSchedule, ...cubSchedule].find((event) => event.id === id) ?? bsaSchedule[0];
+  return { id: fallback.id, title: fallback.title, summary: fallback.summary, kind: fallback.kind, dayOfWeek: fallback.day, startTime: fallback.startTime, endTime: fallback.endTime, audience: fallback.audience, isRequired: fallback.required, whatToBring: fallback.whatToBring, accessibilityNotes: fallback.accessibilityNotes };
 }
 
 export async function getPublishedSchedule(day: string): Promise<PublicScheduleEvent[]> {
@@ -70,7 +80,8 @@ export async function getPublishedSchedule(day: string): Promise<PublicScheduleE
   } catch {
     // See the article fallback note above.
   }
-  return day === "Monday" ? mondaySchedule : [];
+  const canonical = bsaSchedule.filter((event) => event.day === day);
+  return canonical.length ? canonical : day === "Monday" ? mondaySchedule : [];
 }
 
 export async function getActiveNotices(): Promise<PublicNotice[]> {

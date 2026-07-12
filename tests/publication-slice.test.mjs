@@ -37,8 +37,8 @@ test("public reads only consume published or currently active records", () => {
 test("the first vertical slice is connected across public views", () => {
   assert.match(articlePage, /getPublishedArticle/);
   assert.match(articlePage, /Last reviewed/);
-  assert.match(schedulePage, /getPublishedSchedule/);
-  assert.match(schedulePage, /event-detail/);
+  assert.match(schedulePage, /ScheduleExplorer/);
+  assert.match(schedulePage, /bsaSchedule/);
   assert.match(homepage, /fetch\("\/api\/notices"\)/);
   assert.match(homepage, /arrival-and-check-in/);
 });

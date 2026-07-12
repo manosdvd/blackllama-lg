@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 
 const guideSections = [
@@ -129,25 +129,20 @@ function WeatherAlert({ weather, error }: { weather: WeatherData | null; error: 
 
 export default function Home() {
   const [guideQuery, setGuideQuery] = useState("");
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [weatherError, setWeatherError] = useState(false);
   const [campNotice, setCampNotice] = useState<CampNotice | null>(null);
 
   useEffect(() => {
-    fetch("https://api.weather.gov/stations/QSLA3/observations/latest")
+    fetch("/api/conditions")
       .then(res => {
         if (!res.ok) throw new Error("Weather API failed");
         return res.json();
       })
       .then(data => {
-        const props = data.properties;
-        const tempC = props.temperature.value;
-        const tempF = tempC !== null ? Math.round((tempC * 9) / 5 + 32) : null;
-        const text = props.textDescription || "Unknown";
-        const time = new Date(props.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        setWeather({ temp: tempF, text, time });
+        if (data.status === "unavailable") throw new Error("Weather API failed");
+        const time = data.observedAt ? new Date(data.observedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "Unknown";
+        setWeather({ temp: data.temperatureF, text: data.description, time });
       })
       .catch(() => {
         setWeatherError(true);
@@ -166,14 +161,6 @@ export default function Home() {
     if (!query) return guideSections;
     return guideSections.filter((item) => `${item.title} ${item.summary} ${item.tags}`.toLowerCase().includes(query));
   }, [guideQuery]);
-
-
-
-  function submitInterest(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setFormSubmitted(true);
-  }
-
   return (
     <main>
       <HeaderHUD weather={weather} error={weatherError} />
@@ -192,6 +179,7 @@ export default function Home() {
         </a>
         <nav aria-label="Main navigation">
           <a href="#guide">Guide</a>
+          <a href="/plan">Plan</a>
           <a href="/schedule">Schedule</a>
           <a href="/merit-badges">Programs</a>
           <a href="#alerts">Alerts</a>
@@ -204,7 +192,7 @@ export default function Home() {
         <div className="hero-shade" />
         <div className="hero-content">
           <p className="eyebrow">Catalina Council · Scouting America</p>
-          <h1>Prepare for a week<br />that stays with them. <img src="/images/cllogospin.gif" alt="" className="spinning-badge" /></h1>
+          <h1>Prepare for a week<br />that stays with them.</h1>
           <p className="hero-copy">Everything leaders need to plan a safe, memorable 2027 summer camp in the Catalina Mountains.</p>
           <div className="hero-actions">
             <a className="button" href="#guide">Open the leader’s guide</a>
@@ -315,17 +303,8 @@ export default function Home() {
           <h2>Help shape the 2027 program.</h2>
           <p>Share your unit’s estimated attendance and program interests. This early signal helps camp staff plan staffing and program capacity.</p>
           <div className="disclaimer"><strong>Planning only</strong><span>This is not official registration, does not reserve a campsite or badge seat, and does not collect payment. Official registration will be available through Black Pug in spring.</span></div>
-          {formSubmitted ? (
-            <div className="form-success" role="status"><strong>Prototype submission complete.</strong><span>No information was sent or stored. This demonstrates the confirmation experience.</span><button onClick={() => setFormSubmitted(false)}>Start over</button></div>
-          ) : (
-            <form onSubmit={submitInterest}>
-              <label><span>Unit type & number</span><input required placeholder="Troop 123" /></label>
-              <label><span>Primary leader email</span><input required type="email" placeholder="leader@example.org" /></label>
-              <label><span>Preferred session</span><select required defaultValue=""><option value="" disabled>Select a week</option><option>Week 1 · Jun 1–5</option><option>Week 2 · Jun 6–12</option><option>Week 3 · Jun 13–19</option></select></label>
-              <label><span>Estimated Scouts</span><input required type="number" min="1" placeholder="12" /></label>
-              <button className="button" type="submit">Preview pre-registration</button>
-            </form>
-          )}
+          <div className="preregister-features"><span>Compare all four 2027 sessions.</span><span>Share aggregate youth and adult estimates.</span><span>Rank merit badge demand without claiming seats.</span><span>Save progress privately in this browser.</span></div>
+          <Link className="button" href="/pre-register">Start the planning survey</Link>
         </div>
       </section>
 

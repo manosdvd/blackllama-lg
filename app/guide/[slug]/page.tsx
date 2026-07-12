@@ -1,6 +1,8 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import MarkdownContent from "../../../components/MarkdownContent";
+import SiteHeader from "../../../components/SiteHeader";
+import SiteFooter from "../../../components/SiteFooter";
 import { getPublishedArticle } from "../../../lib/content-repository";
 
 export default async function GuideArticlePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -10,21 +12,10 @@ export default async function GuideArticlePage({ params }: { params: Promise<{ s
 
   return (
     <main>
-      <header className="site-header">
-        <Link className="brand" href="/" aria-label="Camp Lawton home">
-          <img src="/images/CLlogo.png" alt="" className="brand-mark" />
-          <span><strong>Camp Lawton</strong><small>Leader Hub · 2027</small></span>
-        </Link>
-        <nav aria-label="Main navigation">
-          <Link href="/#guide" aria-current="page">Guide</Link>
-          <Link href="/schedule">Schedule</Link>
-          <Link href="/merit-badges">Programs</Link>
-          <Link href="/#alerts">Alerts</Link>
-        </nav>
-      </header>
+      <SiteHeader current="/guide" />
 
       <article className="article-page">
-        <Link href="/#guide" className="article-back">← Leader&apos;s guide</Link>
+        <Link href="/guide" className="article-back">← Leader&apos;s guide</Link>
         <header className="article-header">
           <p className="section-kicker">Prepare for camp</p>
           <h1>{article.title}</h1>
@@ -36,6 +27,7 @@ export default async function GuideArticlePage({ params }: { params: Promise<{ s
         </header>
         <MarkdownContent source={article.body} />
       </article>
+      <SiteFooter />
     </main>
   );
 }

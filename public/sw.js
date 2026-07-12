@@ -1,72 +1,35 @@
-const CACHE_NAME = 'lawton-cache-v1';
-
-const URLS_TO_CACHE = [
-  '/',
-  '/images/CLlogo.png',
-  '/images/cllogospin.gif',
-  '/images/PXL_20260612_151123910~2.jpg',
-  '/images/PXL_20260607_155608710.jpg',
-  '/images/PXL_20260605_172059179.PANO.jpg',
-  '/images/Image_5.jpg'
+const CACHE_NAME = "lawton-public-v2";
+const PUBLIC_ASSETS = [
+  "/images/CLlogo.png",
+  "/images/PXL_20260612_151123910~2.jpg",
+  "/images/PXL_20260607_155608710.jpg",
+  "/images/PXL_20260605_172059179.PANO.jpg",
+  "/images/Image_5.jpg",
 ];
 
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(URLS_TO_CACHE))
-      .then(() => self.skipWaiting())
-  );
+self.addEventListener("install", (event) => {
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(PUBLIC_ASSETS)).then(() => self.skipWaiting()));
 });
 
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames
-          .filter(name => name !== CACHE_NAME)
-          .map(name => caches.delete(name))
-      );
-    })
-  );
+self.addEventListener("activate", (event) => {
+  event.waitUntil(caches.keys().then((names) => Promise.all(names.filter((name) => name !== CACHE_NAME).map((name) => caches.delete(name)))));
   self.clients.claim();
 });
 
-self.addEventListener('fetch', event => {
-  // We only want to cache GET requests
-  if (event.request.method !== 'GET') return;
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") return;
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin) return;
 
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Return cache hit, or fetch from network and cache it
-        if (response) {
-          return response;
-        }
+  const isPrivateOrDynamic = url.pathname.startsWith("/api/") || url.pathname.startsWith("/staff") || url.pathname.startsWith("/workspace") || url.pathname.endsWith(".rsc");
+  if (isPrivateOrDynamic) return;
 
-        const fetchRequest = event.request.clone();
+  if (PUBLIC_ASSETS.includes(url.pathname)) {
+    event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request)));
+    return;
+  }
 
-        return fetch(fetchRequest).then(
-          response => {
-            // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            const responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                // Ignore API calls and chrome-extensions etc
-                if(event.request.url.startsWith('http') && !event.request.url.includes('api.weather.gov')) {
-                   cache.put(event.request, responseToCache);
-                }
-              });
-
-            return response;
-          }
-        ).catch(() => {
-            // Fallback for offline if not in cache
-        });
-      })
-  );
+  if (event.request.mode === "navigate") {
+    event.respondWith(fetch(event.request).catch(() => new Response("Camp Lawton Leader Hub is offline. Reconnect to view current camp information.", { status: 503, headers: { "Content-Type": "text/plain; charset=utf-8" } })));
+  }
 });

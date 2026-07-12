@@ -1,0 +1,18 @@
+import { desc } from "drizzle-orm";
+import Link from "next/link";
+import { getDb } from "../../../db";
+import { submissions } from "../../../db/schema";
+import { programOfferings, sessions } from "../../../lib/camp-catalog";
+import { requireStaff } from "../../staff-auth";
+import { updateSubmissionStatus } from "./actions";
+
+type Snapshot = { unit: { unitType: string; unitNumber: string; city: string; state: string; sessionId: string }; attendance: Record<string, number>; contacts: { alternate?: { name?: string; email?: string } }; scouts: string[]; interests: { offeringId: string; interestedCount: number; priority: string }[]; accommodationFollowUp: boolean };
+
+export default async function SubmissionsPage() {
+  await requireStaff("/staff/submissions");
+  let rows: typeof submissions.$inferSelect[] = [];
+  try { rows = await getDb().select().from(submissions).orderBy(desc(submissions.createdAt)); } catch {}
+  const parsed = rows.map((row) => ({ row, snapshot: JSON.parse(row.snapshot) as Snapshot }));
+  const demand = programOfferings.map((offering) => ({ offering, count: parsed.reduce((total, item) => total + (item.snapshot.interests.find((interest) => interest.offeringId === offering.id)?.interestedCount ?? 0), 0) })).filter((item) => item.count > 0).sort((a, b) => b.count - a.count);
+  return <main className="staff-page"><div className="staff-shell"><header className="staff-top"><div><span>Planning operations</span><h1>Submissions & demand</h1><p>Planning demand is not enrollment and does not represent reserved seats.</p></div><div><Link href="/staff">Dashboard</Link><Link className="button button-small" href="/staff/submissions/export">Export CSV</Link></div></header><section className="demand-panel"><header><h2>Badge demand</h2><span>{parsed.length} unit submission{parsed.length === 1 ? "" : "s"}</span></header><div>{demand.map(({ offering, count }) => <article key={offering.id}><span>{offering.area}</span><strong>{offering.title}</strong><i style={{ width: `${Math.min(100, count * 5)}%` }} /><b>{count} interested</b></article>)}{demand.length === 0 && <p>No badge demand has been submitted.</p>}</div></section><section className="submission-table"><header><span>Reference</span><span>Unit / session</span><span>Attendance</span><span>Contact</span><span>Status</span></header>{parsed.map(({ row, snapshot }) => { const youth = snapshot.attendance.youthMale + snapshot.attendance.youthFemale + snapshot.attendance.youthOther; const adults = snapshot.attendance.adultMale + snapshot.attendance.adultFemale + snapshot.attendance.adultOther; return <article key={row.id}><div><strong>{row.reference}</strong><small>{row.createdAt.toLocaleDateString()}</small></div><div><strong>{snapshot.unit.unitType} {snapshot.unit.unitNumber}</strong><small>{sessions.find((session) => session.id === snapshot.unit.sessionId)?.shortName ?? snapshot.unit.sessionId}</small></div><div><strong>{youth} youth · {adults} adults</strong><small>{snapshot.scouts.length} optional names</small></div><div><strong>{row.contactName}</strong><a href={`mailto:${row.contactEmail}`}>{row.contactEmail}</a></div><form action={updateSubmissionStatus}><input type="hidden" name="id" value={row.id} /><select name="status" defaultValue={row.status} aria-label={`Status for ${row.reference}`}><option value="new">New</option><option value="contacted">Contacted</option><option value="follow-up">Follow-up needed</option><option value="ready">Ready for registration</option><option value="closed">Closed</option><option value="withdrawn">Withdrawn</option></select><button type="submit">Update</button></form></article>})}{parsed.length === 0 && <p className="staff-empty">No planning submissions yet.</p>}</section></div></main>;
+}

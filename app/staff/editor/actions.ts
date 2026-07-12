@@ -2,7 +2,7 @@
 
 import { desc, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { requireChatGPTUser } from "../../chatgpt-auth";
+import { requireStaff } from "../../staff-auth";
 import { getDb } from "../../../db";
 import { alerts, articleRevisions, articles, eventRevisions, events } from "../../../db/schema";
 
@@ -44,7 +44,7 @@ function parseLocalDate(value: FormDataEntryValue | null): Date | null {
 
 export async function saveArticle(formData: FormData): Promise<EditorResult> {
   try {
-    const user = await requireChatGPTUser("/staff/editor");
+    const user = await requireStaff("/staff/editor");
     const db = getDb();
     const title = required(formData, "title", 120);
     const slug = slugify(String(formData.get("slug") || title));
@@ -89,11 +89,11 @@ export async function saveArticle(formData: FormData): Promise<EditorResult> {
 
 export async function saveScheduleEvent(formData: FormData): Promise<EditorResult> {
   try {
-    const user = await requireChatGPTUser("/staff/editor");
+    const user = await requireStaff("/staff/editor");
     const db = getDb();
     const title = required(formData, "eventTitle", 120);
     const dayOfWeek = required(formData, "dayOfWeek", 12);
-    if (!["Monday", "Tuesday", "Wednesday", "Thursday"].includes(dayOfWeek)) throw new Error("Choose a valid schedule day.");
+    if (!["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].includes(dayOfWeek)) throw new Error("Choose a valid schedule day.");
     const startTime = required(formData, "startTime", 20);
     const endTime = required(formData, "endTime", 20);
     const summary = required(formData, "eventSummary", 320);
@@ -128,7 +128,7 @@ export async function saveScheduleEvent(formData: FormData): Promise<EditorResul
 
 export async function saveNotice(formData: FormData): Promise<EditorResult> {
   try {
-    await requireChatGPTUser("/staff/editor");
+    await requireStaff("/staff/editor");
     const db = getDb();
     const title = required(formData, "noticeTitle", 120);
     const content = required(formData, "noticeContent", 500);

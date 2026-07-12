@@ -22,3 +22,7 @@ The original Next/vinext prototype remains under `app/`. Run its lightweight sou
 ```bash
 npm test
 ```
+
+## Run the full application
+
+The application requires Node.js 22.13 or newer and a migrated local D1 database. See [OPERATIONS.md](OPERATIONS.md) for local Worker preview, production migration, staff access, and launch approval requirements.
