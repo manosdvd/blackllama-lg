@@ -1,83 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState, useEffect } from "react";
-
-type DayKey = "Monday" | "Tuesday" | "Wednesday" | "Thursday";
-
-type ScheduleEvent = {
-  time: string;
-  title: string;
-  detail: string;
-  kind: "routine" | "program" | "leader" | "meal";
-};
-
-type Offering = {
-  id: string;
-  title: string;
-  area: string;
-  time: string;
-  start: number;
-  end: number;
-  note: string;
-};
-
-const days: DayKey[] = ["Monday", "Tuesday", "Wednesday", "Thursday"];
-
-const scheduleByDay: Record<DayKey, ScheduleEvent[]> = {
-  Monday: [
-    { time: "6:40 AM", title: "Morning flags", detail: "20 minutes · all camp", kind: "routine" },
-    { time: "7:10 AM", title: "Breakfast", detail: "35 minutes · cleanup follows", kind: "meal" },
-    { time: "8:15 AM", title: "Merit badge sessions 1–3", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "11:40 AM", title: "Lunch", detail: "45 minutes · cleanup follows", kind: "meal" },
-    { time: "12:55 PM", title: "SPL & leaders meeting", detail: "30 minutes · location posted at check-in", kind: "leader" },
-    { time: "1:35 PM", title: "Merit badge sessions 4–6", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "4:35 PM", title: "Campsite competition", detail: "Orienteering and scavenger challenge", kind: "program" },
-    { time: "6:05 PM", title: "Dinner", detail: "50 minutes · cleanup follows", kind: "meal" },
-    { time: "7:25 PM", title: "Evening program", detail: "All-camp program; details announced with the final schedule", kind: "program" },
-  ],
-  Tuesday: [
-    { time: "6:40 AM", title: "Morning flags", detail: "20 minutes · all camp", kind: "routine" },
-    { time: "7:10 AM", title: "Breakfast", detail: "35 minutes · cleanup follows", kind: "meal" },
-    { time: "8:15 AM", title: "Merit badge sessions 1–3", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "11:40 AM", title: "Lunch", detail: "45 minutes · cleanup follows", kind: "meal" },
-    { time: "12:55 PM", title: "SPL & leaders meeting", detail: "30 minutes · leaders and SPLs expected", kind: "leader" },
-    { time: "1:35 PM", title: "Merit badge sessions 4–6", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "4:35 PM", title: "Campsite competition", detail: "Knot-tying challenge", kind: "program" },
-    { time: "6:05 PM", title: "Dinner", detail: "50 minutes · cleanup follows", kind: "meal" },
-    { time: "7:25 PM", title: "Karaoke night", detail: "Optional all-camp evening program", kind: "program" },
-  ],
-  Wednesday: [
-    { time: "6:40 AM", title: "Morning flags", detail: "20 minutes · all camp", kind: "routine" },
-    { time: "7:10 AM", title: "Breakfast", detail: "35 minutes · cleanup follows", kind: "meal" },
-    { time: "8:15 AM", title: "Merit badge sessions 1–3", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "11:40 AM", title: "Lunch", detail: "45 minutes · cleanup follows", kind: "meal" },
-    { time: "12:55 PM", title: "SPL & leaders meeting", detail: "30 minutes · leaders and SPLs expected", kind: "leader" },
-    { time: "1:35 PM", title: "Merit badge sessions 4–6", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "4:35 PM", title: "Campfire preparation", detail: "Campsite creative time for Friday campfire", kind: "program" },
-    { time: "6:05 PM", title: "Dinner", detail: "50 minutes · cleanup follows", kind: "meal" },
-    { time: "7:25 PM", title: "Stargazing program", detail: "Astronomy and celestial navigation", kind: "program" },
-  ],
-  Thursday: [
-    { time: "6:40 AM", title: "Morning flags", detail: "20 minutes · all camp", kind: "routine" },
-    { time: "7:10 AM", title: "Breakfast", detail: "35 minutes · cleanup follows", kind: "meal" },
-    { time: "8:15 AM", title: "Merit badge sessions 1–3", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "11:40 AM", title: "Lunch", detail: "45 minutes · cleanup follows", kind: "meal" },
-    { time: "12:55 PM", title: "SPL & leaders meeting", detail: "30 minutes · leaders and SPLs expected", kind: "leader" },
-    { time: "1:35 PM", title: "Merit badge sessions 4–6", detail: "Final regular afternoon blocks", kind: "program" },
-    { time: "4:35 PM", title: "Gaga ball tournament", detail: "Campsite competition", kind: "program" },
-    { time: "6:05 PM", title: "Dinner", detail: "50 minutes · cleanup follows", kind: "meal" },
-    { time: "7:25 PM", title: "Campfire kit approval", detail: "All Friday skits, songs, and stories require staff review", kind: "leader" },
-  ],
-};
-
-const offerings: Offering[] = [
-  { id: "archery", title: "Archery", area: "Range", time: "8:15–9:05 AM", start: 815, end: 905, note: "Certified range supervision" },
-  { id: "basketry", title: "Basketry", area: "Handicraft", time: "8:15–9:05 AM", start: 815, end: 905, note: "Material fee may apply" },
-  { id: "first-aid", title: "First Aid", area: "Scoutcraft", time: "9:15–10:05 AM", start: 915, end: 1005, note: "Bring current handbook" },
-  { id: "nature", title: "Nature", area: "Nature Lodge", time: "10:15–11:05 AM", start: 1015, end: 1105, note: "Outdoor fieldwork" },
-  { id: "astronomy", title: "Astronomy", area: "Nature Lodge", time: "1:35–2:25 PM", start: 1335, end: 1425, note: "Evening observation component" },
-  { id: "navigation", title: "Navigation Skills", area: "Scoutcraft", time: "2:35–3:25 PM", start: 1435, end: 1525, note: "Compass recommended" },
-];
+import Link from "next/link";
 
 const guideSections = [
   {
@@ -155,6 +79,7 @@ const guideSections = [
 ];
 
 type WeatherData = { temp: number | null; text: string; time: string };
+type CampNotice = { id: string; title: string; summary: string; urgency: string; source: string; updatedAt: string };
 
 function HeaderHUD({ weather, error }: { weather: WeatherData | null; error: boolean }) {
   return (
@@ -208,6 +133,7 @@ export default function Home() {
   
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [weatherError, setWeatherError] = useState(false);
+  const [campNotice, setCampNotice] = useState<CampNotice | null>(null);
 
   useEffect(() => {
     fetch("https://api.weather.gov/stations/QSLA3/observations/latest")
@@ -226,6 +152,13 @@ export default function Home() {
       .catch(() => {
         setWeatherError(true);
       });
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/notices")
+      .then((response) => response.ok ? response.json() : Promise.reject())
+      .then((notices: CampNotice[]) => setCampNotice(notices[0] ?? null))
+      .catch(() => setCampNotice(null));
   }, []);
 
   const filteredGuide = useMemo(() => {
@@ -247,8 +180,8 @@ export default function Home() {
       
       <div className="notice-bar" role="status">
         <span className="notice-dot" aria-hidden="true" />
-        <strong>Planning notice</strong>
-        <span>2027 schedules are preliminary. Final program details will be posted before registration opens.</span>
+        <strong>{campNotice?.title ?? "Planning notice"}</strong>
+        <span>{campNotice?.summary ?? "2027 schedules are preliminary. Final program details will be posted before registration opens."}</span>
         <a href="#alerts">View notices</a>
       </div>
 
@@ -339,6 +272,7 @@ export default function Home() {
                   <span className="round-arrow" aria-hidden="true">+</span>
                 </summary>
                 <ul>{item.body.map((line) => <li key={line}>{line}</li>)}</ul>
+                {item.id === "arrival" && <Link className="guide-article-link" href="/guide/arrival-and-check-in">Read the reviewed article →</Link>}
               </details>
             ))}
             {filteredGuide.length === 0 && <p className="empty-state">No guide sections match “{guideQuery}”. Try a broader term.</p>}
@@ -365,12 +299,12 @@ export default function Home() {
       <section className="section alerts-section" id="alerts">
         <div className="section-heading">
           <div><div className="section-kicker">Conditions & notices</div><h2>Know before you go.</h2></div>
-          <span className="prototype-pill">Prototype data</span>
+          <span className="prototype-pill">Source status shown</span>
         </div>
         <div className="alert-grid">
           <WeatherAlert weather={weather} error={weatherError} />
           <article><span className="alert-icon amber">▲</span><div><small>Fire restrictions</small><h3>Verify daily with camp staff</h3><p>Restrictions can change without warning. Missing online data never means fires are permitted.</p></div></article>
-          <article><span className="alert-icon green">i</span><div><small>Camp notice</small><h3>2027 schedules are preliminary</h3><p>Final program details, capacities, and fees will be published before official registration.</p></div></article>
+          <article><span className="alert-icon green">i</span><div><small>{campNotice?.source ?? "Camp Lawton staff"}</small><h3>{campNotice?.title ?? "2027 schedules are preliminary"}</h3><p>{campNotice?.summary ?? "Final program details, capacities, and fees will be published before official registration."}</p></div></article>
         </div>
       </section>
 

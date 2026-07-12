@@ -3,8 +3,10 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const root = new URL("../", import.meta.url);
-const [page, layout, css] = await Promise.all([
+const [page, schedule, meritBadges, layout, css] = await Promise.all([
   readFile(new URL("app/page.tsx", root), "utf8"),
+  readFile(new URL("app/schedule/page.tsx", root), "utf8"),
+  readFile(new URL("app/merit-badges/page.tsx", root), "utf8"),
   readFile(new URL("app/layout.tsx", root), "utf8"),
   readFile(new URL("app/globals.css", root), "utf8"),
 ]);
@@ -12,19 +14,18 @@ const [page, layout, css] = await Promise.all([
 test("the application source contains the recovered Camp Lawton prototype", () => {
   assert.match(page, /Camp Lawton/);
   assert.match(page, /Leader’s guide/);
-  assert.match(page, /Week at a glance/);
-  assert.match(page, /Program planner/);
+  assert.match(schedule, /Week at a glance/);
+  assert.match(meritBadges, /Program explorer/);
   assert.match(page, /Conditions & notices/);
   assert.match(page, /Pre-register/);
 });
 
-test("the prototype retains its main client-side interactions", () => {
-  assert.match(page, /useState<DayKey>/);
+test("the application retains its main interactions across product routes", () => {
   assert.match(page, /setGuideQuery/);
-  assert.match(page, /togglePlan/);
+  assert.match(meritBadges, /togglePlan/);
   assert.match(page, /submitInterest/);
-  assert.match(page, /aria-selected/);
-  assert.match(page, /aria-pressed/);
+  assert.match(schedule, /aria-selected/);
+  assert.match(meritBadges, /aria-pressed/);
 });
 
 test("metadata and responsive styling describe the actual product", () => {

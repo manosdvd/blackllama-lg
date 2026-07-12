@@ -1,17 +1,19 @@
 import { requireChatGPTUser } from "../../chatgpt-auth";
 import EditorClient from "./EditorClient";
+import { getArticleForEditor } from "../../../lib/content-repository";
 
 export default async function EditorPage() {
   const user = await requireChatGPTUser("/staff/editor");
+  const editorData = await getArticleForEditor("arrival-and-check-in");
 
   return (
-    <main className="min-h-screen bg-[var(--paper)] py-12 px-8">
-      <div className="max-w-4xl mx-auto">
-        <header className="mb-10">
-          <h1 className="text-4xl font-bold text-[var(--pine-950)] font-serif mb-2">Staff Editor</h1>
-          <p className="text-[var(--muted)]">Welcome back, {user.displayName}. Use this tool to draft and publish guide articles.</p>
+    <main className="editor-page">
+      <div className="editor-shell">
+        <header className="editor-header">
+          <div><span>Camp Lawton staff</span><h1>Publishing workspace</h1></div>
+          <p>Signed in as {user.displayName}. Draft, review, and publish the first public guide slice.</p>
         </header>
-        <EditorClient />
+        <EditorClient article={editorData.article} revisions={editorData.revisions} />
       </div>
     </main>
   );

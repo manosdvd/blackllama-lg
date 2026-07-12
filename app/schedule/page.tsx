@@ -1,119 +1,64 @@
 import Link from "next/link";
+import { getPublishedSchedule } from "../../lib/content-repository";
 
-type DayKey = "Monday" | "Tuesday" | "Wednesday" | "Thursday";
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday"] as const;
 
-type ScheduleEvent = {
-  time: string;
-  title: string;
-  detail: string;
-  kind: "routine" | "program" | "leader" | "meal";
-};
-
-const days: DayKey[] = ["Monday", "Tuesday", "Wednesday", "Thursday"];
-
-const scheduleByDay: Record<DayKey, ScheduleEvent[]> = {
-  Monday: [
-    { time: "6:40 AM", title: "Morning flags", detail: "20 minutes · all camp", kind: "routine" },
-    { time: "7:10 AM", title: "Breakfast", detail: "35 minutes · cleanup follows", kind: "meal" },
-    { time: "8:15 AM", title: "Merit badge sessions 1–3", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "11:40 AM", title: "Lunch", detail: "45 minutes · cleanup follows", kind: "meal" },
-    { time: "12:55 PM", title: "SPL & leaders meeting", detail: "30 minutes · location posted at check-in", kind: "leader" },
-    { time: "1:35 PM", title: "Merit badge sessions 4–6", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "4:35 PM", title: "Campsite competition", detail: "Orienteering and scavenger challenge", kind: "program" },
-    { time: "6:05 PM", title: "Dinner", detail: "50 minutes · cleanup follows", kind: "meal" },
-    { time: "7:25 PM", title: "Evening program", detail: "All-camp program; details announced with the final schedule", kind: "program" },
-  ],
-  Tuesday: [
-    { time: "6:40 AM", title: "Morning flags", detail: "20 minutes · all camp", kind: "routine" },
-    { time: "7:10 AM", title: "Breakfast", detail: "35 minutes · cleanup follows", kind: "meal" },
-    { time: "8:15 AM", title: "Merit badge sessions 1–3", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "11:40 AM", title: "Lunch", detail: "45 minutes · cleanup follows", kind: "meal" },
-    { time: "12:55 PM", title: "SPL & leaders meeting", detail: "30 minutes · leaders and SPLs expected", kind: "leader" },
-    { time: "1:35 PM", title: "Merit badge sessions 4–6", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "4:35 PM", title: "Campsite competition", detail: "Knot-tying challenge", kind: "program" },
-    { time: "6:05 PM", title: "Dinner", detail: "50 minutes · cleanup follows", kind: "meal" },
-    { time: "7:25 PM", title: "Karaoke night", detail: "Optional all-camp evening program", kind: "program" },
-  ],
-  Wednesday: [
-    { time: "6:40 AM", title: "Morning flags", detail: "20 minutes · all camp", kind: "routine" },
-    { time: "7:10 AM", title: "Breakfast", detail: "35 minutes · cleanup follows", kind: "meal" },
-    { time: "8:15 AM", title: "Merit badge sessions 1–3", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "11:40 AM", title: "Lunch", detail: "45 minutes · cleanup follows", kind: "meal" },
-    { time: "12:55 PM", title: "SPL & leaders meeting", detail: "30 minutes · leaders and SPLs expected", kind: "leader" },
-    { time: "1:35 PM", title: "Merit badge sessions 4–6", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "4:35 PM", title: "Campfire preparation", detail: "Campsite creative time for Friday campfire", kind: "program" },
-    { time: "6:05 PM", title: "Dinner", detail: "50 minutes · cleanup follows", kind: "meal" },
-    { time: "7:25 PM", title: "Stargazing program", detail: "Astronomy and celestial navigation", kind: "program" },
-  ],
-  Thursday: [
-    { time: "6:40 AM", title: "Morning flags", detail: "20 minutes · all camp", kind: "routine" },
-    { time: "7:10 AM", title: "Breakfast", detail: "35 minutes · cleanup follows", kind: "meal" },
-    { time: "8:15 AM", title: "Merit badge sessions 1–3", detail: "Three 50-minute blocks with 10-minute transitions", kind: "program" },
-    { time: "11:40 AM", title: "Lunch", detail: "45 minutes · cleanup follows", kind: "meal" },
-    { time: "12:55 PM", title: "SPL & leaders meeting", detail: "30 minutes · leaders and SPLs expected", kind: "leader" },
-    { time: "1:35 PM", title: "Merit badge sessions 4–6", detail: "Final regular afternoon blocks", kind: "program" },
-    { time: "4:35 PM", title: "Gaga ball tournament", detail: "Campsite competition", kind: "program" },
-    { time: "6:05 PM", title: "Dinner", detail: "50 minutes · cleanup follows", kind: "meal" },
-    { time: "7:25 PM", title: "Campfire kit approval", detail: "All Friday skits, songs, and stories require staff review", kind: "leader" },
-  ],
-};
-
-export default function SchedulePage({
-  searchParams,
-}: {
-  searchParams: { day?: string };
-}) {
-  const selectedDay = (searchParams.day as DayKey) || "Monday";
+export default async function SchedulePage({ searchParams }: { searchParams: Promise<{ day?: string }> }) {
+  const requestedDay = (await searchParams).day;
+  const selectedDay = days.find((day) => day === requestedDay) ?? "Monday";
+  const schedule = await getPublishedSchedule(selectedDay);
 
   return (
     <main>
       <header className="site-header">
         <Link className="brand" href="/" aria-label="Camp Lawton home">
-          <img src="/images/CLlogo.png" alt="CL Logo" className="brand-mark" />
+          <img src="/images/CLlogo.png" alt="" className="brand-mark" />
           <span><strong>Camp Lawton</strong><small>Leader Hub · 2027</small></span>
         </Link>
         <nav aria-label="Main navigation">
-          <Link href="/">Guide</Link>
+          <Link href="/#guide">Guide</Link>
           <Link href="/schedule" aria-current="page">Schedule</Link>
           <Link href="/merit-badges">Programs</Link>
           <Link href="/#alerts">Alerts</Link>
         </nav>
       </header>
-      
-      <section className="section">
-        <div className="section-heading light">
-          <div>
-            <div className="section-kicker">Week at a glance</div>
-            <h2>Camp Schedule</h2>
-          </div>
-          <p>Standard Monday–Thursday pattern from the 2027 guide. Ten-minute transitions and meal cleanup buffers are included.</p>
+
+      <section className="section schedule-page">
+        <div className="section-heading">
+          <div><div className="section-kicker">Week at a glance</div><h2>Camp schedule</h2></div>
+          <p>Choose a day, then open an event for its location, audience, requirements, and preparation details.</p>
         </div>
-        <div className="day-tabs" role="tablist" aria-label="Choose a schedule day">
+        <div className="day-tabs schedule-day-tabs" role="tablist" aria-label="Choose a schedule day">
           {days.map((day) => (
-            <Link
-              key={day}
-              href={`/schedule?day=${day}`}
-              className="button button-small"
-              style={{ opacity: selectedDay === day ? 1 : 0.6 }}
-              role="tab"
-              aria-selected={selectedDay === day}
-            >
-              {day}
-            </Link>
+            <Link key={day} href={`/schedule?day=${day}`} role="tab" aria-selected={selectedDay === day}>{day}</Link>
           ))}
         </div>
-        <div className="schedule-panel" style={{ marginTop: "2rem" }}>
+        <div className="schedule-panel">
           <div className="schedule-date">
-            <span>Standard day</span><strong>{selectedDay}</strong><small>Exact offerings may change before camp.</small>
+            <span>Standard day</span><strong>{selectedDay}</strong>
+            <small>Times and offerings remain subject to final staff publication.</small>
           </div>
           <div className="timeline">
-            {scheduleByDay[selectedDay]?.map((event) => (
-              <div className={`timeline-item ${event.kind}`} key={`${event.time}-${event.title}`}>
-                <time>{event.time}</time>
-                <span><strong>{event.title}</strong><small>{event.detail}</small></span>
-                <i aria-hidden="true">→</i>
-              </div>
+            {schedule.map((event) => (
+              <details className={`timeline-event ${event.kind}`} key={event.id}>
+                <summary className="timeline-item">
+                  <time>{event.startTime}</time>
+                  <span><strong>{event.title}</strong><small>{event.summary}</small></span>
+                  <i aria-hidden="true">+</i>
+                </summary>
+                <div className="event-detail">
+                  <dl>
+                    <div><dt>Time</dt><dd>{event.startTime}-{event.endTime}</dd></div>
+                    <div><dt>Location</dt><dd>{event.location}</dd></div>
+                    <div><dt>Audience</dt><dd>{event.audience}</dd></div>
+                    <div><dt>Attendance</dt><dd>{event.required ? "Required" : "Optional"}</dd></div>
+                  </dl>
+                  {event.whatToBring && <p><strong>What to bring:</strong> {event.whatToBring}</p>}
+                  {event.accessibilityNotes && <p><strong>Accessibility:</strong> {event.accessibilityNotes}</p>}
+                </div>
+              </details>
             ))}
+            {schedule.length === 0 && <p className="schedule-empty">The detailed {selectedDay} schedule has not been published yet.</p>}
           </div>
         </div>
       </section>
