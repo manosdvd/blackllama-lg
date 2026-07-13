@@ -7,13 +7,14 @@ export async function generateMetadata(): Promise<Metadata> {
   const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
+  const description = "Explore the 2027 guide, schedules, programs, planning tools, and live Camp Lawton conditions.";
 
   return {
     title: "Camp Lawton Leader Hub · 2027",
-    description: "Plan a safe, memorable 2027 summer camp at Camp Lawton.",
+    description,
     openGraph: {
       title: "Camp Lawton · 2027 Leader Hub",
-      description: "Plan a safe, memorable summer camp.",
+      description,
       url: origin,
       siteName: "Camp Lawton Leader Hub",
       images: [{ url: `${origin}/og.png`, width: 1200, height: 630, alt: "Camp Lawton 2027 Leader Hub" }],
@@ -22,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: "Camp Lawton · 2027 Leader Hub",
-      description: "Plan a safe, memorable summer camp.",
+      description,
       images: [`${origin}/og.png`],
     },
   };
