@@ -116,6 +116,7 @@ export default function Home() {
         </a>
         <nav aria-label="Main navigation">
           <a href="#guide">Guide</a>
+          <a href="/history">History</a>
           <a href="/plan">Plan</a>
           <a href="/schedule">Schedule</a>
           <a href="/merit-badges">Programs</a>
@@ -214,10 +215,10 @@ export default function Home() {
       <section className="story-band">
         <img src="/images/PXL_20260605_172059179.PANO.jpg" alt="Camp Lawton cabins arranged around a campsite fire ring" loading="lazy" />
         <div className="story-copy">
-          <div className="section-kicker">Life at Lawton</div>
-          <h2>Cabins under the pines.<br />A whole camp within reach.</h2>
-          <p>Each campsite is a home base for the week. Adirondack-style structures include wooden sleeping platforms; leaders should plan buddy assignments and bring sleeping pads and bags for comfort.</p>
-          <a href="#guide" className="text-link">Read campsite guidance <span aria-hidden="true">→</span></a>
+          <div className="section-kicker">A century on the mountain</div>
+          <h2>Built by many hands.<br />Carried by generations.</h2>
+          <p>From a $400 civic project in 1921 to a camp repeatedly renewed by fire, snow, and service, Camp Lawton’s story is written into every spring, cabin, and trail.</p>
+          <a href="/history" className="text-link">Walk the interactive timeline <span aria-hidden="true">→</span></a>
         </div>
       </section>
 
@@ -247,7 +248,7 @@ export default function Home() {
 
       <footer>
         <div className="footer-brand"><img src="/images/CLlogo.png" alt="CL Logo" className="brand-mark" /><div><strong>Camp Lawton</strong><small>Catalina Mountains · Arizona</small></div></div>
-        <div><strong>Leader resources</strong><a href="#guide">Leader’s guide</a><a href="/schedule">Schedule</a><a href="/merit-badges">Program planner</a></div>
+        <div><strong>Leader resources</strong><a href="#guide">Leader’s guide</a><a href="/history">Camp history</a><a href="/schedule">Schedule</a><a href="/merit-badges">Program planner</a></div>
         <div><strong>Prepare</strong><a href="#guide">Packing & paperwork</a><a href="#alerts">Conditions & notices</a><a href="#preregister">Pre-register</a></div>
         <p>Prototype based on the 2027 leader’s guide. Dates and program details remain subject to final approval.</p>
       </footer>
