@@ -1,28 +1,36 @@
 # Camp Lawton Leader Hub
 
-A working prototype and product blueprint for the 2027 Camp Lawton online leader’s guide.
+The live 2027 Camp Lawton planning application for unit leaders, Scouts, and authorized camp staff. It combines the reviewed leader guide, structured schedules and program catalog, personal planning tools, privacy-minimized pre-registration, staff publishing, and a live operational alert center.
 
-## View the recovered prototype
+## Application
 
-- [Open the interactive preview](https://manosdvd.github.io/blackllama-lg/)
-- [Product blueprint](ONLINE_LEADERS_GUIDE_BLUEPRINT.md)
+- Live deployment: [camp-lawton-leader-hub-2027.manosdvd.chatgpt.site](https://camp-lawton-leader-hub-2027.manosdvd.chatgpt.site)
+- Product blueprint: [ONLINE_LEADERS_GUIDE_BLUEPRINT.md](ONLINE_LEADERS_GUIDE_BLUEPRINT.md)
+- Operations and release procedure: [OPERATIONS.md](OPERATIONS.md)
+- Live conditions integration: [docs/LIVE_CONDITIONS.md](docs/LIVE_CONDITIONS.md)
 
-The preview is intentionally dependency-free so the current design can be reviewed while the unfinished application backend is rebuilt. It includes guide search, schedule tabs, event details, program filtering, exact-overlap warnings, responsive navigation, and a mock pre-registration flow. No form data is transmitted or stored.
+The application includes public guide, schedule, merit badge, planner, alerts, and pre-registration routes; authenticated unit workspaces; and fail-closed staff content, schedule, notice, and submission tools.
 
 ## Run locally
 
+Node.js 22.13 or newer is required.
+
 ```bash
-npm run preview:static
+npm install
+npm run dev
 ```
 
-Then open `http://localhost:8080`.
+Open the URL printed by vinext, normally `http://localhost:3000`. If that port is already in use, run `npm run dev -- --port 3001`.
 
-The original Next/vinext prototype remains under `app/`. Run its lightweight source checks with:
+For a local production Worker build with a migrated D1 database, follow [OPERATIONS.md](OPERATIONS.md#local-production-preview).
+
+## Verify
 
 ```bash
 npm test
+npx tsc --noEmit --incremental false
+npm run lint
+npm run build
 ```
 
-## Run the full application
-
-The application requires Node.js 22.13 or newer and a migrated local D1 database. See [OPERATIONS.md](OPERATIONS.md) for local Worker preview, production migration, staff access, and launch approval requirements.
+The dependency-free recovered design preview remains under `preview/` for historical comparison. Run it with `npm run preview:static` and open `http://localhost:8080`; it is not the live application and does not submit data.

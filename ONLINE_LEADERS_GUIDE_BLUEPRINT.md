@@ -247,8 +247,8 @@ An AI recommendation layer is optional and should come after deterministic rules
 
 | Source | Behavior | Owner |
 | --- | --- | --- |
-| Weather | Pull current observations/forecast for the configured Camp Lawton station or point; validate the requested `QSLA3` identifier before launch | Automated integration with staff fallback |
-| Fire danger/restrictions | Display official Coronado National Forest notices or a staff-verified summary with source link and last checked time | Camp Director/Ranger |
+| Weather | Pull the Camp Lawton point forecast and active hazards at `32.4033,-110.7215`, plus current observations from validated station `QSLA3` (`SCOUT CAMP`) | Automated integration with staff fallback |
+| Fire danger/restrictions | Parse the separately published danger rating and explicit restriction notice from the official Coronado National Forest alert page; show source link and last checked time | Camp Director/Ranger |
 | Camp notice | Staff-authored, scheduled, expiring notice | Camp or Program Director |
 
 ### Urgency levels
@@ -267,6 +267,8 @@ Each alert contains title, plain-language summary, instructions, source, issued 
 - Cache the last successful response for brief outages.
 - Staff can override automated display with a signed manual notice.
 - Never infer that fires are permitted from missing restriction data.
+
+**Implemented July 12, 2026:** the normalized live-conditions route, full public report, compact homepage summary, per-feed freshness states, warm-isolate last-success fallback, and conservative fire handling are complete. Scheduled staff notices are also live. Authenticated opt-in notifications remain a later Phase 4 item.
 
 ## 9. Pre-registration and merit badge survey
 

@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
+import { ConditionsHud, FireSummaryCard, WeatherSummaryCard, useLiveConditions } from "../components/ConditionsPanel";
 
 const guideSections = [
   {
@@ -78,76 +79,12 @@ const guideSections = [
   },
 ];
 
-type WeatherData = { temp: number | null; text: string; time: string };
 type CampNotice = { id: string; title: string; summary: string; urgency: string; source: string; updatedAt: string };
-
-function HeaderHUD({ weather, error }: { weather: WeatherData | null; error: boolean }) {
-  return (
-    <div className="hud-bar" role="status">
-      <div className="hud-item">
-        <span className="hud-icon" aria-hidden="true">°</span>
-        <span>Weather: {error ? "Unavailable" : weather ? `${weather.temp !== null ? weather.temp + "°F" : "N/A"} · ${weather.text}` : "Loading..."}</span>
-      </div>
-      <div className="hud-item">
-        <span className="hud-icon" aria-hidden="true">▲</span>
-        <span>Fire Danger: Verify locally</span>
-      </div>
-    </div>
-  );
-}
-
-function WeatherAlert({ weather, error }: { weather: WeatherData | null; error: boolean }) {
-  if (error) {
-    return (
-      <article>
-        <span className="alert-icon sky">°</span>
-        <div><small>Weather</small><h3>Feed unavailable</h3><p>Could not connect to NWS station QSLA3 at this time.</p></div>
-      </article>
-    );
-  }
-
-  return (
-    <article>
-      <span className="alert-icon sky">°</span>
-      <div>
-        <small>Weather (Mt. Lemmon)</small>
-        {weather ? (
-          <>
-            <h3>{weather.temp !== null ? `${weather.temp}°F` : "N/A"} · {weather.text}</h3>
-            <p>Observations from NWS station QSLA3. Updated at {weather.time}.</p>
-          </>
-        ) : (
-          <>
-            <h3>Loading...</h3>
-            <p>Fetching latest conditions from NWS...</p>
-          </>
-        )}
-      </div>
-    </article>
-  );
-}
 
 export default function Home() {
   const [guideQuery, setGuideQuery] = useState("");
-  const [weather, setWeather] = useState<WeatherData | null>(null);
-  const [weatherError, setWeatherError] = useState(false);
   const [campNotice, setCampNotice] = useState<CampNotice | null>(null);
-
-  useEffect(() => {
-    fetch("/api/conditions")
-      .then(res => {
-        if (!res.ok) throw new Error("Weather API failed");
-        return res.json();
-      })
-      .then(data => {
-        if (data.status === "unavailable") throw new Error("Weather API failed");
-        const time = data.observedAt ? new Date(data.observedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "Unknown";
-        setWeather({ temp: data.temperatureF, text: data.description, time });
-      })
-      .catch(() => {
-        setWeatherError(true);
-      });
-  }, []);
+  const conditionsState = useLiveConditions();
 
   useEffect(() => {
     fetch("/api/notices")
@@ -163,7 +100,7 @@ export default function Home() {
   }, [guideQuery]);
   return (
     <main>
-      <HeaderHUD weather={weather} error={weatherError} />
+      <ConditionsHud state={conditionsState} />
       
       <div className="notice-bar" role="status">
         <span className="notice-dot" aria-hidden="true" />
@@ -290,8 +227,8 @@ export default function Home() {
           <span className="prototype-pill">Source status shown</span>
         </div>
         <div className="alert-grid">
-          <WeatherAlert weather={weather} error={weatherError} />
-          <article><span className="alert-icon amber">▲</span><div><small>Fire restrictions</small><h3>Verify daily with camp staff</h3><p>Restrictions can change without warning. Missing online data never means fires are permitted.</p></div></article>
+          <WeatherSummaryCard state={conditionsState} />
+          <FireSummaryCard state={conditionsState} />
           <article><span className="alert-icon green">i</span><div><small>{campNotice?.source ?? "Camp Lawton staff"}</small><h3>{campNotice?.title ?? "2027 schedules are preliminary"}</h3><p>{campNotice?.summary ?? "Final program details, capacities, and fees will be published before official registration."}</p></div></article>
         </div>
       </section>
