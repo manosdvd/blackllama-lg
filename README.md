@@ -8,6 +8,7 @@ The live 2027 Camp Lawton planning application for unit leaders, Scouts, and aut
 - Product blueprint: [ONLINE_LEADERS_GUIDE_BLUEPRINT.md](ONLINE_LEADERS_GUIDE_BLUEPRINT.md)
 - Operations and release procedure: [OPERATIONS.md](OPERATIONS.md)
 - Live conditions integration: [docs/LIVE_CONDITIONS.md](docs/LIVE_CONDITIONS.md)
+- Merit badge survey catalog: [docs/MERIT_BADGE_SURVEY.md](docs/MERIT_BADGE_SURVEY.md)
 
 The application includes public guide, schedule, merit badge, planner, alerts, and pre-registration routes; authenticated unit workspaces; and fail-closed staff content, schedule, notice, and submission tools.
 

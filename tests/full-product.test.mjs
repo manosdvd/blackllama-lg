@@ -4,8 +4,8 @@ import test from "node:test";
 
 const root = new URL("../", import.meta.url);
 const read = (path) => readFile(new URL(path, root), "utf8");
-const [catalog, planner, prereg, preregApi, schema, migration, staffAuth, staffSubmissions, css] = await Promise.all([
-  read("lib/camp-catalog.ts"), read("components/PlannerClient.tsx"), read("components/PreRegisterClient.tsx"),
+const [catalog, surveyCatalog, planner, prereg, preregApi, schema, migration, staffAuth, staffSubmissions, css] = await Promise.all([
+  read("lib/camp-catalog.ts"), read("lib/merit-badge-survey.generated.ts"), read("components/PlannerClient.tsx"), read("components/PreRegisterClient.tsx"),
   read("app/api/pre-register/route.ts"), read("db/schema.ts"), read("drizzle/0003_workspaces_and_submissions.sql"),
   read("app/staff-auth.ts"), read("app/staff/submissions/page.tsx"), read("app/globals.css"),
 ]);
@@ -17,6 +17,8 @@ test("canonical catalog covers sessions, guide, programs, and BSA/Cub schedules"
   assert.match(catalog, /Environmental Science/);
   assert.match(catalog, /bsaSchedule/);
   assert.match(catalog, /cubSchedule/);
+  assert.match(surveyCatalog, /American Business/);
+  assert.match(surveyCatalog, /Soil and Water Conservation/);
 });
 
 test("planner applies deterministic conflict and alternative rules", () => {

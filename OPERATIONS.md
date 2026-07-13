@@ -41,6 +41,22 @@ Confirm that the response contains the Camp Lawton point, station `QSLA3`, forec
 
 See [docs/LIVE_CONDITIONS.md](docs/LIVE_CONDITIONS.md) for the full source contract, freshness rules, selectors, safety invariants, and maintenance checklist.
 
+## Merit badge survey catalog
+
+`masterMB.csv` is the canonical source for the 84-badge interest survey. It does not replace the scheduled offerings in `lib/camp-catalog.ts`.
+
+After changing the source CSV, run:
+
+```bash
+npm run survey:generate
+npm run survey:check
+npm test
+```
+
+The generated catalog is committed at `lib/merit-badge-survey.generated.ts`. `npm test` and `npm run build` verify that it has not drifted from the CSV. Review [docs/MERIT_BADGE_SURVEY.md](docs/MERIT_BADGE_SURVEY.md) for the field mapping, stable-ID rules, privacy boundary, and staff reporting contract.
+
+Before using demand for a program decision, export the long-form staff CSV and compare totals by badge and session with the dashboard. Treat every result as planning demand rather than enrollment or reserved capacity.
+
 ## Production release
 
 1. Provision the production D1 database and replace the placeholder database ID in `wrangler.json` when deploying outside the configured hosting control plane.
@@ -52,7 +68,7 @@ npm run db:migrate:remote
 ```
 
 4. Build and deploy through the configured hosting project. The build output is under `dist/`, and database migrations are copied to `dist/.openai/drizzle/`.
-5. Verify `/api/conditions` against both official sources, `/api/notices`, a test planning submission, staff authorization, and CSV export in the deployed environment.
+5. Verify `/api/conditions` against both official sources, `/api/notices`, a test planning submission using a survey-only badge, staff demand aggregation, staff authorization, and the long-form CSV export in the deployed environment.
 
 ## Required launch approvals
 

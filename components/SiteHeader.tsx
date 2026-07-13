@@ -12,7 +12,7 @@ export default function SiteHeader({ current }: { current?: string }) {
       <span><strong>Camp Lawton</strong><small>Leader Hub · 2027</small></span>
     </Link>
     <nav aria-label="Main navigation">{links.map(([label, href]) => <Link key={href} href={href} aria-current={current === href ? "page" : undefined}>{label}</Link>)}</nav>
-    <div className="header-actions"><Link className="plan-link" href="/workspace">My Unit</Link><Link className="plan-link" href="/my-plan">My Plan</Link><Link className="button button-small" href="/pre-register">Pre-register</Link></div>
-    <details className="mobile-nav"><summary aria-label="Open navigation">Menu</summary><div>{links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}<Link href="/workspace">My Unit</Link><Link href="/my-plan">My Plan</Link><Link href="/pre-register">Pre-register</Link></div></details>
+    <div className="header-actions"><Link className="plan-link" href="/workspace" prefetch={false}>My Unit</Link><Link className="plan-link" href="/my-plan">My Plan</Link><Link className="button button-small" href="/pre-register">Pre-register</Link></div>
+    <details className="mobile-nav"><summary aria-label="Open navigation">Menu</summary><div>{links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}<Link href="/workspace" prefetch={false}>My Unit</Link><Link href="/my-plan">My Plan</Link><Link href="/pre-register">Pre-register</Link></div></details>
   </header>;
 }

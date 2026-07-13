@@ -297,6 +297,8 @@ The merit badge survey should be a structured grid with search and program-area 
 
 The staff dashboard aggregates demand by badge, session, unit, and program area. It must label all results as planning demand, not enrollment.
 
+**Implemented July 12, 2026:** `masterMB.csv` now drives a separate 84-badge survey catalog with search, area/feasibility/tier filters, count, priority, optional privacy-bounded notes, API allowlisting, attendance caps, backward-compatible snapshot parsing, staff session/priority aggregation, and long-form demand export. The smaller scheduled-offering catalog remains separate for the explorer and conflict planner.
+
 ### Roster privacy
 
 - Collect the minimum useful youth information.
