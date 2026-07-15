@@ -1,10 +1,11 @@
-const CACHE_NAME = "lawton-public-v2";
+const CACHE_NAME = "lawton-public-v3";
 const PUBLIC_ASSETS = [
   "/images/CLlogo.png",
   "/images/PXL_20260612_151123910~2.jpg",
   "/images/PXL_20260607_155608710.jpg",
   "/images/PXL_20260605_172059179.PANO.jpg",
   "/images/Image_5.jpg",
+  "/map/camp-lawton-map.svg",
 ];
 
 self.addEventListener("install", (event) => {

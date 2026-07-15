@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { parse } from "csv-parse/sync";
+import { programOfferings } from "../lib/camp-catalog";
 import { meritBadgeSurveyCatalog } from "../lib/merit-badge-survey.generated";
+import { getMeritBadgeResource, meritBadgeResources, OFFICIAL_MERIT_BADGE_INDEX_URL } from "../lib/merit-badge-resources";
 import { aggregateBadgeDemand, normalizeSurveyInterests, parsePlanningSnapshot, type PlanningSnapshot } from "../lib/planning-submission";
 
 const root = new URL("../", import.meta.url);
@@ -34,6 +36,32 @@ test("catalog normalization retains conditional, partial, effort, and source met
   assert.equal(hiking?.individualEffort.minimumHours, 30);
   assert.equal(hiking?.individualEffort.openEnded, true);
   assert.equal(hiking?.individualEffort.context, "Home");
+  for (const id of ["cybersecurity", "digital-technology", "photography", "programming"]) {
+    const badge = meritBadgeSurveyCatalog.find((item) => item.id === id);
+    assert.equal(badge?.prerequisites, "Personal Safety Awareness Digital Safety video");
+    assert.doesNotMatch(badge?.prerequisites ?? "", /Cyber Chip/);
+  }
+});
+
+test("every survey badge resolves to reviewed Scouting America depth", () => {
+  assert.equal(Object.keys(meritBadgeResources).length, meritBadgeSurveyCatalog.length);
+  assert.equal(OFFICIAL_MERIT_BADGE_INDEX_URL, "https://www.scouting.org/skills/merit-badges/all/");
+  const urls = new Set<string>();
+  meritBadgeSurveyCatalog.forEach((badge) => {
+    const resource = getMeritBadgeResource(badge.id);
+    assert.ok(resource, `missing official resource for ${badge.id}`);
+    assert.match(resource.overview, /\S+ \S+ \S+/);
+    assert.match(resource.officialUrl, /^https:\/\/www\.scouting\.org\/merit-badges\/[a-z0-9-]+\/$/);
+    assert.ok(!urls.has(resource.officialUrl), `duplicate official URL for ${badge.id}`);
+    urls.add(resource.officialUrl);
+  });
+  assert.equal(getMeritBadgeResource("fish-and-wildlife-management")?.officialUrl, "https://www.scouting.org/merit-badges/fish-wildlife-management/");
+  assert.equal(getMeritBadgeResource("camping")?.eagleRequired, true);
+  assert.equal(getMeritBadgeResource("archery")?.eagleRequired, false);
+  programOfferings.forEach((offering) => {
+    assert.equal(getMeritBadgeResource(offering.id)?.eagleRequired, offering.eagleRequired, `Eagle status mismatch for ${offering.id}`);
+  });
+  assert.equal(getMeritBadgeResource("unknown-badge"), null);
 });
 
 test("submission normalization allowlists badges and clamps demand to youth attendance", () => {
@@ -74,14 +102,27 @@ test("staff demand aggregation includes units, priorities, sessions, and notes",
   assert.equal(demand[0].notes[0].unit, "Troop 101");
 });
 
-test("survey UI, API, staff report, and export share the generated catalog contract", async () => {
-  const [client, api, staff, exportRoute] = await Promise.all([
+test("survey UI, badge guides, API, staff report, and export share the generated catalog contract", async () => {
+  const [client, surveyStep, badgeDirectory, badgeGuide, markdown, catalog, api, staff, exportRoute] = await Promise.all([
     readFile(new URL("components/PreRegisterClient.tsx", root), "utf8"),
+    readFile(new URL("components/MeritBadgeSurveyStep.tsx", root), "utf8"),
+    readFile(new URL("components/MeritBadgeDirectory.tsx", root), "utf8"),
+    readFile(new URL("app/merit-badges/[slug]/page.tsx", root), "utf8"),
+    readFile(new URL("components/MarkdownContent.tsx", root), "utf8"),
+    readFile(new URL("lib/camp-catalog.ts", root), "utf8"),
     readFile(new URL("app/api/pre-register/route.ts", root), "utf8"),
     readFile(new URL("app/staff/submissions/page.tsx", root), "utf8"),
     readFile(new URL("app/staff/submissions/export/route.ts", root), "utf8"),
   ]);
   assert.match(client, /MeritBadgeSurveyStep/);
+  assert.match(surveyStep, /merit-badges\/\$\{badge\.id\}/);
+  assert.match(badgeDirectory, /Explore all/);
+  assert.match(badgeDirectory, /Badge, skill, or topic/);
+  assert.match(badgeGuide, /getMeritBadgeResource/);
+  assert.match(badgeGuide, /View official badge guide/);
+  assert.match(markdown, /next\/link/);
+  assert.match(catalog, /\[Astronomy merit badge\]\(\/merit-badges\/astronomy\)/);
+  assert.match(catalog, /\[Archery merit badge\]\(\/merit-badges\/archery\)/);
   assert.match(api, /normalizeSurveyInterests/);
   assert.match(staff, /aggregateBadgeDemand/);
   assert.match(exportRoute, /interested_count/);

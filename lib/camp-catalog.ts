@@ -31,43 +31,73 @@ export const guideArticles: GuideArticle[] = [
     title: "Arrival & Check-In", slug: "arrival-and-check-in", category: "Arrival", audience: "all", priority: "important", updatedAt: reviewedAt,
     summary: "Arrival windows, parking, paperwork, medication handoff, and required first-day briefings.",
     applicability: "BSA weeks and Cub Scout Weekend", tags: ["arrival", "check-in", "parking", "medications", "forms"],
-    body: `## Before leaving home
+    body: `## Getting to Camp
 
-- Bring current Annual Health and Medical Record Parts A, B, and C for every participant.
-- Bring a signed unit roster and proof of current Youth Protection Training for registered adult leaders.
-- Keep prescription medications in original labeled containers for handoff to the Camp Health Officer.
-- Confirm dietary, accessibility, and accommodation needs with camp staff before traveling.
+Camp Lawton is the first camp on Organization Ridge Road near Mile 20 of the Catalina Highway. If you reach the Palisades Ranger Station, you have gone too far.
 
-## BSA week arrival
+The Catalina Highway is paved and safe when driven attentively, but it is steep and winding.
 
-Week 1 arrives Tuesday. Weeks 2 and 3 arrive Sunday. The check-in window is **1:00-3:00 PM**. Do not arrive early while staff setup is in progress.
+- Watch for cyclists, wildlife, stopped traffic, rockfall, and changing weather.  
+- Obey speed limits and no-passing zones.  
+- Use pullouts when needed to let faster traffic pass safely.  
+- Secure loose gear before beginning the climb.  
+- Check fuel, brakes, tires, coolant, and emergency supplies before departure.  
+- Download directions before leaving Tucson; cell coverage becomes unreliable on the mountain.  
+- On the descent, use a lower gear as appropriate instead of continuously riding the brakes.
 
-## Cub Weekend arrival
+## Arrival Window
 
-Cub Scout Weekend check-in is Friday from **2:00-3:00 PM**. The required safety briefing begins at 4:30 PM.
+Arrive between **1:00 and 3:00 PM** on your session’s first day.
 
-## Parking and gear
+- **Week 1:** Tuesday, June 1  
+- **Weeks 2 and 3:** Sunday  
+- Do not arrive early; staff will still be preparing camp.  
+- Contact the Camp Director before the session when a special arrival time is unavoidable.
 
-Back vehicles into marked spaces so emergency egress remains clear. Vehicles are not permitted beyond the designated parking area. Plan for the unit to carry gear to its assigned campsite.
+## Check-In Procedure
 
-## Required briefing
+1. **Back into your assigned parking space.** Keep emergency routes clear.  
+2. **Leave unauthorized vehicles in the parking area.** Do not drive gear into camp without permission.  
+3. **Report to check-in** with the unit roster, health forms, accommodation information, and medications.  
+4. **Complete medical review.** The Camp Health Officer establishes the medication-control and distribution plan.  
+5. **Receive your campsite assignment, leader packet, schedule, and issued equipment.**  
+6. **Meet your Troop Friend.** This staff member guides the unit through arrival and serves as a routine liaison.  
+7. **Carry equipment to the campsite and set up.**  
+8. **Attend the 3:00 PM safety briefing and camp tour.** All Scouts and leaders must attend.
 
-All Scouts and leaders attend the session safety briefing. Tell staff immediately if a delayed arrival will affect attendance.`,
+The unit will receive a Fireguard Chart to complete and post in the campsite. It remains posted even when fires are prohibited.
+
+## Arrival Responsibilities
+
+Before evening program begins, leaders should:
+
+- Confirm the full unit roster and buddy assignments  
+- Review emergency assembly procedures  
+- Locate the Health Lodge, Dining Hall, restrooms, showers, and program areas  
+- Secure food and scented items as instructed  
+- Verify medication times with the Camp Health Officer  
+- Confirm merit-badge schedules and alternatives  
+- Establish unit expectations for hydration, uniforms, devices, quiet hours, and free time`,
   },
   {
     title: "Dates, Fees & Registration", slug: "dates-fees-and-registration", category: "Start here", audience: "all", priority: "important", updatedAt: reviewedAt,
     summary: "2027 session dates, planning status, fee publication, and the Black Pug registration boundary.",
     applicability: "All 2027 sessions", tags: ["dates", "fees", "registration", "black pug"],
-    body: `## 2027 sessions
+    body: `| Camp Information | Details |
+| :---- | :---- |
+| **Session Dates** | **Week 1:** June 1–5, 2027 (Tuesday–Saturday, condensed five-day session) · **Week 2:** June 6–12, 2027 (Sunday–Saturday) · **Week 3:** June 13–19, 2027 (Sunday–Saturday) |
+| **Staff Training** | May 28–30, 2027 |
+| **Property** | Camp Lawton · Catalina Council, Scouting America · Coronado National Forest · United States Forest Service special-use property |
+| **Location** | 32.39806° N, 110.725° W · First camp on Organization Ridge Road near Mile 20 of the Catalina Highway |
+| **Mailing Address** | Scout’s Name and Unit Number · Camp Lawton · PO Box 786 · Mt. Lemmon, AZ 85619 |
+| **Camp Phone** | 520-576-1263 · Urgent camp-season messages only; leave a message if no one answers |
+| **Check-In** | Arrival day, 1:00–3:00 PM · Back vehicles into spaces · No unauthorized vehicles inside camp |
+| **Check-Out** | Final Saturday by 11:30 AM unless camp leadership publishes a different session schedule |
+| **2027 Theme** | Pirate Crew Adventures · Campsites are Ships · Dining Hall is the Galley |
+| **NCAP Status** | Planned under the 2026 National Camp Accreditation Program standards and the current Short-Term Camp Administrator assessment; final current requirements control |
+| **Program Limits** | No aquatics · Archery planned · Air-rifle programming conditional on approval, equipment, and qualified staffing |
+| **Future Dates** | **2028:** Scout weeks May 30–June 17 · Cub weekend June 23–25. **2029:** Scout weeks May 29–June 16 · Cub weekend June 22–24. |
 
-- BSA Week 1: June 1-5, a condensed Tuesday-to-Saturday program.
-- BSA Week 2: June 6-12, a full Sunday-to-Saturday week.
-- BSA Week 3: June 13-19, a full Sunday-to-Saturday week.
-- Cub Scout Weekend: June 25-27, Friday through Sunday.
-
-## Fees
-
-Final participant fees, deposits, refund terms, and payment deadlines have not been approved for publication. Staff will post the reviewed fee schedule here when council approval is complete.
 
 ## Registration boundary
 
@@ -77,75 +107,330 @@ Interest forms on this site are non-binding planning tools. They do not reserve 
     title: "Packing List", slug: "packing-list", category: "Prepare", audience: "all", priority: "normal", updatedAt: reviewedAt,
     summary: "Documents, mountain-weather gear, sleeping equipment, and items that must remain at home.",
     applicability: "All sessions", tags: ["packing", "gear", "clothing", "forms"],
-    body: `## Documents
+    body: `## Packing for Camp Lawton
 
-- Annual Health and Medical Record Parts A, B, and C.
-- Signed unit roster and emergency contacts.
-- Adult training verification.
-- Accommodation or dietary follow-up information already discussed with staff.
+Camp sits at near 8,000 feet above sea level. Days may be warm (up to 95 or so), nights may be cold (in the 40s), and storms can arrive quickly. The terrain is rugged, but facilities are relatively modern. There is no laundry service or washing machine in camp. 
 
-## Personal equipment
+### Each Participant Should Bring
 
-- Layered clothing for warm days and cool mountain evenings.
-- Rain protection, sun protection, sturdy closed-toe footwear, and a refillable water bottle.
-- Sleeping bag and sleeping pad for wooden sleeping platforms.
-- Flashlight or headlamp, personal toiletries, and required uniform items.
+- Field uniform and activity clothing as directed by the unit  
+- Enough shirts, socks, underwear, and sleepwear for the session  
+- Warm sleeping bag, pillow, and insulated sleeping pad  
+- Rain jacket or poncho  
+- Warm layer for evenings  
+- Closed-toe shoes suitable for rocky trails  
+- Shower shoes for use inside showers only  
+- Refillable water bottle or canteen  
+- Sun hat, sunscreen, and sunglasses  
+- Flashlight or headlamp with extra batteries  
+- Toiletries, towel, and personal hygiene supplies  
+- Day pack  
+- Personal first-aid basics  
+- Notebook and writing utensils  
+- Scout handbook, Totin’ Chip, Firem’n Chit, compass, and pocketknife when appropriate  
+- Laundry bag and secure luggage or lockable storage  
+- Spending money or payment card for the Trading Post  
+- No-flame alternatives for unit evening activities
 
-## Leave at home
+### Useful Optional Gear
 
-Personal firearms, bows, arrows, fireworks, pets without prior authorization, and any equipment prohibited by current council or USFS rules. Camp Lawton has no pool or waterfront; do not pack for an aquatics program.`,
+- Insect repellent  
+- Trekking poles  
+- Camera  
+- Musical instrument  
+- Sewing kit  
+- Camp chair when approved for the campsite  
+- Books, cards, or quiet games
+
+### Leave at Home
+
+- Personal firearms, ammunition, air guns, bows, arrows, or other projectile equipment unless specifically approved in writing  
+- Fireworks, explosives, accelerants, and unauthorized flame devices  
+- Hatchets, large sheath knives, novelty weapons, or unsafe tools  
+- Alcohol, marijuana, illegal drugs, unauthorized medication, nicotine products, and pornography  
+- Pets  
+- Vulgar or sexually explicit clothing or media  
+- Large gaming, television, sound, or computer systems  
+- Anything inconsistent with the Scout Oath, Scout Law, or final camp rules`,
   },
   {
     title: "Camp Policies", slug: "camp-policies", category: "Policies", audience: "all", priority: "critical", updatedAt: reviewedAt,
     summary: "National Forest permit requirements, vehicles, wildlife, prohibited items, and quiet operation.",
     applicability: "All visitors and sessions", tags: ["policies", "usfs", "vehicles", "wildlife", "prohibited"],
-    body: `## National Forest land
+    body: `## Campwide Rules at a Glance
 
-Camp Lawton operates under a USFS Special Use Permit. Permit conditions and current official restrictions prevail over ordinary camp practices.
+### Stay With Your Buddy
 
-## Leave No Trace
+The buddy system is required for Scout movement throughout camp. Leaders remain responsible for knowing where Scouts are.
 
-Stay on established trails, pack out waste, protect native vegetation, and never feed wildlife. Store food and scented items as directed. Do not dig, trench, or place stakes without Camp Ranger approval.
+### Respect Private and Restricted Areas
+
+Campers and unit leaders may not enter staff housing, the kitchen, maintenance spaces, range areas, another unit’s lodging, or other restricted locations without permission.
+
+### Take Care of Camp
+
+Pick up litter, use equipment properly, conserve water, stay on established routes, and report damage or hazards. Vandalism and reckless behavior are not acceptable.
+
+### Dress and Equip for Safety
+
+Wear closed-toe shoes outdoors, carry water, use lights after dark, and wear all activity-specific protective equipment.
+
+### Speak With Respect
+
+Bullying, slurs, threats, harassment, humiliating discipline, insults, and put-downs are prohibited. Correct behavior without humiliating the person.
+
+### No Pranks or Hazing
+
+Pranks can become unsafe, damage property, disrupt camp, or embarrass someone. Hazing, initiations, secret groups, and retaliatory behavior are prohibited.
+
+### No Unauthorized Weapons or Substances
+
+Weapons, fireworks, alcohol, marijuana, illegal drugs, unauthorized medication, nicotine products, and pornography are prohibited in camp. Report concerns to camp leadership; do not investigate or confront a dangerous situation alone.
+
+### Follow Staff Direction
+
+Safety, weather, fire, range, health, and emergency instructions take immediate priority over the normal schedule.
+
+## Visitors and Camp Security
+
+Visitors must be approved before arrival.
+
+- Every visitor signs in immediately at the location announced by camp and signs out before leaving.  
+- Overnight visitors must meet registration, leadership, and medical requirements.  
+- Visitors follow all camp rules and remain with their host unit or assigned escort.  
+- Report unknown, unescorted, or suspicious people to the Camp Director immediately.  
+- Do not confront or remove an unknown person yourself.  
+- Refer news media and public-information requests to the Camp Director.
+
+## Leaving Camp and Independent Activities
+
+- Notify camp leadership before a unit or participant leaves camp.  
+- Use the official sign-out and sign-in procedure.  
+- Provide a roster, destination, route, expected return time, adult leadership, and emergency communication plan.  
+- Obtain approval before independent hikes, off-property activities, or use of restricted trails.  
+- Conduct headcounts before departure, during the activity, and upon return.  
+- Report an early return, missing participant, route change, or delay immediately.
 
 ## Vehicles
 
-Vehicles remain in designated parking areas except when specifically authorized. Back into marked spaces and keep emergency routes clear. The camp and access-road speed limit is 10 MPH.
-
-## Prohibited equipment
-
-Personal firearms, fireworks, bows, arrows, and range equipment are prohibited without written authorization. Missing online fire data never means a flame or campfire is permitted.`,
+- Unauthorized vehicles remain in the parking area.  
+- Back into all spaces and keep gates, roads, and fire lanes clear.  
+- Keep vehicle keys with an adult leader in case evacuation becomes necessary.  
+- Keep enough seats and seat belts available to transport the unit unless camp leadership approves another emergency plan.  
+- Follow the **10 MPH** camp and access-road speed limit unless a lower limit is posted.  
+- Never transport passengers in truck beds, trailers, or unapproved locations.`,
   },
   {
     title: "Health, Safety & Youth Protection", slug: "health-safety-and-youth-protection", category: "Health & safety", audience: "all", priority: "critical", updatedAt: reviewedAt,
     summary: "Medical records, medication control, two-deep leadership, buddy system, and incident reporting.",
     applicability: "All sessions", tags: ["health", "safety", "ypt", "buddy system", "medical"],
-    body: `## Leadership
+    body: `## Safeguarding Youth
 
-All adult leaders must be registered Scouting America members with current Youth Protection Training. Two-deep leadership is required, and one-on-one adult/youth contact is prohibited.
+All participants are responsible for maintaining Scouting America’s youth-safety standards.
 
-## Medical support
+- Maintain two-deep leadership.  
+- Never allow one-on-one contact between an adult and a youth who is not their child.  
+- Follow current buddy-pairing, lodging, shower, restroom, and changing-area requirements.  
+- Adults and youth use separate accommodations as required.  
+- No sexual activity or inappropriate public displays of affection are permitted at camp.  
+- Discipline must be constructive, positive, and consistent with Scouting values.  
+- Corporal punishment, isolation, humiliation, ridicule, hazing, and bullying are prohibited.  
+- Report boundary violations, harassment, threats, violence, or unsafe behavior immediately.  
+- Do not investigate suspected abuse yourself.  
+- Report suspected abuse immediately to the proper authorities as required, then notify the council Scout Executive or Scouts First Helpline at **1-844-SCOUTS1**.
 
-A Camp Health Officer is on duty during each session. Bring current medical records for every participant. Prescription medications are handed to the Health Officer at check-in and returned with confirmation at departure.
+## Camp Health Officer and Medications
 
-## Movement and emergencies
+A qualified Camp Health Officer is available during the session, with designated backup coverage.
 
-The buddy system applies throughout camp. Emergency assembly locations are posted at campsites and program areas. Report serious incidents immediately to the Camp Director and follow staff direction over website information.`,
+- Turn medications over during medical check-in unless the Camp Health Officer approves another arrangement.  
+- Follow the established administration schedule.  
+- Youth may carry emergency medication only when authorized under the participant’s plan and camp procedure.  
+- Report injuries, illness, allergic reactions, medication errors, or concerning behavior promptly.  
+- Retrieve medications at check-out and sign the return record.  
+- Contact the participant’s own medical provider before camp regarding complex or ongoing conditions.
+
+## Injuries and Illness
+
+- Stop unsafe activity immediately.  
+- Report every significant injury or illness to staff.  
+- Minor injuries may be treated from an approved first-aid kit, but camp medical staff should document and evaluate as directed.  
+- Do not move a person with a suspected spinal, head, collarbone, or serious mobility-limiting injury unless remaining in place creates an immediate greater danger.  
+- Send a runner or radio for the Camp Health Officer.  
+- Keep the person calm, protected, and accompanied until relieved.
+
+## Campwide Emergency Signal
+
+The continuous ringing of the large Dining Hall bell is the primary campwide emergency alarm.
+
+When it sounds:
+
+1. Stop normal activity and secure only immediate hazards.  
+2. Escort everyone directly to the Parade Grounds at the flagpoles.  
+3. Do not detour to campsites or wait for the whole unit before moving.  
+4. Reassemble by unit and conduct an immediate count.  
+5. Report missing people at once.  
+6. Remain quiet and follow camp-leadership instructions.  
+7. Do not move vehicles or leave camp until directed unless an immediate threat makes staying unsafe.
+
+A drill will normally occur early in the session. Treat it as a real emergency.
+
+## Missing Person
+
+Report a missing participant immediately. Do not delay while conducting an informal search.
+
+Be ready to provide:
+
+- Name and age  
+- Unit number  
+- Physical description and clothing  
+- Last known location and time seen  
+- Medical, emotional, or behavioral concerns  
+- Likely destination or recent conflict
+
+Camp leadership will coordinate the search. Keep the radio channel clear, maintain supervision of the remaining Scouts, and do not send unsupervised search groups into the forest.
+
+## Active Threat
+
+An active-threat event is unlikely, but leaders must act decisively.
+
+- Move away from danger when a safe route is available.  
+- Shelter and secure the area when escape is unsafe.  
+- Silence devices and remain out of sight.  
+- Call 911 when safely able.  
+- Follow law-enforcement instructions.  
+- Physical resistance is a last resort to protect life when no safer option remains.
+
+Location-specific instructions will be covered during the arrival safety briefing.`,
   },
   {
     title: "Daily Rhythm & Program", slug: "daily-rhythm-and-program", category: "Program", audience: "bsa", priority: "normal", updatedAt: reviewedAt,
     summary: "Six merit badge blocks, transition time, meetings, competitions, meals, and evening programs.",
     applicability: "BSA weeks", tags: ["program", "schedule", "merit badges", "evening"],
-    body: `## Daily pattern
+    body: `## Program Philosophy
 
-Monday through Thursday uses six 50-minute merit badge blocks. Ten-minute transitions separate activities. Meal schedules include cleanup buffers that units should treat as part of the program.
+Camp Lawton supplements the unit program. Staff provide instruction, facilities, special events, and a supportive camp community; unit leaders remain responsible for supervision, encouragement, and helping each Scout choose a healthy balance of challenge and fun.
 
-## Unit leadership
+## Merit Badges and Model Camp
 
-SPL and leader meetings begin at 12:55 PM and run for 30 minutes. Scouts have supervised free time concurrently.
+Standard program days include six 50-minute merit-badge periods with 10-minute transitions.
 
-## Campwide activities
+- Final offerings, prerequisites, and class capacities will be published separately.  
+- Some activities may use multiple periods or require work outside class.  
+- Completion depends on the Scout meeting every requirement.  
+- Friday includes make-up and project-completion time.  
+- A first-year Scout or Model Camp track may be offered to support basic outdoor and rank skills. Confirm the final format before registration.
 
-Campsite competitions begin at 4:35 PM. Evening programs generally begin at 7:25 PM. Final program locations and any weather or fire changes are announced by staff.`,
+## Standard Daily Rhythm
+
+| Time | Activity |
+| :---- | :---- |
+| **6:30 AM** | Reveille |
+| **6:40–7:00 AM** | Morning Flags |
+| **7:10–7:45 AM** | Breakfast |
+| **8:15–11:05 AM** | Merit Badge Sessions 1–3 |
+| **11:15–11:30 AM** | Captain’s Challenge Staff Duel |
+| **11:40 AM–12:25 PM** | Lunch |
+| **12:55–1:25 PM** | SPL and Leaders Meeting · Supervised Scout free time |
+| **1:35–4:25 PM** | Merit Badge Sessions 4–6 |
+| **4:35–5:25 PM** | Campsite Competition or special program |
+| **5:35–5:55 PM** | Evening Flags |
+| **6:05–6:55 PM** | Dinner |
+| **7:25 PM** | Evening Program |
+| **9:00–9:55 PM** | Taps and lights out; exact time varies |
+
+Ten-minute transitions and 30-minute post-meal cleanup periods are built into the full schedule. Do not plan unit activities that interfere with required travel, cleanup, flags, meetings, or safety procedures.
+
+## Arrival-Day Program
+
+Weeks 2 and 3 open with:
+
+- Check-in and campsite setup  
+- Mandatory safety briefing and tour  
+- Totin’ Chit assessment  
+- Pirate Crew Muster and crew-flag presentation  
+- Evening Flags and Captain’s Feast  
+- Campwide Scouts’ Own  
+- Staff Campfire
+
+Week 1 follows this arrival sequence on Tuesday.
+
+## Evening Programs
+
+| Day | Program |
+| :---- | :---- |
+| **Sunday** | Staff Campfire — staff songs, skits, stories, and the opening of the week’s theme |
+| **Monday** | G-rated pirate movie; planned feature: *Muppet Treasure Island* |
+| **Tuesday** | Karaoke Night followed by pirate first-aid scenarios |
+| **Wednesday** | Pirate Lore and Stargazing followed by campcraft challenges |
+| **Thursday** | Campfire-kit approval followed by a shorter Youth Campfire showcase |
+| **Friday** | Extended Camper Pirate Campfire and final closing program |
+
+All fire-based programs depend on current USFS restrictions. A campfire program may continue without an actual flame.
+
+## Funday and Friday Program
+
+Friday is designed for choice, completion, celebration, and closing experiences.
+
+Planned elements include:
+
+- Individual Funday activities  
+- Merit-badge make-up and project completion  
+- Art Show and Pirate History Museum  
+- Campsite cleanup and Leave No Trace sweep  
+- Extended Camper Pirate Campfire  
+- Farewell Dinner  
+- Closing Campfire and team-building games
+
+## Campsite Competitions
+
+| Day | Competition |
+| :---- | :---- |
+| **Monday** | Pieces of Eight Scavenger Hunt — navigation and hidden coins |
+| **Tuesday** | Secure the Ship’s Rigging — knot-tying challenge |
+| **Wednesday** | Pirate Shanty and Tale Preparation |
+| **Thursday** | Walk the Plank — Gaga Ball tournament |
+| **Friday** | Camper Pirate Campfire and closing-program preparation |
+
+## Captain’s Challenge Staff Duel
+
+Each program day before lunch, staff members face a short pirate-themed challenge such as knot races, riddles, relays, or performance contests. Scouts cheer for their favorites and the results build the week’s camp spirit.
+
+## Pirates and the Celestial Seas
+
+This astronomy presentation connects historical navigation with the night sky. Topics may include:
+
+- Polaris and latitude  
+- Dead reckoning  
+- The longitude problem  
+- Constellation lore  
+- The limitations of historical navigation
+
+The program may support selected [Astronomy merit badge](/merit-badges/astronomy) requirements, but credit depends on the official counselor and requirements in effect at camp.
+
+## Bead Program
+
+Scouts may earn themed beads for demonstrated skill, service, and participation. Planned categories include:
+
+- Knots  
+- Navigation  
+- First aid  
+- Outdoor skills  
+- Service
+
+Current criteria will be available in the leader packet or Trading Post.
+
+## Range Activities
+
+Camp Lawton plans to offer the [Archery merit badge](/merit-badges/archery) and archery as an open-program activity. Air-rifle programming operates only when approved equipment, range procedures, permit conditions, and qualified staff are all in place.
+
+- Confirm final offerings before the session.  
+- Follow every Range Director command immediately.  
+- Review posted range procedures.  
+- Use only camp-issued or specifically approved equipment.  
+- Wear required protective equipment.  
+- Never enter or cross a range boundary without permission.  
+- Weather, staffing, age, and safety limits will not be waived.`,
   },
   {
     title: "Cub Weekend Program", slug: "cub-weekend-program", category: "Program", audience: "cub", priority: "important", updatedAt: reviewedAt,
@@ -167,100 +452,445 @@ The climbing wall is limited to Group C, Webelos and Arrow of Light, with certif
     title: "Leader Logistics", slug: "leader-logistics", category: "During camp", audience: "leaders", priority: "normal", updatedAt: reviewedAt,
     summary: "Daily meetings, camp communications, issued equipment, and unit responsibilities.",
     applicability: "Unit and den leaders", tags: ["leaders", "spl", "radio", "meetings", "communication"],
-    body: `## Daily coordination
+    body: `## SPL and Leaders Meeting
 
-BSA unit leaders and SPLs meet daily at 12:55 PM. Cub leaders meet Saturday at 2:10 PM. Locations are posted in the leader packet at check-in.
+The SPL and adult leader meeting is held daily at **12:55 PM** in the Captain’s Quarters unless the final schedule says otherwise.
 
-## Communication
+The meeting is used to:
 
-Cell service can be limited. Use camp communication channels as the primary source while on site. Emergency contact instructions are included in the leader packet and posted at each campsite.
+- Share schedule, safety, weather, and fire updates  
+- Resolve unit concerns while there is still time to improve the week  
+- Coordinate campwide activities and service  
+- Review merit-badge concerns  
+- Plan and approve campfire content  
+- Gather feedback from SPLs and adult leaders
 
-## Issued equipment
+All unit SPLs and at least one adult leader should attend. Thursday is the final scheduled meeting for Weeks 2 and 3\.
 
-Keep track of radios, first aid kits, site keys, and other issued equipment. Return all issued items before departure clearance.`,
+## Troop Friend
+
+Each unit is assigned a staff Troop Friend who:
+
+- Conducts or assists with the arrival tour  
+- Checks in with the unit during the week  
+- Answers routine questions  
+- Connects the unit with the correct director or department  
+- Supports inspections and departure procedures
+
+The Troop Friend does not replace the Camp Director, Program Director, Camp Health Officer, Ranger, or Range Director for matters requiring their authority.
+
+## Communication and Radios
+
+- The camp phone is **520-576-1263** for urgent messages, not routine personal calls.  
+- Cell coverage may be weak or absent.  
+- One radio may be issued per campsite or unit depending on availability.  
+- Return, charge, or exchange radios as directed.  
+- Use radios for official camp business only.  
+- Keep calls brief and avoid personal or confidential details over the air.  
+- Report significant incidents even when the unit has already handled the immediate problem.
+
+## Leader Responsibilities During Free Time
+
+Scheduled Scout free time does not end unit supervision.
+
+Leaders must:
+
+- Maintain required adult coverage  
+- Know where Scouts are  
+- Enforce the buddy system  
+- Ensure Scouts attend meals, flags, and required activities  
+- Respond to health, behavior, and safety concerns  
+- Keep Scout activity within approved boundaries  
+- Coordinate independent hikes or projects with staff
+
+## Campfire Content Approval
+
+All Scout-presented skits, songs, stories, and performances must be reviewed by staff before presentation.
+
+Content must be:
+
+- Kind and inclusive  
+- Appropriate for all ages  
+- Free of hazing, humiliation, stereotypes, or put-downs  
+- Free of unsafe stunts or unauthorized flame effects  
+- Consistent with Scouting values
+
+Units begin planning during Wednesday’s Pirate Shanty and Tale block. Thursday’s kit-approval session is mandatory. Staff approval is final.
+
+## Service Projects
+
+Coordinate service with the Ranger, Program Director, or assigned staff leader before beginning.
+
+- Do not cut vegetation, dig, move rocks, paint, build, repair utilities, or alter facilities without approval.  
+- Use proper tools and protective equipment.  
+- Maintain youth supervision and age-appropriate assignments.  
+- Record hours for Tribe of Papago and Barker Standard recognition.
+
+## Raising Concerns
+
+Camp leadership maintains an open-door approach. Bring problems forward promptly rather than waiting for the end-of-week evaluation.
+
+For routine matters, begin with the Troop Friend or appropriate Area Director. Go directly to the Camp Director, Program Director, Ranger, or Camp Health Officer when the issue involves safety, safeguarding youth, health, serious misconduct, or their specific authority.
+
+## Before Departure from Home
+
+- [ ] Confirm adult leadership, registration, and safeguarding-youth requirements  
+- [ ] Verify registration for every participant  
+- [ ] Organize health forms and emergency contacts  
+- [ ] Submit dietary and accommodation needs  
+- [ ] Check medication labels and instructions  
+- [ ] Review merit-badge choices, prerequisites, and alternates  
+- [ ] Review the packing list and mountain weather  
+- [ ] Brief Scouts on vehicles, buddies, privacy, camp rules, and Leave No Trace  
+- [ ] Download directions and inspect vehicles  
+- [ ] Confirm enough passenger seats remain available in camp  
+- [ ] Prepare no-flame evening alternatives
+
+## At Check-In
+
+- [ ] Back into the assigned parking space  
+- [ ] Keep emergency access clear  
+- [ ] Present roster and health forms  
+- [ ] Turn over medications and confirm administration times  
+- [ ] Receive schedule, campsite, and leader packet  
+- [ ] Meet the Troop Friend  
+- [ ] Post the Fireguard Chart  
+- [ ] Establish buddy and lodging assignments  
+- [ ] Secure food and scented items  
+- [ ] Attend the safety briefing and tour
+
+## During Camp
+
+- [ ] Maintain two-deep leadership and buddy-system compliance  
+- [ ] Attend daily SPL and leader meetings  
+- [ ] Check weather and fire restrictions  
+- [ ] Report injuries, incidents, missing people, and concerns promptly  
+- [ ] Secure food, trash, and scented items nightly  
+- [ ] Keep Scouts hydrated, rested, and appropriately scheduled  
+- [ ] Supervise free time and independent activities  
+- [ ] Review campfire material with staff  
+- [ ] Complete recognition and service paperwork
+
+## Before Departure
+
+- [ ] Clean and inspect the campsite  
+- [ ] Return issued equipment  
+- [ ] Retrieve medications and valuables  
+- [ ] Complete advancement and recognition forms  
+- [ ] Sign out visitors and participants  
+- [ ] Receive departure clearance  
+- [ ] Load only in authorized areas  
+- [ ] Descend the mountain safely`,
   },
   {
     title: "Fire, Weather & Wildlife", slug: "fire-weather-and-wildlife", category: "During camp", audience: "all", priority: "critical", updatedAt: reviewedAt,
     summary: "How to interpret online conditions and follow current staff and USFS direction.",
     applicability: "All sessions", tags: ["fire", "weather", "wildlife", "restrictions"],
-    body: `## Fire status
+    body: `## Altitude, Hydration, Heat, and Cold
 
-Campfires and open flames depend on current Coronado National Forest restrictions and camp direction. Check with staff every day. Missing, delayed, or stale online data never means fire is permitted.
+Camp sits more than 5,000 feet above Tucson. Some participants need time to adjust.
 
-## Weather
+- Pace the first day and allow extra time on hills.  
+- Encourage regular water intake and normal meals.  
+- Watch for headache, dizziness, unusual fatigue, nausea, confusion, or shortness of breath.  
+- Move an affected person to shade or shelter, stop activity, and contact the Health Lodge when symptoms do not resolve quickly.  
+- Cold rain, wind, and nighttime temperatures can create hypothermia risk even in summer.
 
-Mountain conditions can change quickly. Bring layers and rain protection. The website may show NWS observations, but on-site staff direction controls program changes and emergency response.
+## Lightning and Severe Storms
+
+“When thunder roars, go indoors.”
+
+- Stop exposed activities when thunder is heard or staff suspends the program.  
+- The Dining Hall is the primary camp storm shelter unless staff directs otherwise.  
+- Fully enclosed hard-topped vehicles may serve as secondary shelter when directed.  
+- Tents, open pavilions, trees, and golf carts do not provide reliable lightning protection.  
+- Stay away from isolated trees, water, ridgelines, and metal objects.  
+- Remain sheltered until staff gives the all clear; the standard safety interval is at least 30 minutes after the last thunder or visible lightning.  
+- Units may move to the Dining Hall before the campwide alarm when leaders believe heavier shelter is needed.
+
+## Wildfire
+
+Wildfire is a serious mountain hazard.
+
+- Follow fire restrictions and evacuation orders immediately.  
+- Report smoke, flames, or suspicious fire activity.  
+- Do not independently investigate a possible fire.  
+- Keep roads and gates clear.  
+- Keep vehicle keys accessible.  
+- Follow the evacuation route and destination assigned by camp leadership.
+
+## Terrain, Trees, and Night Travel
+
+- Wear closed-toe footwear.  
+- Carry a flashlight after dark.  
+- Stay on designated routes.  
+- Do not set up beneath visibly dead, damaged, or unstable trees.  
+- Report leaning trees, cracking limbs, washouts, exposed utilities, or trail damage.  
+- High winds may close ranges, climbing, trails, or other exposed activities.
 
 ## Wildlife
 
-Observe wildlife from a distance and never feed it. Store food and scented items as directed. Report unusual animal activity to the Camp Ranger immediately.`,
+Camp Lawton is active wildlife habitat. Never approach, feed, corner, chase, or handle wildlife.
+
+Animals seen in the area may include squirrels, skunks, bats, turkeys, snakes, spiders, black bears, mountain lions, and many bird species.
+
+When potentially dangerous wildlife is near occupied areas:
+
+1. Keep Scouts back and calm.  
+2. Give the animal an escape route.  
+3. Notify staff immediately.  
+4. Follow the Ranger’s instructions.  
+5. Secure food, trash, and scented items.
+
+For a bear or mountain lion, do not run. Make yourself recognizable as a human, remain together, and back away slowly while following staff or emergency guidance.`,
   },
   {
     title: "Departure Checklist", slug: "departure-checklist", category: "Departure", audience: "all", priority: "normal", updatedAt: reviewedAt,
     summary: "Campsite inspection, equipment return, medications, records, and departure clearance.",
     applicability: "All sessions", tags: ["departure", "checkout", "medications", "inspection"],
-    body: `## Before leaving
+    body: `Before leaving camp:
 
-- Pack all personal and unit equipment.
-- Leave the campsite cleaner than it was found and complete the staff inspection.
-- Return radios, first aid kits, keys, and other issued equipment.
-- Retrieve medications from the Camp Health Officer with confirmation.
-- Collect advancement records and any retained valuables.
-- Receive departure clearance from the Camp Director.
+- Clean the campsite and leave it better than you found it.  
+- Complete the campsite inspection with the Troop Friend or designated staff member.  
+- Return radios, first-aid kits, keys, and other issued equipment.  
+- Retrieve medications from the Camp Health Officer and complete the return record.  
+- Collect valuables held in secure storage.  
+- Complete Tribe of Papago, Barker Standard, advancement, and service paperwork.  
+- Resolve outstanding Trading Post or registration matters.  
+- Sign out all participants and visitors.  
+- Receive departure clearance from the Camp Director or designee.  
+- Load vehicles only in authorized areas.  
+- Keep emergency access clear.  
+- Depart through the main entrance.  
+- Follow the 10 MPH camp and access-road speed limit.  
+- Use an appropriate lower gear while descending the mountain to reduce brake overheating.
 
-Exit through the main entrance and observe the 10 MPH limit on camp and access roads.`,
+Final Saturday departure is no later than **11:30 AM** unless camp leadership publishes another session-specific time.`,
   },
   {
     title: "Facilities & Campsites", slug: "facilities-and-campsites", category: "About Lawton", audience: "all", priority: "normal", updatedAt: reviewedAt,
     summary: "Sleeping platforms, shared facilities, parking limits, and campsite expectations.",
     applicability: "All sessions", tags: ["facilities", "campsites", "sleeping", "parking"],
-    body: `## Campsite setup
+    body: `## Campsite Amenities
 
-Campsites are the unit home base. Adirondack-style structures include wooden sleeping platforms; bring sleeping pads and sleeping bags. Follow buddy, age, and gender assignment requirements.
+Most campsites use Adirondack-style shelters with two raised wooden sleeping platforms.
 
-## Shared camp
+- Bring a sleeping pad and sleeping bag; cots are generally unnecessary.  
+- Follow current age, gender, buddy, and lodging rules.  
+- Tell camp leadership before arrival when the unit has an odd number of Scouts or needs a lodging accommodation.  
+- Do not move shelters, dig trenches, drive stakes, hang hammocks, or alter the site without approval.  
+- Keep pathways clear and gear secured.  
+- Do not store valuables in communal food or smellables containers.  
+- Leave the site cleaner than you found it.
 
-Program areas, dining spaces, the Trading Post, health support, and meeting areas are within the compact camp footprint. Locations and accessibility routes are confirmed during the arrival tour.
+## Showers, Restrooms, and Privacy
 
-## Vehicle boundary
+Camp provides separate adult and youth facilities with private-use spaces. Follow all posted gender, age, scheduling, and cleaning procedures.
 
-Plan to carry gear between parking and the assigned campsite. Emergency routes must stay open throughout the session.`,
+- Wear shower shoes inside the shower area.  
+- Open-toe shoes are not permitted elsewhere in camp.  
+- Never bring a camera or recording device into a restroom, shower, changing area, or other private space.  
+- Adults may enter youth privacy areas only under an authorized procedure or immediate health and safety emergency.
+
+## Meals and the Dining Hall
+
+- Arrive on time and in the uniform specified by the daily schedule.  
+- Units share post-meal cleanup responsibilities during the scheduled 30-minute buffer.  
+- The kitchen is restricted. Enter only with permission from the Cook or Camp Director.  
+- Notify kitchen leadership promptly when a dietary plan is not working.  
+- Do not remove food from the Dining Hall without approval.  
+- Leaders should model reasonable portions, hydration, courtesy, and cleanup.
+
+## Water and Conservation
+
+Water is limited on the mountain.
+
+- Carry a filled water bottle at all times.  
+- Refill often and encourage Scouts to drink regularly.  
+- Use only the water needed for drinking, hygiene, and approved cleaning.  
+- Report leaking fixtures immediately.  
+- Do not waste water for games, cooling, or campsite projects without approval.
+
+## Food, Trash, and “Smellables”
+
+Food and scented items can attract wildlife.
+
+- Plain water is the only routine drink permitted in campsites unless staff approves otherwise.  
+- Store food, trash, toothpaste, deodorant, lotion, lip balm, and other scented items in the assigned bear-resistant system.  
+- Follow the nightly procedure for moving or securing smellables.  
+- Empty unit trash as directed every evening.  
+- Never pour food residue, grease, or wastewater onto the ground.  
+- Report damaged storage equipment or wildlife activity immediately.
+
+## Uniform and Footwear
+
+- **Field (Class A) uniform:** Flags, chapel or Scouts’ Own, campfires, ceremonies, and formal events  
+- **Activity (Class B) uniform:** Merit badges, daily programs, service, and active events  
+- **Closed-toe footwear:** Required outdoors and in program areas  
+- **Water bottle:** Carried throughout camp
+
+## Devices, Photography, and Quiet Hours
+
+Personal electronics are brought at the owner’s risk.
+
+- Units may set stricter device rules than camp.  
+- Device use must not interfere with program, supervision, sleep, meals, flags, or movement through camp.  
+- Keep sound from music, games, and videos from disturbing other campsites.  
+- Honor posted quiet hours and lights-out times.  
+- Follow all council, camp, and unit photo-release rules.  
+- Do not post identifiable images of another unit’s Scouts without proper authorization.  
+- Never record in private areas.  
+- Drones require prior written approval.
+
+## Trading Post, Mail, and Valuables
+
+- The Trading Post accepts payment methods announced in the final packet; do not expect credit tabs.  
+- Unit leaders should set reasonable spending expectations before camp.  
+- Mail may take several days to reach the mountain.  
+- Secure cash, electronics, and valuables. Camp cannot guarantee against loss or damage.  
+- Ask at check-in whether limited secure storage is available for critical items.`,
   },
   {
     title: "History & Camp Spirit", slug: "history-and-camp-spirit", category: "About Lawton", audience: "all", priority: "normal", updatedAt: reviewedAt,
     summary: "Camp Lawton's mountain setting, long history, traditions, and stewardship responsibility.",
     applicability: "All visitors", tags: ["history", "traditions", "stewardship", "1921"],
-    body: `## A mountain camp since 1921
+    body: `Camp Lawton was established in 1921 to give Southern Arizona Scouts a permanent mountain camp away from the desert heat. The original camp stood near today’s Palisades Ranger Station. It moved to its present site in 1926, and many historic buildings still in use were constructed beginning in the late 1940s.
 
-Camp Lawton has served Scouts in the Catalina Mountains for more than a century. Its historic buildings, pine forest setting, and personal scale shape the experience.
+Camp Lawton exists to support the goals of your unit and the growth of each Scout. Our mission is to create safe, welcoming, and memorable outdoor experiences where Scouts learn by doing, practice leadership, build confidence, and strengthen their connection to Scouting and the outdoors.
 
-## Stewardship
+Advancement matters, but camp is not a merit-badge factory. The songs, games, campfires, hikes, service, challenges, friendships, and staff relationships are often what Scouts remember longest. The 2027 program is designed around both achievement and adventure.
 
-The camp's future depends on careful use of National Forest land, responsible maintenance, volunteer service, and respect for the history connected to the property.
+## Pirate Crew Adventures
 
-## Cultural review
+Welcome aboard. For 2027, Camp Lawton becomes a fleet of pirate ships. Every campsite is a **Ship**, every unit is a **Pirate Crew**, and every Scout has a chance to earn their sea legs.
 
-Historical names, symbols, and traditions require careful, authorized review before expanded public interpretation. Published language should distinguish documented history from later camp tradition.`,
+The theme draws from the adventurous legends of the Golden Age of Piracy, with an emphasis on teamwork, navigation, outdoor skill, service, and treasure earned through achievement. All programming is land-based.
+
+Please share the relevant portions of this guide with Scouts, parents, guardians, drivers, and other unit leaders before departure.
+
+## The Tribe of Papago
+
+Before the Order of the Arrow became Scouting’s national honor society, Catalina Council established a local camping recognition tradition known as the Tribe of Papago. It continues at Camp Lawton as a returning-camper, service, leadership, and Scout-spirit recognition program.
+
+### Hunter — First Year
+
+- Earn one merit badge or complete all available Model Camp requirements  
+- Hike one approved camp trail  
+- Demonstrate Scout spirit
+
+### Warrior — Second Year
+
+- Complete one hour of service for Camp Lawton  
+- Earn two merit badges or complete Model Camp  
+- Hike one approved camp trail  
+- Demonstrate Scout spirit
+
+### Medicine Man — Third Year
+
+- Complete two hours of service  
+- Earn two merit badges  
+- Provide at least one hour of approved leadership or program assistance  
+- Hike two approved camp trails  
+- Demonstrate Scout spirit
+
+### Chief — Fourth Year
+
+- Complete three hours of service  
+- Earn three merit badges  
+- Provide approved program assistance and peer leadership  
+- Hike two approved camp trails  
+- Demonstrate Scout spirit
+
+### Elder — Adult Leader or Fifth Year
+
+- Encourage Scouts working toward recognition  
+- Complete three hours of service  
+- Hike one approved camp trail  
+- Volunteer in a program area for at least one hour
+
+### Guide — Staff Member
+
+- Serve on staff for more than one week  
+- Lead or assist with an approved service project  
+- Teach or directly support Scouts through assigned duties  
+- Visit assigned campsites consistently  
+- Learn the program’s history and purpose  
+- Participate in an approved ceremony  
+- Receive appropriate unit and staff recommendations  
+- Participate in a chapel or unit reflection opportunity  
+- Lead a unit on an approved camp trail
+
+Unit leaders track progress and submit completed forms. Patches, rockers, and current requirements are available through the Trading Post or program leadership.
+
+## The Barker Standard
+
+Roy J. Barker was a longtime Scoutmaster, executive-board member, camp staff member, and mentor whose units were known for service and Scout spirit. The Barker Standard recognizes units that contribute meaningfully to the camp community.
+
+To earn the Barker Standard, a unit must:
+
+1. Request and pass a uniform inspection by a senior staff member.  
+2. Request and pass a campsite inspection by a senior staff member.  
+3. Lead a flag ceremony.  
+4. Sing a song at a campwide activity.  
+5. Perform an approved skit, song, or story at a closing campfire.  
+6. Complete an assigned camp cleanup duty.  
+7. Complete an approved service project.  
+8. Consistently demonstrate Scout spirit and live the Scout Oath, Scout Law, motto, slogan, and Outdoor Code.  
+9. Complete and submit the Barker Standard application.
+
+Every unit completing the published requirements may receive a Tribe of Papago rocker and ribbon for the unit flag. Staff may select one especially strong unit for additional recognition. Requirements may be adjusted to fit session length and camp needs.`,
   },
   {
     title: "Frequently Asked Questions", slug: "frequently-asked-questions", category: "Help", audience: "all", priority: "normal", updatedAt: reviewedAt,
     summary: "Fast answers about aquatics, connectivity, fires, registration, and schedule guarantees.",
     applicability: "All sessions", tags: ["faq", "help", "aquatics", "registration"],
-    body: `## Is there an aquatics program?
+    body: `## How many merit badges can a Scout earn?
 
-No. Camp Lawton has no pool or waterfront. All published 2027 activities are land-based.
+There are six scheduled periods on a standard program day, but registering for six badges is usually too much. Camp should include games, hiking, rest, service, friendships, and experiences Scouts cannot get at a weekly meeting. Choose a challenging but humane schedule.
 
-## Does pre-registration reserve our unit?
+## How large is Camp Lawton?
 
-No. It is a planning survey only. Official registration and payment occur separately through Black Pug.
+Camp Lawton is approximately 60 acres. The compact layout helps Scouts learn the property and know the staff, but the elevation and steep terrain make distances feel longer.
 
-## Are merit badge seats guaranteed?
+## Why is there no aquatics program?
 
-No. The interest survey helps staff decide what to offer. A published class plan still depends on capacity and final scheduling.
+The former pool is no longer available. A future aquatics facility would require major funding, construction approval, and Forest Service authorization. Do not plan for swimming or boating in 2027\.
 
-## Can we rely on cell service?
+## What happens if online program registration goes wrong?
 
-No. Service can be limited. Use the camp communication system and leader-packet contacts while on site.`,
+Contact camp before arrival when possible. Bring each Scout’s choices and alternates. Staff will work with the unit at check-in and do our best to make sure your scouts are taken care of.
+
+## Can our unit arrive early or leave late?
+
+Only by prior arrangement with the Camp Director. The Staff need turnaround time to prepare the property safely.
+
+## Can leaders drive gear to the campsite?
+
+Not unless the Camp Director or Ranger specifically authorizes the vehicle. Assume you will be carrying gear from the parking area to your campsite. Navajo campsite has direct vehicle access, but is usually reserved for special needs units.
+
+## Will we be allowed a campfire in our campsite?
+
+Possibly, but do not count on it. Fire restrictions are set by the Forest Service and can change quickly. Bring a complete no-flame plan. 
+
+## Is food provided? Can we make our own?
+
+Food is provided in the dining hall three meals each day. You may NOT cook or have food in your campsite at any time to prevent attracting wildlife. If you desire to cook your own treats or meals, make arrangements to use the fireplace at the dining hall.   
+
+## Can families or friends visit?
+
+Only with advance approval. Visitors must sign in, follow all camp rules, remain with an escort or host unit, and sign out before leaving.
+
+## Is there laundry in camp?
+
+No washing machine or laundry service is available. Pack enough clothing for the full session.
+
+## What should we do when a Scout is struggling emotionally?
+
+Stay calm, remain present, protect privacy, and involve the appropriate unit and camp leaders. Attend to basics such as water, food, rest, sensory load, and physical illness. Contact camp leadership promptly when a Scout needs more support than the unit can safely provide. In an immediate safety crisis, notify the Camp Health Officer or Camp Director at once.
+
+## Who should receive a complaint or safety concern?
+
+Routine issues may go through the Troop Friend or an Area Director. Health, safeguarding-youth, serious conduct, emergency, or property concerns should go directly to the Administration. If you feel the issue requires escalation beyond camp administration, we kindly request you inform us but your priority is to the safety of your scouts.`,
   },
 ];
 

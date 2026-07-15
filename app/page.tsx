@@ -117,6 +117,7 @@ export default function Home() {
         <nav aria-label="Main navigation">
           <a href="#guide">Guide</a>
           <a href="/history">History</a>
+          <a href="/map">Map</a>
           <a href="/plan">Plan</a>
           <a href="/schedule">Schedule</a>
           <a href="/merit-badges">Programs</a>
@@ -248,7 +249,7 @@ export default function Home() {
 
       <footer>
         <div className="footer-brand"><img src="/images/CLlogo.png" alt="CL Logo" className="brand-mark" /><div><strong>Camp Lawton</strong><small>Catalina Mountains · Arizona</small></div></div>
-        <div><strong>Leader resources</strong><a href="#guide">Leader’s guide</a><a href="/history">Camp history</a><a href="/schedule">Schedule</a><a href="/merit-badges">Program planner</a></div>
+        <div><strong>Leader resources</strong><a href="#guide">Leader’s guide</a><a href="/history">Camp history</a><a href="/map">Interactive map</a><a href="/schedule">Schedule</a><a href="/merit-badges">Program planner</a></div>
         <div><strong>Prepare</strong><a href="#guide">Packing & paperwork</a><a href="#alerts">Conditions & notices</a><a href="#preregister">Pre-register</a></div>
         <p>Prototype based on the 2027 leader’s guide. Dates and program details remain subject to final approval.</p>
       </footer>

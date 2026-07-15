@@ -22,9 +22,9 @@ C,Cit. in Nation,Eagle's Nest,Partial,N/A,Federal facility tour,4,0
 C,Cit. in World,Eagle's Nest,Partial,N/A,Foreign consulate/news tracking,4,0
 S,Climbing,High Adventure,Complete*,None,None,4,2 (Wall time)
 D,Communication,Eagle's Nest,Complete*,N/A,Public meeting / City speeches,0,N/A
-A,Cybersecurity,STEM,Complete,Cyber Chip / Cyber certs,None,4,1
+A,Cybersecurity,STEM,Complete,Personal Safety Awareness Digital Safety video,None,4,1
 C,Cycling,Outdoor Skills,Partial,None,50-mile ride,4,20+ (Home)
-A,Digital Technology,STEM,Complete,Cyber Chip,None,4,2
+A,Digital Technology,STEM,Complete,Personal Safety Awareness Digital Safety video,None,4,2
 A,Drafting,STEM,Complete,None,None,4,3
 A,Electricity,STEM,Complete,None,None,4,2
 A,Electronics,STEM,Complete,None,None,4,2
@@ -59,12 +59,12 @@ S,Orienteering,Outdoor Skills,Complete,None,None,4,2 (Field Course)
 A,Painting,Handicraft,Complete,None,None,4,2 (Project time)
 B,Personal Fitness,Outdoor Skills,Partial,12-week fitness log,12-week fitness log,4,20+ (Home)
 B,Personal Management,Eagle's Nest,Partial,13-week budget log,13-week budget log,4,20+ (Home)
-S,Photography,Handicraft,Complete,Cyber Chip / Totin' Chip,None,4,2 (Shooting photos)
+S,Photography,Handicraft,Complete,Personal Safety Awareness Digital Safety video,None,4,2 (Shooting photos)
 A,Pioneering,Outdoor Skills,Complete,Knots/Lashing to 1st Class,None,6,4 (Building)
 S,Plant Science,Nature,Complete,None,None,4,1
 A,Plumbing,STEM,Complete,None,None,4,2
 S,Pottery,Handicraft,Complete,None,None,4,1
-A,Programming,STEM,Complete*,Cyber Chip,None,4,2
+A,Programming,STEM,Complete*,Personal Safety Awareness Digital Safety video,None,4,2
 S,Pulp & Paper,Handicraft,Complete,None,None,4,1
 B,Reading,STEM,Partial,None,Library service / long reading,2,10+ (Home)
 C,Reptile/Amphibian,Nature,Partial,None,1-month care/observation log,4,10+ (Home)

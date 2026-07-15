@@ -426,7 +426,7 @@ export const meritBadgeSurveyCatalog: MeritBadgeSurveyItem[] = [
     "area": "STEM",
     "completion": "complete",
     "sourceStatus": "Complete",
-    "prerequisites": "Cyber Chip / Cyber certs",
+    "prerequisites": "Personal Safety Awareness Digital Safety video",
     "unavailableAtCamp": null,
     "classHours": 4,
     "individualEffort": {
@@ -464,7 +464,7 @@ export const meritBadgeSurveyCatalog: MeritBadgeSurveyItem[] = [
     "area": "STEM",
     "completion": "complete",
     "sourceStatus": "Complete",
-    "prerequisites": "Cyber Chip",
+    "prerequisites": "Personal Safety Awareness Digital Safety video",
     "unavailableAtCamp": null,
     "classHours": 4,
     "individualEffort": {
@@ -1129,7 +1129,7 @@ export const meritBadgeSurveyCatalog: MeritBadgeSurveyItem[] = [
     "area": "Handicraft",
     "completion": "complete",
     "sourceStatus": "Complete",
-    "prerequisites": "Cyber Chip / Totin' Chip",
+    "prerequisites": "Personal Safety Awareness Digital Safety video",
     "unavailableAtCamp": null,
     "classHours": 4,
     "individualEffort": {
@@ -1224,7 +1224,7 @@ export const meritBadgeSurveyCatalog: MeritBadgeSurveyItem[] = [
     "area": "STEM",
     "completion": "conditional",
     "sourceStatus": "Complete*",
-    "prerequisites": "Cyber Chip",
+    "prerequisites": "Personal Safety Awareness Digital Safety video",
     "unavailableAtCamp": null,
     "classHours": 4,
     "individualEffort": {

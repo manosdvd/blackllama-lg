@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
-  const description = "Explore the 2027 guide, schedules, programs, planning tools, and live Camp Lawton conditions.";
+  const description = "Plan a safe, memorable 2027 summer camp and explore the guide, schedules, programs, and live Camp Lawton conditions.";
 
   return {
     title: "Camp Lawton Leader Hub · 2027",
