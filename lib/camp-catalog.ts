@@ -780,13 +780,13 @@ Please share the relevant portions of this guide with Scouts, parents, guardians
 
 ## The Tribe of Papago
 
-The supplied Camp Lawton program history says Camp Director and Catalina Council Scout Executive Harry B. Ogle established a local honor-camping society before the Order of the Arrow became Scouting’s nationally recognized honor society. The local lodge later adopted the Papago name, while the Tribe continued at Camp Lawton as a returning-camper recognition program built around service, leadership, trail experience, reflection, and Scout spirit.
+Camp Director and Catalina Council Scout Executive Harry B. Ogle established the Tribe of Papago at Camp Lawton in 1923, before the Order of the Arrow became Scouting’s nationally recognized honor society. Papago Lodge 494 was chartered in 1953, while the Tribe continued at Camp Lawton as a separate returning-camper recognition program built around service, leadership, trail experience, reflection, and Scout spirit.
 
-The historic name and rank terms below are transcribed from the supplied working document. They refer to a Camp Lawton Scouting tradition, not to the Tohono O’odham Nation. This material remains subject to authorized cultural and program review.
+The historic name and rank terms refer to a Camp Lawton Scouting tradition, not to the Tohono O’odham Nation. “Papago” was a Spanish exonym historically used for the Nation, which formally restored its own name—Tohono O’odham, or “Desert People”—in 1986.
 
-These are working requirements. The current staff-issued form and instructions control each season.
+Use the current camp-issued form and staff instructions to document completion each season.
 
-Explore the [interactive Tribe of Papago page](/tribe-of-papago) for searchable rank paths, the Barker Standard, and credited archive material.
+Explore the [Tribe of Papago leader-guide page](/tribe-of-papago) for interactive rank checklists, the detailed 1921–present history, Roy Barker’s biography, the Barker Standard, and credited archive material.
 
 ### Hunter — First Year
 
@@ -840,29 +840,31 @@ Explore the [interactive Tribe of Papago page](/tribe-of-papago) for searchable 
 - Attend a chapel service or unit spiritual meeting during at least two weeks of staff service
 - Lead a unit on an approved camp trail
 
-Unit leaders track progress and submit completed forms. Patches, rockers, and current requirements are available through the Trading Post or program leadership.
+Unit leaders should review progress during the week and ask camp staff how completed recognition is recorded and presented.
 
 ## The Barker Standard
 
-Roy J. Barker (1924–2012) was a longtime Scoutmaster, executive-board member, camp staff member, and mentor whose units were known for service and Scout spirit. The Barker Standard recognizes units that contribute meaningfully to the camp community.
+Roy J. Barker (1924–2012) was a longtime Scoutmaster, Catalina Council Executive Board member, Wood Badge instructor, Camp Lawton physician, and mentor whose units were known for service and Scout spirit. The Barker Standard recognizes units that contribute meaningfully to the camp community.
 
 To earn the Barker Standard, a unit must:
 
 1. Request and pass a uniform inspection by a senior staff member.  
 2. Request and pass a campsite inspection by a senior staff member.  
 3. Lead a flag ceremony.  
-4. Sing a song at a campwide activity.  
-5. Perform an approved skit, song, or story at a closing campfire.  
-6. Complete an assigned camp cleanup duty.  
-7. Complete an approved service project.  
+4. Sing a song at a camp-wide activity.  
+5. Perform a skit, song, or story at the camp-wide closing campfire.  
+6. Volunteer for cleanup duty in the dining hall and/or shower facilities.  
+7. Complete a service project while in camp.  
 8. Consistently demonstrate Scout spirit and live the Scout Oath, Scout Law, motto, slogan, Leave No Trace principles, and Outdoor Code.
 9. Complete and submit the Barker Standard application.
 
-Every unit completing the published requirements may receive a Tribe of Papago rocker and ribbon for the unit flag. Staff may select one especially strong unit for additional recognition. Requirements may be adjusted to fit session length and camp needs.
+Every unit completing the standard receives a Tribe of Papago rocker and a ribbon for its unit flag. On Friday night, staff vote to select one troop for special recognition on a dining-hall plaque for the remainder of the summer.
 
 ### Roy J. Barker’s wider legacy
 
-The supplied Barker biography records a life that joined entomology, environmental stewardship, and hands-on Scouting leadership. Barker (1924–2012) served as a Cubmaster, Scoutmaster, district chair, Catalina Council Executive Board member, Wood Badge instructor, and Camp Lawton physician. It records his 1969–2002 council-board service, his 1974 Silver Beaver Award, and a 2009 Otis H. Chidester Scout Museum honor. These biographical details are presented as working historical research and should receive source and family review before being treated as a final institutional biography.
+Roy Barker’s life joined entomology, environmental stewardship, and hands-on Scouting leadership. He served two years as Cubmaster of Pack 100; three years each as Scoutmaster of Troops 208 and 007; and as Scoutmaster of Catalina Council’s Troop 741 at the 1993 National Scout Jamboree. He chaired Old Pueblo District in 1969–1970, sat on the Catalina Council Executive Board from 1969 through 2002, staffed six Wood Badge courses, and served as Camp Lawton physician in 1997. His honors included the 1972 District Award of Merit, the 1974 Silver Beaver Award, and the 2009 Otis H. Chidester Memorial Award.
+
+Away from Scouting, Dr. Barker was a pioneering entomologist. His 1958 study traced DDT from sprayed elm leaves through earthworms to robins, years before *Silent Spring*. At Tucson’s Carl Hayden Bee Research Center, he investigated threats to honeybees, including pesticide microcapsules that could be mistaken for pollen. He also flew with the Civil Air Patrol, volunteered as a U.S. Forest Service naturalist, and helped establish a $1.25 million endowed chair in insect toxicology at the University of Illinois.
 
 The Barker Standard carries that same ethic into unit life: service that improves camp, leadership that teaches by example, and Scout spirit that is visible in ordinary work.`,
   },

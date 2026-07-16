@@ -60,7 +60,7 @@ Before using demand for a program decision, export the long-form staff CSV and c
 
 ## Production release
 
-1. Provision the production D1 database and configure its real UUID. Either replace the all-zero `database_id` in `wrangler.json`, or set `CLOUDFLARE_D1_DATABASE_ID` in the Cloudflare Workers Builds environment. Retrieve an existing UUID with `npx wrangler d1 info camp-lawton-leader-hub`, or create the database with `npx wrangler d1 create camp-lawton-leader-hub`.
+1. The production D1 database is provisioned as `camp-lawton-leader-hub` in WNAM and bound as `DB` in `wrangler.json` (database ID `13226e36-f71a-489c-bf0b-e7277588a249`). If the database is ever replaced, update that ID or set `CLOUDFLARE_D1_DATABASE_ID` in the Cloudflare Workers Builds environment.
 2. Set `CAMP_STAFF_EMAILS` as a comma-separated Worker secret or environment variable for the initial Camp Director and Program Director accounts.
 3. Apply migrations before describing pre-registration or the badge survey as open:
 

@@ -59,13 +59,16 @@ test("history route turns the working documents into an accessible chronology", 
   assert.match(header, /History/);
 });
 
-test("Tribe of Papago source material is presented with credits and current-program caveats", () => {
+test("Tribe of Papago source material is presented as a credited leader-guide history", () => {
   assert.match(traditionGallery, /Photo credit: Bill Topkis/);
   assert.match(traditionGallery, /Photo credit: Doug Walker/);
   assert.match(traditionGallery, /Photo credit: Edwin DeLuna/);
-  assert.match(traditionGallery, /authorized cultural and program review/);
-  assert.doesNotMatch(traditionGallery, /tribe-medal-1923/);
-  assert.match(catalog, /These are working requirements/);
+  assert.match(traditionGallery, /tribe-medal-1923/);
+  assert.match(traditionGallery, /Troop 208/);
+  assert.match(traditionGallery, /Troop 007/);
+  assert.match(traditionGallery, /Troop 741/);
+  assert.match(traditionGallery, /Tohono O’odham/);
+  assert.match(catalog, /Use the current camp-issued form/);
   assert.match(catalog, /Complete four hours of service projects/);
   assert.match(catalog, /Roy J\. Barker \(1924–2012\)/);
   assert.match(catalog, /Leave No Trace principles/);

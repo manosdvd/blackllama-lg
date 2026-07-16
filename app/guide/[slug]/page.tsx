@@ -5,7 +5,6 @@ import MarkdownContent from "../../../components/MarkdownContent";
 import PackingListClient from "../../../components/PackingListClient";
 import SiteHeader from "../../../components/SiteHeader";
 import SiteFooter from "../../../components/SiteFooter";
-import TraditionGallery from "../../../components/TraditionGallery";
 import { getPublishedArticle } from "../../../lib/content-repository";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -44,7 +43,6 @@ export default async function GuideArticlePage({ params }: PageProps) {
             <div><dt>Last reviewed</dt><dd>{article.updatedAt.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</dd></div>
           </dl>
         </header>
-        {hasTraditionGallery && <TraditionGallery />}
         {isPackingList ? <PackingListClient source={article.body} /> : <MarkdownContent source={article.body} />}
       </article>
       <SiteFooter />

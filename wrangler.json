@@ -6,7 +6,7 @@
     {
       "binding": "DB",
       "database_name": "camp-lawton-leader-hub",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "13226e36-f71a-489c-bf0b-e7277588a249",
       "migrations_dir": "drizzle"
     }
   ]
