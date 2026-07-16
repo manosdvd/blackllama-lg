@@ -5,6 +5,7 @@
 - Node.js 22.13 or newer is required.
 - The application builds with vinext and deploys as a Cloudflare Worker with a D1 binding named `DB`.
 - Public content has reviewed canonical fallbacks so an empty database does not blank the site. Staff-published database records override those fallbacks.
+- Draft schedule/catalog/planner data is release-gated off. See [docs/PROGRAM_PLANNING_ARCHIVE.md](docs/PROGRAM_PLANNING_ARCHIVE.md).
 
 ## Local production preview
 
@@ -43,7 +44,7 @@ See [docs/LIVE_CONDITIONS.md](docs/LIVE_CONDITIONS.md) for the full source contr
 
 ## Merit badge survey catalog
 
-`masterMB.csv` is the canonical source for the 84-badge interest survey. It does not replace the scheduled offerings in `lib/camp-catalog.ts`.
+`masterMB.csv` is the canonical source for the 84-badge interest survey. Those subjects are survey candidates, not the final Camp Lawton list. Provisional offerings in `lib/camp-catalog.ts` remain archived from public use.
 
 After changing the source CSV, run:
 
@@ -59,22 +60,24 @@ Before using demand for a program decision, export the long-form staff CSV and c
 
 ## Production release
 
-1. Provision the production D1 database and replace the placeholder database ID in `wrangler.json` when deploying outside the configured hosting control plane.
+1. Provision the production D1 database and configure its real UUID. Either replace the all-zero `database_id` in `wrangler.json`, or set `CLOUDFLARE_D1_DATABASE_ID` in the Cloudflare Workers Builds environment. Retrieve an existing UUID with `npx wrangler d1 info camp-lawton-leader-hub`, or create the database with `npx wrangler d1 create camp-lawton-leader-hub`.
 2. Set `CAMP_STAFF_EMAILS` as a comma-separated Worker secret or environment variable for the initial Camp Director and Program Director accounts.
-3. Apply migrations before enabling forms:
+3. Apply migrations before describing pre-registration or the badge survey as open:
 
 ```bash
 npm run db:migrate:remote
 ```
 
 4. Build and deploy through the configured hosting project. The build output is under `dist/`, and database migrations are copied to `dist/.openai/drizzle/`.
-5. Verify `/api/conditions` against both official sources, `/api/notices`, a test planning submission using a survey-only badge, staff demand aggregation, staff authorization, and the long-form CSV export in the deployed environment.
+5. Verify `/api/conditions` against both official sources, `/api/notices`, a complete test pre-registration with at least one badge candidate, staff demand aggregation, staff authorization, and the long-form CSV export in the deployed environment. Confirm the submission contains no youth names.
+
+If no real D1 UUID is configured, the build intentionally omits the invalid placeholder binding so the public informational site can deploy with its reviewed fallback content. Database-backed pre-registration and staff publishing remain unavailable until the binding is configured and migrations are applied; do not promote the survey as open in that state.
 
 ## Required launch approvals
 
 - Council approval of 2027 dates, fees, refund terms, policies, and registration language.
 - Camp Director operational approval of the validated QSLA3/Camp Lawton point integration and the Coronado National Forest fallback workflow.
-- Privacy and retention review before collecting real unit contacts or Scout display names.
+- Privacy and retention review before collecting real adult unit contacts. The current public form does not collect youth names.
 - Public-use approval and release verification for photography showing recognizable people.
 - Cultural and historical review for expanded Tribe of Papago interpretation.
 

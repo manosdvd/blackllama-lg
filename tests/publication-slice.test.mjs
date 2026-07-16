@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const root = new URL("../", import.meta.url);
-const [schema, migration, repository, actions, articlePage, schedulePage, homepage, markdown] = await Promise.all([
+const [schema, migration, repository, actions, articlePage, schedulePage, homepage, markdown, features] = await Promise.all([
   readFile(new URL("db/schema.ts", root), "utf8"),
   readFile(new URL("drizzle/0002_publication_slice.sql", root), "utf8"),
   readFile(new URL("lib/content-repository.ts", root), "utf8"),
@@ -12,6 +12,7 @@ const [schema, migration, repository, actions, articlePage, schedulePage, homepa
   readFile(new URL("app/schedule/page.tsx", root), "utf8"),
   readFile(new URL("app/page.tsx", root), "utf8"),
   readFile(new URL("components/MarkdownContent.tsx", root), "utf8"),
+  readFile(new URL("lib/site-features.ts", root), "utf8"),
 ]);
 
 test("publication schema records revisions and publish metadata", () => {
@@ -34,11 +35,12 @@ test("public reads only consume published or currently active records", () => {
   assert.match(repository, /mondaySchedule/);
 });
 
-test("the first vertical slice is connected across public views", () => {
+test("guide publishing stays public while schedule publication remains archived", () => {
   assert.match(articlePage, /getPublishedArticle/);
   assert.match(articlePage, /Last reviewed/);
-  assert.match(schedulePage, /ScheduleExplorer/);
-  assert.match(schedulePage, /bsaSchedule/);
+  assert.match(schedulePage, /ProgramPlanningPaused/);
+  assert.match(features, /PROGRAM_PLANNING_PUBLISHED = false/);
+  assert.match(repository, /overrides\.get\(fallback\.id\)/);
   assert.match(homepage, /fetch\("\/api\/notices"\)/);
   assert.match(homepage, /arrival-and-check-in/);
 });
@@ -48,5 +50,7 @@ test("editor actions validate unsafe Markdown and revalidate public routes", () 
   assert.match(actions, /javascript:/);
   assert.match(actions, /revalidatePath\(`\/guide\/\$\{slug\}`\)/);
   assert.match(actions, /revalidatePath\("\/schedule"\)/);
+  assert.match(actions, /Schedule editing is archived/);
+  assert.match(actions, /existing\.status !== "published"/);
   assert.doesNotMatch(markdown, /dangerouslySetInnerHTML/);
 });

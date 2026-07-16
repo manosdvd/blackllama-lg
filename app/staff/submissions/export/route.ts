@@ -3,7 +3,7 @@ import { getDb } from "../../../../db";
 import { submissions } from "../../../../db/schema";
 import { meritBadgeSurveyCatalog } from "../../../../lib/merit-badge-survey.generated";
 import { parsePlanningSnapshot } from "../../../../lib/planning-submission";
-import { requireStaff } from "../../../staff-auth";
+import { requireStaffRole } from "../../../staff-auth";
 
 const csv = (value: unknown) => {
   const raw = String(value ?? "");
@@ -12,7 +12,7 @@ const csv = (value: unknown) => {
 };
 
 export async function GET() {
-  await requireStaff("/staff/submissions");
+  await requireStaffRole("/staff/submissions", ["director"]);
   const rows = await getDb().select().from(submissions).orderBy(desc(submissions.createdAt));
   const headers = ["reference", "status", "submitted_at", "unit_type", "unit_number", "council", "city", "state", "session_id", "youth_total", "adult_total", "contact_name", "contact_email", "contact_phone", "badge_id", "badge_title", "area", "tier", "completion", "interested_count", "priority", "note", "delete_after"];
   const lines = [headers.map(csv).join(",")];

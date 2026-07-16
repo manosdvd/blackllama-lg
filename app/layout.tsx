@@ -1,56 +1,46 @@
-import type { Metadata } from "next";
-import { headers } from "next/headers";
+import type { Metadata, Viewport } from "next";
+import { siteOrigin } from "../lib/site-url";
 import "./globals.css";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
-  const origin = `${protocol}://${host}`;
-  const description = "Plan a safe, memorable 2027 summer camp and explore the guide, schedules, programs, and live Camp Lawton conditions.";
+const description = "Discover Camp Lawton, explore the working 2027 Leader's Guide, share unit and merit badge interest, and check camp history, maps, notices, and mountain conditions.";
 
-  return {
-    title: "Camp Lawton Leader Hub · 2027",
+export const metadata: Metadata = {
+  metadataBase: new URL(siteOrigin),
+  title: { default: "Camp Lawton Leader Hub · 2027", template: "%s · Camp Lawton" },
+  description,
+  applicationName: "Camp Lawton Leader Hub",
+  manifest: "/manifest.json",
+  icons: {
+    icon: [{ url: "/icons/icon-192.png", type: "image/png", sizes: "192x192" }],
+    apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" }],
+  },
+  openGraph: {
+    title: "Camp Lawton · 2027 Leader Hub",
     description,
-    openGraph: {
-      title: "Camp Lawton · 2027 Leader Hub",
-      description,
-      url: origin,
-      siteName: "Camp Lawton Leader Hub",
-      images: [{ url: `${origin}/og.png`, width: 1200, height: 630, alt: "Camp Lawton 2027 Leader Hub" }],
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Camp Lawton · 2027 Leader Hub",
-      description,
-      images: [`${origin}/og.png`],
-    },
-  };
-}
+    url: "/",
+    siteName: "Camp Lawton Leader Hub",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Camp Lawton 2027 Leader Hub" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Camp Lawton · 2027 Leader Hub",
+    description,
+    images: ["/og.jpg"],
+  },
+};
+
+export const viewport: Viewport = { themeColor: "#081510" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#081510" />
-      </head>
       <body>
-        {children}
+        <a className="skip-link" href="#main-content">Skip to main content</a>
+        <div id="main-content" tabIndex={-1}>{children}</div>
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                  }, function(err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                  });
-                });
-              }
-            `,
+            __html: `if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}`,
           }}
         />
       </body>

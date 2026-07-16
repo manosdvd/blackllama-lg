@@ -79,7 +79,7 @@ function renderOfferings() {
     const selected = plan.has(item.id);
     return `<article class="offering${selected?' selected':''}"><div><span>${item.area}</span><h3>${item.title}</h3><p>${item.time} · ${item.note}</p></div><button type="button" data-id="${item.id}" aria-pressed="${selected}">${selected?'Added':'Add'}</button></article>`;
   }).join("");
-  $("#offering-list").querySelectorAll("button").forEach(button => button.addEventListener("click", () => { const id = button.dataset.id; plan.has(id) ? plan.delete(id) : plan.add(id); renderOfferings(); renderPlan(); }));
+  $("#offering-list").querySelectorAll("button").forEach(button => button.addEventListener("click", () => { const id = button.dataset.id; if (plan.has(id)) plan.delete(id); else plan.add(id); renderOfferings(); renderPlan(); }));
 }
 
 function getPlanState() {

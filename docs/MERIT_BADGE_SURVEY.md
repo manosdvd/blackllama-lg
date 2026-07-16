@@ -4,10 +4,10 @@
 
 The interest survey asks units which merit badges Camp Lawton should consider offering in 2027. It is demand research, not registration, class scheduling, or a promise that a badge can be completed at camp.
 
-The survey catalog and the scheduled program catalog are intentionally separate:
+The survey catalog and the archived working program data are intentionally separate:
 
 - `masterMB.csv` is the canonical 84-badge candidate catalog used by the planning survey.
-- `lib/camp-catalog.ts` contains the smaller set of provisional scheduled offerings with class periods, locations, capacity, fees, and planner conflict rules.
+- `lib/camp-catalog.ts` retains provisional working offerings and schedule data for future staff review. It is not rendered as a public 2027 catalog.
 
 A survey result can inform a later scheduling decision, but it does not become a scheduled offering automatically.
 
@@ -39,7 +39,7 @@ Tier codes `S`, `A`, `B`, `C`, and `D` are preserved as source metadata. Their m
 
 ## Survey behavior
 
-Step 4 of pre-registration supports search and filters for program area, completion feasibility, source tier, and selected badges. Each badge records:
+Step 3 of pre-registration supports search and filters for program area and selected survey candidates. Feasibility, source-tier, workload, and class-time estimates are intentionally absent from the public survey while the program is unapproved. Each selection records:
 
 - Estimated number of interested Scouts, capped at the unit’s estimated youth attendance.
 - Must-have, strong-interest, or nice-to-have priority.
@@ -47,7 +47,7 @@ Step 4 of pre-registration supports search and filters for program area, complet
 
 Notes explicitly prohibit Scout names, health details, and other personal information. Only badges with a positive interest count are submitted. The API allowlists IDs against the generated catalog and discards unknown IDs.
 
-Browser drafts are normalized when loaded. Obsolete fields and unknown badge IDs are removed, legacy scheduled-badge IDs remain stable, malformed drafts cannot replace required form defaults, and lowering youth attendance clamps badge counts and optional Scout names.
+Browser drafts are normalized when loaded. Obsolete fields, legacy youth names, and unknown badge IDs are removed; malformed drafts cannot replace required form defaults; and lowering youth attendance clamps badge counts.
 
 ## Staff reporting
 

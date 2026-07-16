@@ -4,7 +4,8 @@ import { getDb, getRuntimeSetting } from "../db";
 import { staffRoles } from "../db/schema";
 import { requireChatGPTUser, type ChatGPTUser } from "./chatgpt-auth";
 
-export type StaffUser = ChatGPTUser & { role: "director" | "program-director" | "editor" };
+export type StaffRole = "director" | "program-director" | "editor";
+export type StaffUser = ChatGPTUser & { role: StaffRole };
 
 export async function requireStaff(returnTo: string): Promise<StaffUser> {
   const user = await requireChatGPTUser(returnTo);
@@ -21,4 +22,12 @@ export async function requireStaff(returnTo: string): Promise<StaffUser> {
     // A missing database must fail closed for editorial access.
   }
   redirect(`/staff/unauthorized?return_to=${encodeURIComponent(returnTo)}`);
+}
+
+export async function requireStaffRole(returnTo: string, allowedRoles: StaffRole[]): Promise<StaffUser> {
+  const user = await requireStaff(returnTo);
+  if (!allowedRoles.includes(user.role)) {
+    redirect(`/staff/unauthorized?return_to=${encodeURIComponent(returnTo)}`);
+  }
+  return user;
 }

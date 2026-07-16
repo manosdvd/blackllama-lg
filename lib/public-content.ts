@@ -77,9 +77,9 @@ export const mondaySchedule: PublicScheduleEvent[] = [
 
 export const planningNotice: PublicNotice = {
   id: "planning-notice",
-  title: "2027 schedule planning",
-  summary: "Schedules are preliminary. Final program details will be posted before registration opens.",
-  instructions: "Review this site again before your unit departs.",
+  title: "Help shape Camp Lawton's 2027 program",
+  summary: "The final merit badge list and class schedule are still in development. Units can share non-binding attendance and badge interest now.",
+  instructions: "Complete the planning survey and return for authorized program details when they are published.",
   urgency: "information",
   source: "Camp Lawton staff",
   updatedAt: new Date("2026-07-11T00:00:00Z"),

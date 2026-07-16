@@ -1,19 +1,20 @@
-const CACHE_NAME = "lawton-public-v3";
-const PUBLIC_ASSETS = [
-  "/images/CLlogo.png",
-  "/images/PXL_20260612_151123910~2.jpg",
-  "/images/PXL_20260607_155608710.jpg",
-  "/images/PXL_20260605_172059179.PANO.jpg",
-  "/images/Image_5.jpg",
-  "/map/camp-lawton-map.svg",
+const CACHE_PREFIX = "lawton-public-";
+const CACHE_NAME = `${CACHE_PREFIX}v6`;
+const CORE_ASSETS = [
+  "/offline",
+  "/images/logo-ui.webp",
+  "/icons/icon-192.png",
+  "/manifest.json",
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(PUBLIC_ASSETS)).then(() => self.skipWaiting()));
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(CORE_ASSETS)).then(() => self.skipWaiting()));
 });
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(caches.keys().then((names) => Promise.all(names.filter((name) => name !== CACHE_NAME).map((name) => caches.delete(name)))));
+  event.waitUntil(caches.keys().then((names) => Promise.all(
+    names.filter((name) => name.startsWith(CACHE_PREFIX) && name !== CACHE_NAME).map((name) => caches.delete(name)),
+  )));
   self.clients.claim();
 });
 
@@ -22,15 +23,18 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
-  const isPrivateOrDynamic = url.pathname.startsWith("/api/") || url.pathname.startsWith("/staff") || url.pathname.startsWith("/workspace") || url.pathname.endsWith(".rsc");
+  const isPrivateOrDynamic = url.pathname.startsWith("/api/")
+    || url.pathname.startsWith("/staff")
+    || url.pathname.startsWith("/workspace")
+    || url.pathname.endsWith(".rsc");
   if (isPrivateOrDynamic) return;
 
-  if (PUBLIC_ASSETS.includes(url.pathname)) {
+  if (CORE_ASSETS.includes(url.pathname)) {
     event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request)));
     return;
   }
 
   if (event.request.mode === "navigate") {
-    event.respondWith(fetch(event.request).catch(() => new Response("Camp Lawton Leader Hub is offline. Reconnect to view current camp information.", { status: 503, headers: { "Content-Type": "text/plain; charset=utf-8" } })));
+    event.respondWith(fetch(event.request).catch(() => caches.match("/offline")));
   }
 });

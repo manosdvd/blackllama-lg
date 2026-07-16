@@ -4,15 +4,16 @@ import { getDb } from "../../../db";
 import { submissions } from "../../../db/schema";
 import { sessions } from "../../../lib/camp-catalog";
 import { aggregateBadgeDemand, parsePlanningSnapshot } from "../../../lib/planning-submission";
-import { requireStaff } from "../../staff-auth";
+import { requireStaffRole } from "../../staff-auth";
 import { updateSubmissionStatus } from "./actions";
 
 const completionLabel = { complete: "Complete at camp", conditional: "Conditional", partial: "Partial at camp" } as const;
 
 export default async function SubmissionsPage() {
-  await requireStaff("/staff/submissions");
+  await requireStaffRole("/staff/submissions", ["director"]);
   let rows: typeof submissions.$inferSelect[] = [];
-  try { rows = await getDb().select().from(submissions).orderBy(desc(submissions.createdAt)); } catch {}
+  let databaseAvailable = true;
+  try { rows = await getDb().select().from(submissions).orderBy(desc(submissions.createdAt)); } catch { databaseAvailable = false; }
   const parsed = rows.flatMap((row) => {
     const snapshot = parsePlanningSnapshot(row.snapshot);
     return snapshot ? [{ row, snapshot }] : [];
@@ -23,6 +24,7 @@ export default async function SubmissionsPage() {
 
   return <main className="staff-page"><div className="staff-shell">
     <header className="staff-top"><div><span>Planning operations</span><h1>Submissions & demand</h1><p>Planning demand is not enrollment and does not represent reserved seats.</p></div><div><Link href="/staff">Dashboard</Link><Link className="button button-small" href="/staff/submissions/export">Export demand CSV</Link></div></header>
+    {!databaseAvailable && <p className="staff-data-warning" role="alert">The camp database is unavailable. Submission totals are not currently loaded.</p>}
     {invalidCount > 0 && <p className="staff-data-warning">{invalidCount} malformed legacy submission{invalidCount === 1 ? " was" : "s were"} excluded from demand totals and need administrative review.</p>}
     <section className="demand-panel"><header><h2>Badge demand</h2><span>{demand.length} selected badges · {parsed.length} unit submission{parsed.length === 1 ? "" : "s"}</span></header><div>
       {demand.map((item) => {

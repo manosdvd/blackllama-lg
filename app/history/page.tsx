@@ -14,7 +14,7 @@ export default function HistoryPage() {
     <SiteHeader current="/history" />
 
     <section className="history-hero" aria-labelledby="history-title">
-      <img className="history-hero-image" src="/images/Image_2.jpg" alt="The entrance to Camp Lawton among tall ponderosa pines" />
+      <img className="history-hero-image" src="/images/history-hero.webp" width={2000} height={673} alt="The entrance to Camp Lawton among tall ponderosa pines" fetchPriority="high" />
       <div className="history-hero-wash" aria-hidden="true" />
       <div className="history-contours" aria-hidden="true"><i /><i /><i /><i /><i /></div>
       <div className="history-hero-inner">
@@ -24,6 +24,7 @@ export default function HistoryPage() {
           <p>Follow the people, places, and acts of service that shaped a summer refuge at 7,900 feet—and kept rebuilding it for the next generation.</p>
           <div className="history-hero-actions">
             <a className="button" href="#timeline">Walk the timeline <span aria-hidden="true">↓</span></a>
+            <a href="/tribe-of-papago">Explore the Tribe of Papago <span aria-hidden="true">↗</span></a>
             <a href="#history-sources">About the history <span aria-hidden="true">↗</span></a>
           </div>
         </div>
@@ -52,7 +53,7 @@ export default function HistoryPage() {
 
     <section className="history-continuity" aria-labelledby="history-continuity-title">
       <figure>
-        <img src="/images/PXL_20260530_022137497~2.jpg" alt="The stone wishing well at Camp Lawton beneath pine trees" loading="lazy" />
+        <img src="/images/history-wishing-well.webp" width={1050} height={1400} alt="The stone wishing well at Camp Lawton beneath pine trees" loading="lazy" />
         <figcaption>Al’s Well today <span>Present-day photo · 2026</span></figcaption>
       </figure>
       <div>
@@ -69,7 +70,7 @@ export default function HistoryPage() {
         <h2 id="history-sources-title">How this timeline was made</h2>
       </div>
       <div className="history-source-copy">
-        <p>This page is a curated narrative synthesis of the four working documents in the project’s <code>history</code> folder. It is not presented as a formal archival exhibit. Dates and claims should receive authorized historical and cultural review before external publication.</p>
+        <p>This page is a curated narrative synthesis of working documents, photographs, and linked institutional sources in the project’s history collection. It is not presented as a formal archival exhibit. Dates, identities, image rights, and historical claims should receive authorized historical and cultural review before external publication.</p>
         <ul>{historySourceDocuments.map((document) => <li key={document}>{document}</li>)}</ul>
         <p className="history-editorial-note"><strong>Editorial note</strong> The drafts differ on the outcome of 2026 merger discussions. This timeline follows the later March 6 update recorded in the master chronology: near-term independence for Catalina Council.</p>
       </div>

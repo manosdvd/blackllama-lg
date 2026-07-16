@@ -3,6 +3,8 @@
 import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import { ConditionsHud, FireSummaryCard, WeatherSummaryCard, useLiveConditions } from "../components/ConditionsPanel";
+import SiteFooter from "../components/SiteFooter";
+import SiteHeader from "../components/SiteHeader";
 
 const guideSections = [
   {
@@ -47,8 +49,8 @@ const guideSections = [
     summary: "The high-priority documents and practical items leaders should verify before departure.",
     tags: "packing paperwork forms roster checklist",
     body: [
-      "Bring BSA Annual Health & Medical Record Parts A, B, and C completed within 12 months.",
-      "Bring a signed roster with emergency contacts and proof of current adult leader training.",
+      "Organize the roster, current health records, emergency contacts, accommodation information, and medication materials required by final registration and check-in guidance.",
+      "Confirm the current adult registration and training documentation required for the session.",
       "Plan to carry all gear from the parking area to the assigned campsite.",
       "A sleeping pad and sleeping bag are recommended for the wooden sleeping platforms.",
     ],
@@ -67,14 +69,14 @@ const guideSections = [
   },
   {
     id: "program",
-    title: "Program overview",
-    summary: "Six daily merit badge blocks, campwide activities, evening programs, and transitions.",
-    tags: "program merit badges schedule activities",
+    title: "2027 program input",
+    summary: "How unit interest can help Camp Lawton shape a strong 2027 program.",
+    tags: "program merit badges interest survey activities",
     body: [
-      "Monday through Thursday includes six 50-minute merit badge blocks.",
-      "Ten-minute transitions occur between activities; 30-minute cleanup buffers follow meals.",
-      "Campwide competitions begin at 4:35 PM and evening programs begin at 7:25 PM.",
-      "All campfire content must be reviewed and approved by staff before presentation.",
+      "The merit badge list and class schedule are still in development.",
+      "Unit interest helps staff prioritize instructors, equipment, and appropriate capacity.",
+      "Survey selections do not create a class, reserve a seat, or guarantee completion.",
+      "Final authorized program information will replace draft planning material when it is ready.",
     ],
   },
 ];
@@ -96,7 +98,7 @@ export default function Home() {
   const filteredGuide = useMemo(() => {
     const query = guideQuery.toLowerCase().trim();
     if (!query) return guideSections;
-    return guideSections.filter((item) => `${item.title} ${item.summary} ${item.tags}`.toLowerCase().includes(query));
+    return guideSections.filter((item) => `${item.title} ${item.summary} ${item.tags} ${item.body.join(" ")}`.toLowerCase().includes(query));
   }, [guideQuery]);
   return (
     <main>
@@ -105,37 +107,22 @@ export default function Home() {
       <div className="notice-bar" role="status">
         <span className="notice-dot" aria-hidden="true" />
         <strong>{campNotice?.title ?? "Planning notice"}</strong>
-        <span>{campNotice?.summary ?? "2027 schedules are preliminary. Final program details will be posted before registration opens."}</span>
+        <span>{campNotice?.summary ?? "2027 program planning is underway. Share your unit’s interests while the final badge list and schedule are developed."}</span>
         <a href="#alerts">View notices</a>
       </div>
 
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Camp Lawton home">
-          <img src="/images/CLlogo.png" alt="CL Logo" className="brand-mark" />
-          <span><strong>Camp Lawton</strong><small>Leader Hub · 2027</small></span>
-        </a>
-        <nav aria-label="Main navigation">
-          <a href="#guide">Guide</a>
-          <a href="/history">History</a>
-          <a href="/map">Map</a>
-          <a href="/plan">Plan</a>
-          <a href="/schedule">Schedule</a>
-          <a href="/merit-badges">Programs</a>
-          <a href="#alerts">Alerts</a>
-        </nav>
-        <a className="button button-small" href="#preregister">Pre-register</a>
-      </header>
+      <SiteHeader current="/" />
 
       <section className="hero" id="top">
-        <img src="/images/PXL_20260612_151123910~2.jpg" alt="The wooden Camp Lawton entrance sign among ponderosa pines" />
+        <img src="/images/camp-hero.webp" width={2560} height={485} alt="The wooden Camp Lawton entrance sign among ponderosa pines" fetchPriority="high" />
         <div className="hero-shade" />
         <div className="hero-content">
           <p className="eyebrow">Catalina Council · Scouting America</p>
           <h1>Prepare for a week<br />that stays with them.</h1>
           <p className="hero-copy">Everything leaders need to plan a safe, memorable 2027 summer camp in the Catalina Mountains.</p>
           <div className="hero-actions">
-            <a className="button" href="#guide">Open the leader’s guide</a>
-            <a className="text-link" href="/schedule">Explore the week <span aria-hidden="true">→</span></a>
+            <Link className="button" href="/guide/packing-list">Open the packing checklist</Link>
+            <Link className="text-link" href="/pre-register">Help shape the program <span aria-hidden="true">→</span></Link>
           </div>
         </div>
         <div className="session-strip" aria-label="2027 session dates">
@@ -147,9 +134,9 @@ export default function Home() {
       </section>
 
       <section className="quick-links" aria-label="Leader shortcuts">
-        <a href="#guide"><span>01</span><strong>Before you leave</strong><small>Packing, forms & policies</small></a>
-        <a href="/schedule"><span>02</span><strong>Plan the week</strong><small>Schedules & transitions</small></a>
-        <a href="/merit-badges"><span>03</span><strong>Build a Scout plan</strong><small>Programs & conflicts</small></a>
+        <Link href="/guide/packing-list"><span>01</span><strong>Interactive packing list</strong><small>Check off, save & print</small></Link>
+        <Link href="/guide"><span>02</span><strong>Read the full guide</strong><small>Search reviewed camp information</small></Link>
+        <Link href="/merit-badges"><span>03</span><strong>Shape the badge program</strong><small>About the unit-interest survey</small></Link>
         <a href="#preregister"><span>04</span><strong>Tell us you’re interested</strong><small>Non-binding pre-registration</small></a>
       </section>
 
@@ -158,12 +145,12 @@ export default function Home() {
         <div className="intro-grid">
           <div>
             <h2>A small camp with room for a big experience.</h2>
-            <p>Camp Lawton combines six daily merit badge blocks with outdoor skills, campwide challenges, evening programs, and the close-knit character of a century-old mountain camp.</p>
+            <p>Camp Lawton combines hands-on outdoor learning, mountain adventure, camp traditions, and the close-knit character of a century-old Scout camp.</p>
           </div>
           <div className="fact-grid">
             <div><strong>1921</strong><span>Camp established</span></div>
-            <div><strong>6</strong><span>Daily badge blocks</span></div>
-            <div><strong>10 min</strong><span>Built-in transitions</span></div>
+            <div><strong>2027</strong><span>Program taking shape</span></div>
+            <div><strong>Your input</strong><span>Guides staff planning</span></div>
             <div><strong>USFS</strong><span>National Forest land</span></div>
           </div>
         </div>
@@ -200,12 +187,13 @@ export default function Home() {
                 </summary>
                 <ul>{item.body.map((line) => <li key={line}>{line}</li>)}</ul>
                 {item.id === "arrival" && <Link className="guide-article-link" href="/guide/arrival-and-check-in">Read the reviewed article →</Link>}
+                {item.id === "packing" && <Link className="guide-article-link" href="/guide/packing-list">Build your packing checklist →</Link>}
               </details>
             ))}
             {filteredGuide.length === 0 && <p className="empty-state">No guide sections match “{guideQuery}”. Try a broader term.</p>}
           </div>
           <aside className="photo-card">
-            <img src="/images/Image_5.jpg" alt="Historic log cabin camp office beneath tall pine trees" loading="lazy" />
+            <img src="/images/camp-office.webp" width={1600} height={900} alt="Historic log cabin camp office beneath tall pine trees" loading="lazy" />
             <div><span>On the mountain since 1921</span><p>Historic buildings, shaded campsites, and a program designed around personal attention.</p></div>
           </aside>
         </div>
@@ -214,12 +202,12 @@ export default function Home() {
       
 
       <section className="story-band">
-        <img src="/images/PXL_20260605_172059179.PANO.jpg" alt="Camp Lawton cabins arranged around a campsite fire ring" loading="lazy" />
+        <img src="/images/camp-story.webp" width={2000} height={1505} alt="Camp Lawton cabins arranged around a campsite fire ring" loading="lazy" />
         <div className="story-copy">
           <div className="section-kicker">A century on the mountain</div>
           <h2>Built by many hands.<br />Carried by generations.</h2>
           <p>From a $400 civic project in 1921 to a camp repeatedly renewed by fire, snow, and service, Camp Lawton’s story is written into every spring, cabin, and trail.</p>
-          <a href="/history" className="text-link">Walk the interactive timeline <span aria-hidden="true">→</span></a>
+          <Link href="/history" className="text-link">Walk the interactive timeline <span aria-hidden="true">→</span></Link>
         </div>
       </section>
 
@@ -231,12 +219,12 @@ export default function Home() {
         <div className="alert-grid">
           <WeatherSummaryCard state={conditionsState} />
           <FireSummaryCard state={conditionsState} />
-          <article><span className="alert-icon green">i</span><div><small>{campNotice?.source ?? "Camp Lawton staff"}</small><h3>{campNotice?.title ?? "2027 schedules are preliminary"}</h3><p>{campNotice?.summary ?? "Final program details, capacities, and fees will be published before official registration."}</p></div></article>
+          <article><span className="alert-icon green">i</span><div><small>{campNotice?.source ?? "Camp Lawton staff"}</small><h3>{campNotice?.title ?? "2027 program planning is underway"}</h3><p>{campNotice?.summary ?? "The badge list and class schedule are not yet final. Share unit interest now and use only later authorized program details for individual planning."}</p></div></article>
         </div>
       </section>
 
       <section className="preregister" id="preregister">
-        <div className="preregister-image"><img src="/images/PXL_20260607_155608710.jpg" alt="Scouts and leaders taking part in an outdoor camp activity" loading="lazy" /></div>
+        <div className="preregister-image"><img src="/images/camp-program.webp" width={1594} height={1200} alt="Scouts and leaders taking part in an outdoor camp activity" loading="lazy" /></div>
         <div className="preregister-copy">
           <div className="section-kicker">Plan with us</div>
           <h2>Help shape the 2027 program.</h2>
@@ -247,12 +235,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer>
-        <div className="footer-brand"><img src="/images/CLlogo.png" alt="CL Logo" className="brand-mark" /><div><strong>Camp Lawton</strong><small>Catalina Mountains · Arizona</small></div></div>
-        <div><strong>Leader resources</strong><a href="#guide">Leader’s guide</a><a href="/history">Camp history</a><a href="/map">Interactive map</a><a href="/schedule">Schedule</a><a href="/merit-badges">Program planner</a></div>
-        <div><strong>Prepare</strong><a href="#guide">Packing & paperwork</a><a href="#alerts">Conditions & notices</a><a href="#preregister">Pre-register</a></div>
-        <p>Prototype based on the 2027 leader’s guide. Dates and program details remain subject to final approval.</p>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

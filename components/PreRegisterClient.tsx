@@ -10,11 +10,11 @@ type FormState = {
   unitType: string; unitNumber: string; council: string; city: string; state: string; sessionId: string;
   youthMale: number; youthFemale: number; youthOther: number; adultMale: number; adultFemale: number; adultOther: number;
   contactName: string; contactEmail: string; contactPhone: string; alternateName: string; alternateEmail: string;
-  scouts: string[]; interests: Record<string, SurveyInterestState>; accommodationFollowUp: boolean;
+  interests: Record<string, SurveyInterestState>; accommodationFollowUp: boolean;
 };
 
-const empty: FormState = { unitType: "Troop", unitNumber: "", council: "Catalina Council", city: "", state: "AZ", sessionId: "bsa-week-2", youthMale: 0, youthFemale: 0, youthOther: 0, adultMale: 0, adultFemale: 0, adultOther: 0, contactName: "", contactEmail: "", contactPhone: "", alternateName: "", alternateEmail: "", scouts: [], interests: {}, accommodationFollowUp: false };
-const steps = ["Unit", "Contacts", "Scout names", "Badge interest", "Review"];
+const empty: FormState = { unitType: "Troop", unitNumber: "", council: "Catalina Council", city: "", state: "AZ", sessionId: "bsa-week-2", youthMale: 0, youthFemale: 0, youthOther: 0, adultMale: 0, adultFemale: 0, adultOther: 0, contactName: "", contactEmail: "", contactPhone: "", alternateName: "", alternateEmail: "", interests: {}, accommodationFollowUp: false };
+const steps = ["Unit", "Contacts", "Badge interest", "Review"];
 const validPriorities = new Set(["must-have", "strong", "nice-to-have"]);
 
 function record(value: unknown): Record<string, unknown> { return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}; }
@@ -33,7 +33,6 @@ function normalizeDraft(value: unknown): FormState {
     unitType: savedString(source, "unitType", empty.unitType), unitNumber: savedString(source, "unitNumber"), council: savedString(source, "council", empty.council), city: savedString(source, "city"), state: savedString(source, "state", empty.state).slice(0, 2), sessionId: savedString(source, "sessionId", empty.sessionId),
     youthMale: savedCount(source, "youthMale"), youthFemale: savedCount(source, "youthFemale"), youthOther: savedCount(source, "youthOther"), adultMale: savedCount(source, "adultMale"), adultFemale: savedCount(source, "adultFemale"), adultOther: savedCount(source, "adultOther"),
     contactName: savedString(source, "contactName"), contactEmail: savedString(source, "contactEmail"), contactPhone: savedString(source, "contactPhone"), alternateName: savedString(source, "alternateName"), alternateEmail: savedString(source, "alternateEmail"),
-    scouts: Array.isArray(source.scouts) ? source.scouts.slice(0, 250).map((name) => typeof name === "string" ? name.trim().slice(0, 80) : "").filter(Boolean) : [],
     interests,
     accommodationFollowUp: source.accommodationFollowUp === true,
   };
@@ -42,12 +41,12 @@ function normalizeDraft(value: unknown): FormState {
 export default function PreRegisterClient() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormState>(empty);
-  const [scoutName, setScoutName] = useState("");
   const [status, setStatus] = useState("");
   const [reference, setReference] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [draftLoaded, setDraftLoaded] = useState(false);
-  useEffect(() => { const timer = window.setTimeout(() => { const saved = localStorage.getItem("camp-lawton-preregistration"); if (saved) try { setForm(normalizeDraft(JSON.parse(saved))); } catch {} setDraftLoaded(true); }, 0); return () => window.clearTimeout(timer); }, []);
-  useEffect(() => { if (draftLoaded) localStorage.setItem("camp-lawton-preregistration", JSON.stringify(form)); }, [draftLoaded, form]);
+  useEffect(() => { const timer = window.setTimeout(() => { try { const saved = localStorage.getItem("camp-lawton-preregistration"); if (saved) setForm(normalizeDraft(JSON.parse(saved))); } catch {} finally { setDraftLoaded(true); } }, 0); return () => window.clearTimeout(timer); }, []);
+  useEffect(() => { if (draftLoaded) try { localStorage.setItem("camp-lawton-preregistration", JSON.stringify(form)); } catch {} }, [draftLoaded, form]);
   const youthTotal = form.youthMale + form.youthFemale + form.youthOther;
   const adultTotal = form.adultMale + form.adultFemale + form.adultOther;
   const selectedSession = sessions.find((session) => session.id === form.sessionId);
@@ -59,33 +58,45 @@ export default function PreRegisterClient() {
     const nextYouthTotal = next.youthMale + next.youthFemale + next.youthOther;
     return {
       ...next,
-      scouts: next.scouts.slice(0, nextYouthTotal),
       interests: Object.fromEntries(Object.entries(next.interests).map(([id, interest]) => [id, { ...interest, count: Math.min(interest.count, nextYouthTotal) }])),
     };
   });
   const validStep = step === 0 ? Boolean(form.unitNumber && form.sessionId && youthTotal > 0 && adultTotal > 0) : step === 1 ? Boolean(form.contactName && /\S+@\S+\.\S+/.test(form.contactEmail)) : true;
-  const addScout = () => { const name = scoutName.trim(); if (!name || form.scouts.length >= youthTotal) return; update("scouts", [...form.scouts, name]); setScoutName(""); };
   const setInterest = (id: string, patch: Partial<SurveyInterestState>) => setForm((current) => {
     const previous = current.interests[id] ?? { count: 0, priority: "nice-to-have", note: "" };
     return { ...current, interests: { ...current.interests, [id]: { ...previous, ...patch } } };
   });
 
   async function submit() {
+    if (submitting) return;
+    setSubmitting(true);
     setStatus("Submitting...");
-    const response = await fetch("/api/pre-register", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...form, consent: true, website: "" }) });
-    const result = await response.json() as { reference?: string; error?: string };
-    if (!response.ok || !result.reference) { setStatus(result.error ?? "Submission could not be completed."); return; }
-    setReference(result.reference); setStatus(""); localStorage.removeItem("camp-lawton-preregistration");
+    try {
+      const response = await fetch("/api/pre-register", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...form, consent: true, website: "" }) });
+      const text = await response.text();
+      let result: { reference?: string; error?: string } = {};
+      try { result = JSON.parse(text) as typeof result; } catch {}
+      if (!response.ok || !result.reference) {
+        setStatus(result.error ?? "Submission could not be completed. Your browser draft is still saved; please try again.");
+        return;
+      }
+      setReference(result.reference);
+      setStatus("");
+      try { localStorage.removeItem("camp-lawton-preregistration"); } catch {}
+    } catch {
+      setStatus("The planning service could not be reached. Your browser draft is still saved; check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
-  if (reference) return <div className="submission-confirmation" role="status"><span>Planning submission received</span><h2>{reference}</h2><p>Keep this reference with your unit records. This submission does not register participants, reserve a campsite, guarantee badge seats, or replace Black Pug registration.</p><Link className="button" href="/">Return home</Link></div>;
+  if (reference) return <div className="submission-confirmation" role="status"><span>Pre-registration interest received</span><h2>{reference}</h2><p>Keep this reference with your unit records. This non-binding submission does not register participants, reserve a campsite, guarantee a 2027 badge offering or seat, or replace Black Pug registration.</p><Link className="button" href="/">Return home</Link></div>;
 
-  return <div className="prereg-app"><ol className="stepper">{steps.map((label, index) => <li key={label} className={index === step ? "active" : index < step ? "complete" : ""}><span>{index + 1}</span><strong>{label}</strong></li>)}</ol><div className="prereg-disclaimer"><strong>Planning only</strong><p>This non-binding survey does not reserve a campsite, register participants, guarantee merit badge seats, or collect payment. Official registration will be available separately through Black Pug.</p></div>
+  return <div className="prereg-app"><p className="sr-only" aria-live="polite">Step {step + 1} of {steps.length}: {steps[step]}</p><ol className="stepper">{steps.map((label, index) => <li key={label} aria-current={index === step ? "step" : undefined} className={index === step ? "active" : index < step ? "complete" : ""}><span>{index + 1}</span><strong>{label}</strong></li>)}</ol><div className="prereg-disclaimer"><strong>Non-binding pre-registration</strong><p>This interest survey helps Camp Lawton prepare, but does not reserve a campsite, register participants, guarantee a merit badge offering or seat, or collect payment. The final 2027 badge list and schedule have not been published. Official registration will be available separately through Black Pug.</p></div>
     {step === 0 && <section className="form-step"><header><span>Step 1</span><h2>Unit and attendance</h2><p>Use aggregate counts. Do not enter birth dates, health details, or other sensitive youth information.</p></header><div className="form-grid"><label><span>Unit type</span><select value={form.unitType} onChange={(event) => update("unitType", event.target.value)}><option>Troop</option><option>Pack</option><option>Crew</option></select></label><label><span>Unit number</span><input value={form.unitNumber} onChange={(event) => update("unitNumber", event.target.value)} required /></label><label><span>Council</span><input value={form.council} onChange={(event) => update("council", event.target.value)} /></label><label><span>City</span><input value={form.city} onChange={(event) => update("city", event.target.value)} /></label><label><span>State</span><input value={form.state} maxLength={2} onChange={(event) => update("state", event.target.value.toUpperCase())} /></label><label><span>Preferred session</span><select value={form.sessionId} onChange={(event) => update("sessionId", event.target.value)}>{sessions.map((session) => <option value={session.id} key={session.id}>{session.name} · {session.dates}</option>)}</select></label></div><h3>Estimated participants</h3><div className="count-grid">{[["youthMale", "Youth · male"], ["youthFemale", "Youth · female"], ["youthOther", "Youth · another / not listed"], ["adultMale", "Adults · male"], ["adultFemale", "Adults · female"], ["adultOther", "Adults · another / not listed"]].map(([name, label]) => <label key={name}><span>{label}</span><input type="number" min="0" max="250" value={form[name as keyof FormState] as number} onChange={(event) => updateCount(name as "youthMale" | "youthFemale" | "youthOther" | "adultMale" | "adultFemale" | "adultOther", event.target.value)} /></label>)}</div><label className="form-check"><input type="checkbox" checked={form.accommodationFollowUp} onChange={(event) => update("accommodationFollowUp", event.target.checked)} /><span>Ask camp staff to follow up about accessibility, dietary, or accommodation planning. Do not enter health details here.</span></label></section>}
     {step === 1 && <section className="form-step"><header><span>Step 2</span><h2>Adult contacts</h2><p>Camp staff use these contacts only for this planning submission and official-registration follow-up.</p></header><div className="form-grid"><label><span>Primary adult name</span><input value={form.contactName} onChange={(event) => update("contactName", event.target.value)} /></label><label><span>Email</span><input type="email" value={form.contactEmail} onChange={(event) => update("contactEmail", event.target.value)} /></label><label><span>Phone</span><input type="tel" value={form.contactPhone} onChange={(event) => update("contactPhone", event.target.value)} /></label><label><span>Alternate adult name</span><input value={form.alternateName} onChange={(event) => update("alternateName", event.target.value)} /></label><label><span>Alternate email</span><input type="email" value={form.alternateEmail} onChange={(event) => update("alternateEmail", event.target.value)} /></label></div></section>}
-    {step === 2 && <section className="form-step"><header><span>Step 3</span><h2>Optional Scout display names</h2><p>Names help connect planning demand to individual schedules. Enter a first name and last initial when practical. This form never asks for birth dates or medical information.</p></header><div className="roster-entry"><input value={scoutName} onChange={(event) => setScoutName(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); addScout(); } }} placeholder="First name and last initial" maxLength={80} /><button type="button" onClick={addScout} disabled={!scoutName.trim() || form.scouts.length >= youthTotal}>Add Scout</button></div><div className="roster-list">{form.scouts.map((name, index) => <div key={`${name}-${index}`}><span>{index + 1}</span><strong>{name}</strong><button aria-label={`Remove ${name}`} onClick={() => update("scouts", form.scouts.filter((_, position) => position !== index))}>×</button></div>)}{form.scouts.length === 0 && <p>No names added. You can continue with aggregate counts only.</p>}</div><small>{form.scouts.length} of {youthTotal} estimated youth named</small></section>}
-    {step === 3 && <MeritBadgeSurveyStep interests={form.interests} youthTotal={youthTotal} onChange={setInterest} />}
-    {step === 4 && <section className="form-step review-step"><header><span>Step 5</span><h2>Review and consent</h2><p>Confirm the planning snapshot before submitting.</p></header><dl><div><dt>Unit</dt><dd>{form.unitType} {form.unitNumber} · {form.city}{form.city && form.state ? ", " : ""}{form.state}</dd></div><div><dt>Session</dt><dd>{selectedSession?.name} · {selectedSession?.dates}</dd></div><div><dt>Attendance</dt><dd>{youthTotal} youth · {adultTotal} adults</dd></div><div><dt>Contact</dt><dd>{form.contactName} · {form.contactEmail}</dd></div><div><dt>Scout names</dt><dd>{form.scouts.length ? form.scouts.join(", ") : "Aggregate counts only"}</dd></div><div><dt>Badge demand</dt><dd>{interestRows.length ? interestRows.map((item) => `${item.title}: ${form.interests[item.id].count} (${form.interests[item.id].priority})`).join(" · ") : "No badge interests entered"}</dd></div></dl><div className="consent-copy"><strong>By submitting, you confirm:</strong><p>You are authorized to share this unit planning information; the counts are estimates; this is not official registration; badge seats are not guaranteed; and camp staff may contact the listed adults about 2027 planning. Records are scheduled for deletion after the season closeout period.</p></div>{status && <p className="submission-error" role="status">{status}</p>}</section>}
-    <div className="form-navigation"><button type="button" className="button button-secondary" onClick={() => setStep(Math.max(0, step - 1))} disabled={step === 0}>Back</button>{step < 4 ? <button type="button" className="button" onClick={() => setStep(step + 1)} disabled={!validStep}>Continue</button> : <button type="button" className="button" onClick={submit} disabled={status === "Submitting..."}>Submit planning survey</button>}</div>
+    {step === 2 && <MeritBadgeSurveyStep interests={form.interests} youthTotal={youthTotal} onChange={setInterest} />}
+    {step === 3 && <section className="form-step review-step"><header><span>Step 4</span><h2>Review and consent</h2><p>Confirm this non-binding interest snapshot before submitting.</p></header><dl><div><dt>Unit</dt><dd>{form.unitType} {form.unitNumber} · {form.city}{form.city && form.state ? ", " : ""}{form.state}</dd></div><div><dt>Preferred session</dt><dd>{selectedSession?.name} · {selectedSession?.dates}</dd></div><div><dt>Estimated attendance</dt><dd>{youthTotal} youth · {adultTotal} adults</dd></div><div><dt>Contact</dt><dd>{form.contactName} · {form.contactEmail}</dd></div><div><dt>Badge interest</dt><dd>{interestRows.length ? interestRows.map((item) => `${item.title}: ${form.interests[item.id].count} (${form.interests[item.id].priority})`).join(" · ") : "No badge interests entered"}</dd></div></dl><div className="consent-copy"><strong>By submitting, you confirm:</strong><p>You are authorized to share this unit-level information; the counts are estimates; this is not official registration; the 2027 badge list and schedule are not final; offerings and seats are not guaranteed; and camp staff may contact the listed adults about 2027 pre-registration. Records are scheduled for deletion after the season closeout period.</p></div>{status && <p className="submission-error" role="status">{status}</p>}</section>}
+    <div className="form-navigation"><button type="button" className="button button-secondary" onClick={() => setStep(Math.max(0, step - 1))} disabled={step === 0}>Back</button>{step < steps.length - 1 ? <button type="button" className="button" onClick={() => setStep(step + 1)} disabled={!validStep}>Continue</button> : <button type="button" className="button" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : "Submit interest survey"}</button>}</div>
   </div>;
 }

@@ -1,16 +1,17 @@
 # Camp Lawton Leader Hub
 
-The live 2027 Camp Lawton planning application for unit leaders, Scouts, and authorized camp staff. It combines the reviewed leader guide, structured schedules and program catalog, personal planning tools, privacy-minimized pre-registration, staff publishing, and a live operational alert center.
+The public-facing 2027 Camp Lawton information and interest site for unit leaders, Scouts, and authorized camp staff. It centers Camp promotion, the working Leader's Guide, privacy-minimized pre-registration, the merit badge interest survey, camp history and maps, and live operational conditions.
 
 ## Application
 
-- Live deployment: [camp-lawton-leader-hub-2027.manosdvd.chatgpt.site](https://camp-lawton-leader-hub-2027.manosdvd.chatgpt.site)
+- Deployment target: [camp-lawton-leader-hub-2027.manosdvd.chatgpt.site](https://camp-lawton-leader-hub-2027.manosdvd.chatgpt.site)
 - Product blueprint: [ONLINE_LEADERS_GUIDE_BLUEPRINT.md](ONLINE_LEADERS_GUIDE_BLUEPRINT.md)
 - Operations and release procedure: [OPERATIONS.md](OPERATIONS.md)
 - Live conditions integration: [docs/LIVE_CONDITIONS.md](docs/LIVE_CONDITIONS.md)
 - Merit badge survey catalog: [docs/MERIT_BADGE_SURVEY.md](docs/MERIT_BADGE_SURVEY.md)
+- Archived schedule-planning release gate: [docs/PROGRAM_PLANNING_ARCHIVE.md](docs/PROGRAM_PLANNING_ARCHIVE.md)
 
-The application includes public guide, schedule, merit badge, planner, alerts, and pre-registration routes; authenticated unit workspaces; and fail-closed staff content, schedule, notice, and submission tools.
+The draft badge catalog, class schedule, personal planner, and unit scheduling workspace remain archived in source but are disabled in the current public release. The 84 survey subjects are broad interest candidates—not Camp Lawton's final offering list.
 
 ## Run locally
 

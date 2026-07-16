@@ -303,7 +303,9 @@ export default function InteractiveCampMap() {
           className="map-artboard"
           style={{ transform: `translate(calc(-50% + ${pan.x}px), calc(-50% + ${pan.y}px)) scale(${zoom})` }}
         >
-          <img src="/map/camp-lawton-map.svg" alt="" aria-hidden="true" draggable={false} fetchPriority="high" />
+          <div className="map-artwork" aria-hidden="true">
+            <img src="/map/camp-lawton-map.webp" width={2400} height={3164} alt="" draggable={false} />
+          </div>
           {filteredLocations.flatMap((location) => (location.points ?? [{ x: location.x, y: location.y }]).map((point, pointIndex) => (
             <button
               type="button"

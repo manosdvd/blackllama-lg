@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { saveArticle, saveNotice, saveScheduleEvent, type EditorResult } from "./actions";
+import { PROGRAM_PLANNING_PUBLISHED } from "../../../lib/site-features";
 
 type ArticleDraft = { title: string; slug: string; summary: string; body: string; applicability: string };
 type Revision = { revision: number; status: string; author: string; createdAt: Date };
@@ -24,7 +25,7 @@ export default function EditorClient({ article, revisions, scheduleEvent }: { ar
   return (
     <div className="editor-stack">
       <section className="editor-panel">
-        <header><span>Guide content</span><h2>Arrival & Check-In</h2><p>Save a draft for review or publish it immediately to the public guide.</p></header>
+        <header><span>Guide content</span><h2>{article.title}</h2><p>Save a draft for review or publish it immediately to the public guide.</p></header>
         <form action={(data) => submit(saveArticle, data, setArticleResult)} className="editor-form">
           <div className="editor-two-column">
             <label><span>Title</span><input name="title" required maxLength={120} defaultValue={article.title} /></label>
@@ -36,14 +37,14 @@ export default function EditorClient({ article, revisions, scheduleEvent }: { ar
           <div className="editor-actions">
             <button className="button button-secondary" type="submit" name="intent" value="draft">Save draft</button>
             <button className="button" type="submit" name="intent" value="publish">Publish article</button>
-            <a href="/guide/arrival-and-check-in" target="_blank" rel="noreferrer">Open public preview ↗</a>
+            <a href={`/guide/${article.slug}`} target="_blank" rel="noreferrer">Open public preview ↗</a>
           </div>
           <ResultMessage result={articleResult} />
         </form>
         {revisions.length > 0 && <div className="revision-history"><h3>Recent revisions</h3>{revisions.map((revision) => <div key={revision.revision}><strong>Revision {revision.revision}</strong><span>{revision.status} by {revision.author}</span><time>{new Date(revision.createdAt).toLocaleString()}</time></div>)}</div>}
       </section>
 
-      <section className="editor-panel">
+      {PROGRAM_PLANNING_PUBLISHED && <section className="editor-panel">
         <header><span>Structured schedule</span><h2>Add an event</h2><p>Published events appear in the selected day&apos;s agenda.</p></header>
         <form action={(data) => submit(saveScheduleEvent, data, setEventResult)} className="editor-form">
           <input type="hidden" name="eventId" value={scheduleEvent.id} />
@@ -64,7 +65,7 @@ export default function EditorClient({ article, revisions, scheduleEvent }: { ar
           <div className="editor-actions"><button className="button button-secondary" type="submit" name="intent" value="draft">Save draft</button><button className="button" type="submit" name="intent" value="publish">Publish event</button></div>
           <ResultMessage result={eventResult} />
         </form>
-      </section>
+      </section>}
 
       <section className="editor-panel">
         <header><span>Camp alerts</span><h2>Schedule a notice</h2><p>Notices display on the homepage only during their effective window.</p></header>
@@ -76,8 +77,8 @@ export default function EditorClient({ article, revisions, scheduleEvent }: { ar
           <label><span>Summary</span><textarea name="noticeContent" required maxLength={500} rows={3} /></label>
           <label><span>Instructions</span><textarea name="instructions" maxLength={500} rows={2} /></label>
           <div className="editor-two-column">
-            <label><span>Starts</span><input type="datetime-local" name="startTime" /></label>
-            <label><span>Expires</span><input type="datetime-local" name="endTime" /></label>
+            <label><span>Starts · Arizona time (MST)</span><input type="datetime-local" name="startTime" /></label>
+            <label><span>Expires · Arizona time (MST)</span><input type="datetime-local" name="endTime" /></label>
           </div>
           <label><span>Audience</span><input name="noticeAudience" maxLength={120} placeholder="All sessions" /></label>
           <div className="editor-actions"><button className="button" type="submit">Schedule notice</button></div>

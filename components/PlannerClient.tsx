@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { findOfferingSlot, programOfferings } from "../lib/camp-catalog";
 
@@ -9,6 +9,7 @@ type PlannerState = { unit: string; session: string; scouts: Scout[] };
 type Warning = { level: "error" | "warning"; message: string; slotIds: string[]; alternative?: string };
 
 const initial: PlannerState = { unit: "", session: "bsa-week-2", scouts: [{ id: "scout-1", name: "Scout 1", selections: [] }] };
+const validSessions = new Set(["bsa-week-1", "bsa-week-2", "bsa-week-3"]);
 const toMinutes = (time: number) => Math.floor(time / 100) * 60 + time % 100;
 const areaTravel: Record<string, number> = { "Archery Range:Handicraft": 15, "Archery Range:Nature Lodge": 15, "Trailhead:Handicraft": 15, "Trailhead:Nature Lodge": 15 };
 function travelMinutes(a: string, b: string) { if (a === b) return 0; return areaTravel[`${a}:${b}`] ?? areaTravel[`${b}:${a}`] ?? 10; }
@@ -42,13 +43,54 @@ function warningsForWithoutAlternatives(selections: string[]) {
   return resolved.flatMap((a, index) => resolved.slice(index + 1).filter((b) => toMinutes(a.slot.start) < toMinutes(b.slot.end) && toMinutes(b.slot.start) < toMinutes(a.slot.end)));
 }
 
+function normalizePlannerState(value: unknown): PlannerState {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return initial;
+  const source = value as Record<string, unknown>;
+  const scouts = Array.isArray(source.scouts) ? source.scouts.slice(0, 250).flatMap((item, index) => {
+    if (!item || typeof item !== "object" || Array.isArray(item)) return [];
+    const scout = item as Record<string, unknown>;
+    const selections = Array.isArray(scout.selections)
+      ? [...new Set(scout.selections.filter((id): id is string => typeof id === "string" && Boolean(findOfferingSlot(id))))]
+      : [];
+    return [{
+      id: typeof scout.id === "string" && scout.id ? scout.id.slice(0, 100) : `scout-${index + 1}`,
+      name: typeof scout.name === "string" && scout.name.trim() ? scout.name.trim().slice(0, 80) : `Scout ${index + 1}`,
+      selections,
+    }];
+  }) : [];
+  return {
+    unit: typeof source.unit === "string" ? source.unit.slice(0, 100) : "",
+    session: typeof source.session === "string" && validSessions.has(source.session) ? source.session : initial.session,
+    scouts: scouts.length ? scouts : initial.scouts,
+  };
+}
+
 export default function PlannerClient({ requestedSlot }: { requestedSlot?: string }) {
   const [state, setState] = useState<PlannerState>(initial);
   const [activeId, setActiveId] = useState("scout-1");
   const [loaded, setLoaded] = useState(false);
-  useEffect(() => { const timer = window.setTimeout(() => { try { const saved = localStorage.getItem("camp-lawton-plan"); if (saved) setState(JSON.parse(saved)); } finally { setLoaded(true); } }, 0); return () => window.clearTimeout(timer); }, []);
-  useEffect(() => { if (loaded) localStorage.setItem("camp-lawton-plan", JSON.stringify(state)); }, [loaded, state]);
-  useEffect(() => { if (!loaded || !requestedSlot || !findOfferingSlot(requestedSlot)) return; const timer = window.setTimeout(() => setState((current) => ({ ...current, scouts: current.scouts.map((scout) => scout.id === activeId && !scout.selections.includes(requestedSlot) ? { ...scout, selections: [...scout.selections, requestedSlot] } : scout) })), 0); return () => window.clearTimeout(timer); }, [activeId, loaded, requestedSlot]);
+  const requestedSlotApplied = useRef(false);
+  useEffect(() => { const timer = window.setTimeout(() => {
+    try {
+      const saved = localStorage.getItem("camp-lawton-plan");
+      if (saved) {
+        const normalized = normalizePlannerState(JSON.parse(saved));
+        setState(normalized);
+        setActiveId(normalized.scouts[0].id);
+      }
+    } catch {
+      // An unavailable or malformed browser draft should never break the planner.
+    } finally {
+      setLoaded(true);
+    }
+  }, 0); return () => window.clearTimeout(timer); }, []);
+  useEffect(() => { if (loaded) try { localStorage.setItem("camp-lawton-plan", JSON.stringify(state)); } catch {} }, [loaded, state]);
+  useEffect(() => {
+    if (!loaded || requestedSlotApplied.current || !requestedSlot || !findOfferingSlot(requestedSlot)) return;
+    requestedSlotApplied.current = true;
+    const timer = window.setTimeout(() => setState((current) => ({ ...current, scouts: current.scouts.map((scout) => scout.id === activeId && !scout.selections.includes(requestedSlot) ? { ...scout, selections: [...scout.selections, requestedSlot] } : scout) })), 0);
+    return () => window.clearTimeout(timer);
+  }, [activeId, loaded, requestedSlot]);
   const active = state.scouts.find((scout) => scout.id === activeId) ?? state.scouts[0];
   const warnings = warningsFor(active?.selections ?? []);
   const addScout = () => { const id = crypto.randomUUID(); setState((current) => ({ ...current, scouts: [...current.scouts, { id, name: `Scout ${current.scouts.length + 1}`, selections: [] }] })); setActiveId(id); };

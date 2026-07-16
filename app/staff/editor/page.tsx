@@ -1,9 +1,9 @@
-import { requireStaff } from "../../staff-auth";
+import { requireStaffRole } from "../../staff-auth";
 import EditorClient from "./EditorClient";
 import { getArticleForEditor, getEventForEditor } from "../../../lib/content-repository";
 
 export default async function EditorPage({ searchParams }: { searchParams: Promise<{ article?: string; event?: string }> }) {
-  const user = await requireStaff("/staff/editor");
+  const user = await requireStaffRole("/staff/editor", ["director", "program-director"]);
   const query = await searchParams;
   const editorData = await getArticleForEditor(query.article ?? "arrival-and-check-in");
   const scheduleEvent = await getEventForEditor(query.event ?? "mon-flags");

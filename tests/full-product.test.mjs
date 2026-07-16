@@ -10,7 +10,7 @@ const [catalog, surveyCatalog, planner, prereg, preregApi, schema, migration, st
   read("app/staff-auth.ts"), read("app/staff/submissions/page.tsx"), read("app/globals.css"),
 ]);
 
-test("canonical catalog covers sessions, guide, programs, and BSA/Cub schedules", () => {
+test("archived catalog retains sessions, guide, programs, and BSA/Cub working schedules", () => {
   assert.match(catalog, /Cub Scout Weekend/);
   assert.match(catalog, /BSA Week 3/);
   assert.match(catalog, /Health, Safety & Youth Protection/);
@@ -21,7 +21,7 @@ test("canonical catalog covers sessions, guide, programs, and BSA/Cub schedules"
   assert.match(surveyCatalog, /Soil and Water Conservation/);
 });
 
-test("planner applies deterministic conflict and alternative rules", () => {
+test("archived planner retains deterministic conflict and alternative rules", () => {
   assert.match(planner, /overlap exactly/);
   assert.match(planner, /travelMinutes/);
   assert.match(planner, /selected more than once/);
@@ -31,8 +31,10 @@ test("planner applies deterministic conflict and alternative rules", () => {
 
 test("planning submission minimizes and validates collected data", () => {
   assert.match(prereg, /Do not enter birth dates, health details/);
-  assert.match(prereg, /Planning only/);
+  assert.match(prereg, /Non-binding pre-registration/);
+  assert.doesNotMatch(prereg, /Scout display names|scouts:/);
   assert.match(preregApi, /Invalid request origin/);
+  assert.match(preregApi, /scouts: \[\]/);
   assert.match(preregApi, /deleteAfter: new Date\("2027-08-31/);
   assert.doesNotMatch(preregApi, /birthDate|medicalRecord|medicationDetail/);
 });

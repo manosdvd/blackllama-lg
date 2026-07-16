@@ -12,10 +12,17 @@ export type HistoryEvent = {
   significance: string;
   category: HistoryCategory;
   era: HistoryEraId;
+  sources?: {
+    label: string;
+    href: string;
+  }[];
   image?: {
     src: string;
     alt: string;
     caption: string;
+    label?: string;
+    objectFit?: "cover" | "contain";
+    objectPosition?: string;
   };
 };
 
@@ -54,7 +61,7 @@ export const historyEras: {
     range: "1986–2021",
     title: "Tested by the mountain",
     shortTitle: "Tested & renewed",
-    copy: "Fire, snow, and changing expectations reshape the camp without erasing the traditions at its center.",
+    copy: "Wildlife, fire, snow, and changing expectations reshape the camp without erasing the traditions at its center.",
   },
   {
     id: "next",
@@ -99,9 +106,10 @@ export const historyEvents: HistoryEvent[] = [
     category: "origins",
     era: "finding",
     image: {
-      src: "/images/camp-sign.jpg",
-      alt: "The wooden Camp Lawton entrance sign among ponderosa pines",
-      caption: "The entrance to Camp Lawton today, more than a century after the first summer session.",
+      src: "/images/history/camp-lawton-early-gate.jpeg",
+      alt: "Historic Camp Lawton entrance with stone columns and a wooden Boy Scouts gate",
+      caption: "An early view of Camp Lawton’s stone-and-timber entrance preserved in the camp history collection.",
+      label: "Archival photograph · date unknown",
     },
   },
   {
@@ -109,11 +117,24 @@ export const historyEvents: HistoryEvent[] = [
     year: "1923",
     sortYear: 1923,
     title: "A local honor tradition begins",
-    summary: "Camp Director and Scout Executive Harry Ogle establishes the Tribe of Papago to recognize camping skill, leadership, and service.",
-    detail: "Ogle created a four-stage progression—Hunter, Warrior, Medicine Man, and Chief—at a time when local honor-camper societies were appearing at camps across the country. The organization became deeply woven into Camp Lawton culture.",
-    significance: "Service to the camp became more than maintenance; it became a way generations learned belonging and responsibility.",
+    summary: "Camp Director and Scout Executive Harry B. Ogle organizes a local Camp Lawton honor-camper society recorded as the Tribe of Papago, centered on camping skill, leadership, and service.",
+    detail: "Ogle wrote the society’s ceremonies and connected recognition with progress in Scouting, leadership, camp participation, and conservation service. The supplied program history says the Order of the Arrow later became the nationally recognized honor society and the local lodge adopted the Papago name, while the Camp Lawton recognition tradition continued. This was a Scouting organization distinct from the Tohono O’odham Nation.",
+    significance: "Surviving program material records a progression from Hunter through Elder, with returning campers taking on deeper service and leadership. The tradition made caring for camp part of belonging to it.",
     category: "tradition",
     era: "finding",
+    sources: [
+      {
+        label: "Papago Lodge — A Short History",
+        href: "https://www.papagolodge.org/history/",
+      },
+    ],
+    image: {
+      src: "/images/history/tribe-cap.webp",
+      alt: "A red-and-white cap embroidered Tribe of Papago Camp Lawton",
+      caption: "An undated Camp Lawton cap bearing the recognition program’s historic name.",
+      label: "Artifact photograph · date unknown · Photo credit: Bill Topkis",
+      objectFit: "contain",
+    },
   },
   {
     id: "relocation",
@@ -158,6 +179,12 @@ export const historyEvents: HistoryEvent[] = [
     significance: "The dining hall translated a dependable water supply into a true shared campus.",
     category: "infrastructure",
     era: "building",
+    image: {
+      src: "/images/history/camp-lawton-dining-hall.jpeg",
+      alt: "Camp Lawton’s long log dining hall and stone chimneys among the pines",
+      caption: "The dining hall roof rose in 1947; the kitchen and main hall followed in 1948.",
+      label: "Camp history collection · date unknown",
+    },
   },
   {
     id: "health-lodge",
@@ -181,7 +208,7 @@ export const historyEvents: HistoryEvent[] = [
     category: "infrastructure",
     era: "building",
     image: {
-      src: "/images/camp-office.jpg",
+      src: "/images/camp-office.webp",
       alt: "Camp Lawton’s log camp office beneath tall pine trees",
       caption: "The Roy H. Robison Camp Office remains one of the property’s defining log structures.",
     },
@@ -197,7 +224,7 @@ export const historyEvents: HistoryEvent[] = [
     category: "infrastructure",
     era: "building",
     image: {
-      src: "/images/nature-lodge.jpg",
+      src: "/images/nature-lodge.webp",
       alt: "The rustic Camp Lawton Nature Lodge surrounded by pine trees",
       caption: "The Nature Lodge carries forward the camp’s long connection between outdoor learning and place.",
     },
@@ -207,11 +234,25 @@ export const historyEvents: HistoryEvent[] = [
     year: "1953",
     sortYear: 1953,
     title: "Papago Lodge 494 is chartered",
-    summary: "Camp Lawton’s honor tradition connects with the national Order of the Arrow through a new Catalina Council lodge.",
-    detail: "Norman R. Horwitz led the transition and conducted the first Ordeal, inducting 84 Arrowmen. The earlier camp society continued as a service and alumni tradition rather than disappearing outright.",
-    significance: "A distinctly local culture found a place within a national Scouting framework while preserving its focus on service.",
+    summary: "A separately organized Catalina Council Order of the Arrow lodge receives its national charter on May 29.",
+    detail: "Organizing began in 1952 under Norman R. Horwitz. After the charter was granted May 29, 1953, Horwitz conducted the first Ordeal for 84 Arrowmen; David Zinder became the first elected youth Lodge Chief. The Order of the Arrow’s national history describes the earlier camp society changing from an honor society into a conservation program open to all campers.",
+    significance: "Camp Lawton preserved a local progression of returning, service, and leadership while the new lodge carried the council’s nationally chartered Order of the Arrow program.",
     category: "tradition",
     era: "building",
+    sources: [
+      {
+        label: "Papago Lodge — A Short History",
+        href: "https://www.papagolodge.org/history/",
+      },
+      {
+        label: "Order of the Arrow Section G13W — Lodges",
+        href: "https://g13w.oa-scouting.org/lodges/",
+      },
+      {
+        label: "Order of the Arrow — Non-OA Camp Fraternities",
+        href: "https://oa-scouting.org/history/non-oa-camp-fraternities",
+      },
+    ],
   },
   {
     id: "disneyland-story",
@@ -236,6 +277,23 @@ export const historyEvents: HistoryEvent[] = [
     era: "building",
   },
   {
+    id: "area-conference",
+    year: "1957",
+    sortYear: 1957.1,
+    title: "Camp Lawton hosts a regional first",
+    summary: "The first known Area 12-F Conference brings Order of the Arrow members from across the region to Camp Lawton, with Papago Lodge as host.",
+    detail: "The regional section history identifies Camp Lawton as the site of the first known Area 12-F Conference. The gathering placed the camp at the center of a wider network of service and youth leadership.",
+    significance: "Camp Lawton became more than Catalina Council’s summer home; it also became a gathering place for regional service and leadership.",
+    category: "tradition",
+    era: "building",
+    sources: [
+      {
+        label: "Order of the Arrow Section G13W — Section History",
+        href: "https://g13w.oa-scouting.org/about/section-history/",
+      },
+    ],
+  },
+  {
     id: "pool-opens",
     year: "1958",
     sortYear: 1958,
@@ -256,6 +314,34 @@ export const historyEvents: HistoryEvent[] = [
     significance: "The handmade mountain camp had matured into a nationally recognized outdoor education facility.",
     category: "renewal",
     era: "building",
+    image: {
+      src: "/images/history/camp-lawton-staff-1960.jpg",
+      alt: "Camp Lawton’s summer staff posed together in Scout uniforms in 1960",
+      caption: "Camp Lawton staff, summer 1960, shortly before the camp’s first national accreditation.",
+      label: "Archival photograph · 1960",
+      objectFit: "contain",
+    },
+  },
+  {
+    id: "victorio-merger",
+    year: "1964",
+    sortYear: 1964,
+    title: "Two lodge histories come together",
+    summary: "After the Cochise and Catalina councils merge on February 15, Victorio Lodge 177 becomes part of Papago Lodge 494.",
+    detail: "Victorio had served Cochise Council since its 1940 charter. The 1964 council merger joined its members and organizational history with Papago Lodge in the enlarged Catalina Council.",
+    significance: "The merger connected Camp Lawton’s service community with an older neighboring lodge tradition across Southern Arizona.",
+    category: "tradition",
+    era: "building",
+    sources: [
+      {
+        label: "Papago Lodge — A Short History",
+        href: "https://www.papagolodge.org/history/",
+      },
+      {
+        label: "Order of the Arrow Section G13W — Lodges",
+        href: "https://g13w.oa-scouting.org/lodges/",
+      },
+    ],
   },
   {
     id: "chapel",
@@ -267,28 +353,110 @@ export const historyEvents: HistoryEvent[] = [
     significance: "Camp Lawton made room for stillness as well as skill-building.",
     category: "tradition",
     era: "building",
+    image: {
+      src: "/images/history/clayton-herbert-chapel.jpeg",
+      alt: "The open-air Clayton Herbert Memorial Chapel with its stone altar and log benches among the pines",
+      caption: "The Clayton Herbert Memorial Chapel was dedicated in 1966.",
+      label: "Camp history collection · date unknown",
+    },
   },
   {
     id: "tohono-oodham",
     year: "1986",
     sortYear: 1986,
-    title: "A historical name gains new context",
-    summary: "The Papago Tribe officially adopts the name Tohono O’odham Nation, sharpening the need to understand Camp Lawton’s inherited terminology in its historical setting.",
-    detail: "The history documents report that tribal leadership asked Papago Lodge to retain its established name. This timeline preserves period names only when explaining the historical record and uses Tohono O’odham for the Nation today.",
+    title: "The Nation adopts the name Tohono O’odham",
+    summary: "The Tohono O’odham Nation adopts a new constitution and changes its governmental name from the Papago Tribe to the Tohono O’odham Nation.",
+    detail: "The Nation’s own history confirms the constitutional and name change. Papago Lodge’s published history says the Nation asked the lodge to retain its established name; that statement is presented here as the lodge’s account, while this timeline uses Tohono O’odham for the Nation today.",
     significance: "Tradition is strongest when it is carried with context, care, and respect for living communities.",
     category: "tradition",
     era: "enduring",
+    sources: [
+      {
+        label: "Tohono O’odham Nation — About the Nation",
+        href: "https://www.tonation-nsn.gov/about-tohono-oodham-nation/",
+      },
+      {
+        label: "Papago Lodge — A Short History",
+        href: "https://www.papagolodge.org/history/",
+      },
+    ],
+  },
+  {
+    id: "bear-years",
+    year: "1994–96",
+    sortYear: 1994,
+    title: "A turning point for bear safety",
+    summary: "Drought-driven bear conflicts beginning in 1994 culminate in a serious 1996 incident at Camp Lawton and prompt stronger, coordinated wildlife-safety practices across the mountain.",
+    detail: "On July 25, 1996, while Camp Lawton was hosting a Tucson 4-H group, tagged bear #166 entered a tent and seriously injured 16-year-old counselor Anna Knochel. She survived after emergency treatment. The incident came amid several years of bear conflicts on Organization Ridge and became a catalyst for closer cooperation among camp operators, the Forest Service, state wildlife managers, and county officials.",
+    significance: "Stronger food storage, waste controls, public education, and Pima County’s 1997 anti-feeding ordinance reinforced a mountain-wide approach to prevention. Black bears remain part of the Santa Catalina ecosystem, but sightings at Camp Lawton have been rare in the years since. Their continued presence is a reminder to keep a clean camp, secure food, and give wildlife plenty of space.",
+    category: "resilience",
+    era: "enduring",
+    sources: [
+      {
+        label: "Western Black Bear Workshop — Perry and Rusing case study",
+        href: "https://wafwa.org/wp-content/uploads/2020/09/7th-WesternBlack-Bear-Workshop.pdf",
+      },
+      {
+        label: "UPI Archives — July 25, 1996 report",
+        href: "https://www.upi.com/Archives/1996/07/25/Bear-killed-after-mauling-girl/1040838267200/",
+      },
+      {
+        label: "Pima County Code — Feeding or attracting bears prohibited",
+        href: "https://codelibrary.amlegal.com/codes/pimacounty/latest/pimacounty_az/0-0-0-1841",
+      },
+    ],
+  },
+  {
+    id: "bullock-fire",
+    year: "2002",
+    sortYear: 2002,
+    title: "The Bullock Fire moves summer camp to the desert",
+    summary: "The Bullock Fire forces Camp Lawton to close days before its June 2 opening, moving the 2002 summer program to Double V Scout Ranch in the Sonoran Desert.",
+    detail: "The fire began May 21 and burned 30,563 acres. Firefighters using Camp Lawton as a secondary base set a backfire that stopped the advance roughly 100 yards from camp, at the entrance road. Scouting magazine called it only the second closure since camp opened in 1921; staff and Scouts carried the season forward at Double V.",
+    significance: "The emergency showed why a second council property mattered: summer camp could continue even when the mountain could not open.",
+    category: "resilience",
+    era: "enduring",
+    image: {
+      src: "/images/history/double-v-scout-ranch.jpg",
+      alt: "The stone Boy Scouts of America entrance sign at Double V Scout Ranch against Sonoran Desert hills",
+      caption: "Double V Scout Ranch provided a desert home for the displaced 2002 summer camp season.",
+      label: "Reference photograph · November 2014",
+    },
+    sources: [
+      {
+        label: "Scouting magazine — Summer Camp 2002",
+        href: "https://scoutingmagazine.org/issues/0301/d-news.html",
+      },
+      {
+        label: "Arizona Memory Project — Bullock Fire",
+        href: "https://azmemory.azlibrary.gov/nodes/view/211619",
+      },
+    ],
   },
   {
     id: "aspen-fire",
     year: "2003",
     sortYear: 2003,
     title: "The Aspen Fire reaches the ridge",
-    summary: "A devastating wildfire burns 84,750 acres and comes within roughly 100 yards of Camp Lawton’s southern boundary.",
-    detail: "The core camp survived, but peripheral campsites and the Mountain Man program area were lost. The fire also destroyed hundreds of homes and businesses in nearby Summerhaven and left the surrounding forest deeply scarred.",
-    significance: "Survival demanded a different relationship with fire, materials, water storage, and the forest itself.",
+    summary: "Beginning June 17, the human-caused Aspen Fire burns 84,750 acres; a later Camp Lawton account records firefighters halting its advance less than 100 yards from the Vespers site.",
+    detail: "The core camp survived, while the fire destroyed 333 structures across the incident—most in nearby Summerhaven—and transformed the forests around Organization Ridge. The close call highlighted the importance of resilient housing, dependable water, clear access, and continued stewardship beneath a dense conifer canopy.",
+    significance: "Recovery became an opportunity to strengthen the camp while building a more informed relationship with fire and the surrounding forest.",
     category: "resilience",
     era: "enduring",
+    sources: [
+      {
+        label: "Arizona Memory Project — Aspen Fire",
+        href: "https://azmemory.azlibrary.gov/nodes/view/211618",
+      },
+      {
+        label: "U.S. Forest Service — 2003 Arizona fire-season fact sheet",
+        href: "https://www.fs.usda.gov/projects-policies/hfi/docs/fact-sheet-arizona.pdf",
+      },
+      {
+        label: "Arizona Memory Project — Camp Lawton vesper service letter",
+        href: "https://azmemory.azlibrary.gov/nodes/view/184222",
+      },
+    ],
   },
   {
     id: "fire-hardening",
@@ -301,7 +469,7 @@ export const historyEvents: HistoryEvent[] = [
     category: "resilience",
     era: "enduring",
     image: {
-      src: "/images/campsite.jpg",
+      src: "/images/camp-story.webp",
       alt: "Modern Camp Lawton cabins arranged beneath ponderosa pines",
       caption: "Permanent structures now shape campsites that were once dominated by canvas wall tents.",
     },
@@ -327,6 +495,12 @@ export const historyEvents: HistoryEvent[] = [
     significance: "Historic buildings remained useful because each generation was willing to change them thoughtfully.",
     category: "renewal",
     era: "enduring",
+    image: {
+      src: "/images/history/dining-hall-aerial.jpg",
+      alt: "Aerial view of Camp Lawton’s connected dining hall buildings and stone chimney",
+      caption: "The 2011 renovation opened the original dining hall and Butler Hall into one gathering space.",
+      label: "Aerial photograph · date unknown",
+    },
   },
   {
     id: "peek-fountain",
@@ -338,6 +512,12 @@ export const historyEvents: HistoryEvent[] = [
     significance: "Restoration turned memory into something campers could still touch and use.",
     category: "tradition",
     era: "enduring",
+    image: {
+      src: "/images/history/peek-fountain-rededication-2013.jpg",
+      alt: "Two attendees stand beside the restored Leonard L. Peek Memorial Drinking Fountain",
+      caption: "The restored fountain at its family rededication in 2013.",
+      label: "Rededication photograph · October 21, 2013",
+    },
   },
   {
     id: "coed-program",
@@ -362,6 +542,31 @@ export const historyEvents: HistoryEvent[] = [
     era: "enduring",
   },
   {
+    id: "bighorn-fire",
+    year: "2020",
+    sortYear: 2020.5,
+    title: "The Bighorn Fire closes the mountain",
+    summary: "A lightning strike ignites the Bighorn Fire on June 5. Over seven weeks it burns 119,978 acres across the Santa Catalina Mountains and forces Camp Lawton to close.",
+    detail: "By its July 23 containment, the fire had crossed ecological zones from desert scrub to pine forest at 8,500 feet. Catalina Council later confirmed using business-interruption insurance for the closure; Forest Service analysis found a mostly low-to-moderate-severity burn mosaic shaped in part by land previously burned in the Bullock and Aspen fires.",
+    significance: "Wildfire resilience now meant more than protecting buildings; it also required plans for access closures, program interruption, watershed impacts, and recovery across the mountain.",
+    category: "resilience",
+    era: "enduring",
+    sources: [
+      {
+        label: "Arizona Institute for Resilience — Bighorn Fire one year later",
+        href: "https://air.arizona.edu/fire-on-the-mountain",
+      },
+      {
+        label: "U.S. Forest Service — Coronado monitoring report",
+        href: "https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd1178610.pdf",
+      },
+      {
+        label: "Catalina Council — Double V frequently asked questions",
+        href: "https://catalinacouncil.org/wp-content/uploads/2024/03/Double-V-Frequently-Asked-Questions-FAQs-Final-12-March-2024.pdf",
+      },
+    ],
+  },
+  {
     id: "centennial",
     year: "2021",
     sortYear: 2021,
@@ -372,7 +577,7 @@ export const historyEvents: HistoryEvent[] = [
     category: "tradition",
     era: "enduring",
     image: {
-      src: "/images/PXL_20260605_172059179.PANO.jpg",
+      src: "/images/camp-story.webp",
       alt: "A wide view of Camp Lawton cabins and gathering spaces beneath the forest canopy",
       caption: "The camp’s present-day landscape holds layers of work completed across more than a century.",
     },
@@ -406,4 +611,26 @@ export const historySourceDocuments = [
   "Camp Lawton History and Catalina Mountains",
   "Camp Lawton Spirit and Papago Symbolism",
   "Camp Lawton: History, Future, and Involvement",
+  "Camp Lawton History Walk",
+  "Camp Lawton Wildfire History",
+  "Tribe of Papago Honor Program — local historical-context draft",
+  "Tribe of Papago — local working recognition-program PDF",
+  "Tribe of Papago artifact photographs — Bill Topkis, Doug Walker, and Edwin DeLuna",
+  "Roy J. Barker — Scoutmaster and Tucson biography working research",
+  "Papago Lodge — A Short History",
+  "Order of the Arrow — Non-OA Camp Fraternities",
+  "Order of the Arrow Section G13W — Section History",
+  "Order of the Arrow Section G13W — Lodges",
+  "Tohono O’odham Nation — About the Nation",
+  "Western Black Bear Workshop — Perry and Rusing case study",
+  "UPI Archives — July 25, 1996 report",
+  "Pima County Code — Bear Regulations",
+  "Scouting magazine — Summer Camp 2002",
+  "Arizona Memory Project — Bullock Fire",
+  "Arizona Memory Project — Aspen Fire",
+  "U.S. Forest Service — 2003 Arizona Fire Season Fact Sheet",
+  "Arizona Memory Project — Camp Lawton Vesper Service Letter",
+  "Arizona Institute for Resilience — Bighorn Fire One Year Later",
+  "U.S. Forest Service — Coronado National Forest Monitoring Report",
+  "Catalina Council — Double V Frequently Asked Questions",
 ];

@@ -60,7 +60,7 @@ Arrive between **1:00 and 3:00 PM** on your session’s first day.
 2. **Leave unauthorized vehicles in the parking area.** Do not drive gear into camp without permission.  
 3. **Report to check-in** with the unit roster, health forms, accommodation information, and medications.  
 4. **Complete medical review.** The Camp Health Officer establishes the medication-control and distribution plan.  
-5. **Receive your campsite assignment, leader packet, schedule, and issued equipment.**  
+5. **Receive your campsite assignment, current leader materials, and issued equipment.**  
 6. **Meet your Troop Friend.** This staff member guides the unit through arrival and serves as a routine liaison.  
 7. **Carry equipment to the campsite and set up.**  
 8. **Attend the 3:00 PM safety briefing and camp tour.** All Scouts and leaders must attend.
@@ -76,7 +76,7 @@ Before evening program begins, leaders should:
 - Locate the Health Lodge, Dining Hall, restrooms, showers, and program areas  
 - Secure food and scented items as instructed  
 - Verify medication times with the Camp Health Officer  
-- Confirm merit-badge schedules and alternatives  
+- Review only the final program information and alternatives distributed by camp staff  
 - Establish unit expectations for hydration, uniforms, devices, quiet hours, and free time`,
   },
   {
@@ -95,7 +95,7 @@ Before evening program begins, leaders should:
 | **Check-Out** | Final Saturday by 11:30 AM unless camp leadership publishes a different session schedule |
 | **2027 Theme** | Pirate Crew Adventures · Campsites are Ships · Dining Hall is the Galley |
 | **NCAP Status** | Planned under the 2026 National Camp Accreditation Program standards and the current Short-Term Camp Administrator assessment; final current requirements control |
-| **Program Limits** | No aquatics · Archery planned · Air-rifle programming conditional on approval, equipment, and qualified staffing |
+| **Program Status** | The 2027 merit badge list, class schedule, capacities, and fees are still in development · Unit interest survey open |
 | **Future Dates** | **2028:** Scout weeks May 30–June 17 · Cub weekend June 23–25. **2029:** Scout weeks May 29–June 16 · Cub weekend June 22–24. |
 
 
@@ -104,12 +104,23 @@ Before evening program begins, leaders should:
 Interest forms on this site are non-binding planning tools. They do not reserve a campsite, register a participant, guarantee a merit badge seat, or collect payment. Official registration will be completed separately through Black Pug in spring.`,
   },
   {
-    title: "Packing List", slug: "packing-list", category: "Prepare", audience: "all", priority: "normal", updatedAt: reviewedAt,
-    summary: "Documents, mountain-weather gear, sleeping equipment, and items that must remain at home.",
+    title: "Packing List", slug: "packing-list", category: "Prepare", audience: "all", priority: "important", updatedAt: new Date("2026-07-16T00:00:00Z"),
+    summary: "An interactive, printable checklist for leader documents, mountain-weather gear, sleeping equipment, and items that must remain at home.",
     applicability: "All sessions", tags: ["packing", "gear", "clothing", "forms"],
     body: `## Packing for Camp Lawton
 
-Camp sits at near 8,000 feet above sea level. Days may be warm (up to 95 or so), nights may be cold (in the 40s), and storms can arrive quickly. The terrain is rugged, but facilities are relatively modern. There is no laundry service or washing machine in camp. 
+Camp Lawton is a high-elevation mountain camp. Expect wide temperature swings, cool evenings, rugged ground, and fast-changing summer weather. There is no laundry service or washing machine in camp. Pack so every participant can carry their own gear from the parking area to the assigned campsite.
+
+### Unit & Leader Check-In
+
+- Current unit roster, emergency contacts, and official registration materials
+- Current health forms and accommodation information requested for check-in
+- Medications in their original labeled containers for handoff to the Camp Health Officer
+- Current adult registration and training documentation required for the session
+- Downloaded driving directions and vehicle emergency supplies
+- No-flame alternatives for unit evening activities
+
+The final registration packet and current camp instructions control if they differ from this working guide. Keep sensitive records secured and hand them only to authorized camp personnel.
 
 ### Each Participant Should Bring
 
@@ -129,8 +140,7 @@ Camp sits at near 8,000 feet above sea level. Days may be warm (up to 95 or so),
 - Notebook and writing utensils  
 - Scout handbook, Totin’ Chip, Firem’n Chit, compass, and pocketknife when appropriate  
 - Laundry bag and secure luggage or lockable storage  
-- Spending money or payment card for the Trading Post  
-- No-flame alternatives for unit evening activities
+- Trading Post funds or payment method specified in final camp materials
 
 ### Useful Optional Gear
 
@@ -148,7 +158,7 @@ Camp sits at near 8,000 feet above sea level. Days may be warm (up to 95 or so),
 - Fireworks, explosives, accelerants, and unauthorized flame devices  
 - Hatchets, large sheath knives, novelty weapons, or unsafe tools  
 - Alcohol, marijuana, illegal drugs, unauthorized medication, nicotine products, and pornography  
-- Pets  
+- Pets, except service animals accommodated under current camp and council procedures
 - Vulgar or sexually explicit clothing or media  
 - Large gaming, television, sound, or computer systems  
 - Anything inconsistent with the Scout Oath, Scout Law, or final camp rules`,
@@ -454,18 +464,18 @@ The climbing wall is limited to Group C, Webelos and Arrow of Light, with certif
     applicability: "Unit and den leaders", tags: ["leaders", "spl", "radio", "meetings", "communication"],
     body: `## SPL and Leaders Meeting
 
-The SPL and adult leader meeting is held daily at **12:55 PM** in the Captain’s Quarters unless the final schedule says otherwise.
+Camp staff will publish the SPL and adult leader meeting time and location with the final daily information.
 
 The meeting is used to:
 
-- Share schedule, safety, weather, and fire updates  
+- Share program, safety, weather, and fire updates  
 - Resolve unit concerns while there is still time to improve the week  
 - Coordinate campwide activities and service  
-- Review merit-badge concerns  
+- Review program questions and unit feedback  
 - Plan and approve campfire content  
 - Gather feedback from SPLs and adult leaders
 
-All unit SPLs and at least one adult leader should attend. Thursday is the final scheduled meeting for Weeks 2 and 3\.
+All unit SPLs and at least one adult leader should attend meetings announced for their session.
 
 ## Troop Friend
 
@@ -515,7 +525,7 @@ Content must be:
 - Free of unsafe stunts or unauthorized flame effects  
 - Consistent with Scouting values
 
-Units begin planning during Wednesday’s Pirate Shanty and Tale block. Thursday’s kit-approval session is mandatory. Staff approval is final.
+Camp staff will announce preparation and review times after the program is finalized. Every presentation must receive staff approval before it is shared; staff approval is final.
 
 ## Service Projects
 
@@ -539,7 +549,7 @@ For routine matters, begin with the Troop Friend or appropriate Area Director. G
 - [ ] Organize health forms and emergency contacts  
 - [ ] Submit dietary and accommodation needs  
 - [ ] Check medication labels and instructions  
-- [ ] Review merit-badge choices, prerequisites, and alternates  
+- [ ] Share merit badge interests in the non-binding survey; wait for the authorized catalog before building individual plans  
 - [ ] Review the packing list and mountain weather  
 - [ ] Brief Scouts on vehicles, buddies, privacy, camp rules, and Leave No Trace  
 - [ ] Download directions and inspect vehicles  
@@ -552,7 +562,7 @@ For routine matters, begin with the Troop Friend or appropriate Area Director. G
 - [ ] Keep emergency access clear  
 - [ ] Present roster and health forms  
 - [ ] Turn over medications and confirm administration times  
-- [ ] Receive schedule, campsite, and leader packet  
+- [ ] Receive current camp information, campsite assignment, and leader packet  
 - [ ] Meet the Troop Friend  
 - [ ] Post the Fireguard Chart  
 - [ ] Establish buddy and lodging assignments  
@@ -566,7 +576,7 @@ For routine matters, begin with the Troop Friend or appropriate Area Director. G
 - [ ] Check weather and fire restrictions  
 - [ ] Report injuries, incidents, missing people, and concerns promptly  
 - [ ] Secure food, trash, and scented items nightly  
-- [ ] Keep Scouts hydrated, rested, and appropriately scheduled  
+- [ ] Keep Scouts hydrated, rested, supervised, and ready for published activities  
 - [ ] Supervise free time and independent activities  
 - [ ] Review campfire material with staff  
 - [ ] Complete recognition and service paperwork
@@ -770,61 +780,71 @@ Please share the relevant portions of this guide with Scouts, parents, guardians
 
 ## The Tribe of Papago
 
-Before the Order of the Arrow became Scouting’s national honor society, Catalina Council established a local camping recognition tradition known as the Tribe of Papago. It continues at Camp Lawton as a returning-camper, service, leadership, and Scout-spirit recognition program.
+The supplied Camp Lawton program history says Camp Director and Catalina Council Scout Executive Harry B. Ogle established a local honor-camping society before the Order of the Arrow became Scouting’s nationally recognized honor society. The local lodge later adopted the Papago name, while the Tribe continued at Camp Lawton as a returning-camper recognition program built around service, leadership, trail experience, reflection, and Scout spirit.
+
+The historic name and rank terms below are transcribed from the supplied working document. They refer to a Camp Lawton Scouting tradition, not to the Tohono O’odham Nation. This material remains subject to authorized cultural and program review.
+
+These are working requirements. The current staff-issued form and instructions control each season.
+
+Explore the [interactive Tribe of Papago page](/tribe-of-papago) for searchable rank paths, the Barker Standard, and credited archive material.
 
 ### Hunter — First Year
 
+- Participate in a service project for Camp Lawton
 - Earn one merit badge or complete all available Model Camp requirements  
 - Hike one approved camp trail  
 - Demonstrate Scout spirit
 
 ### Warrior — Second Year
 
-- Complete one hour of service for Camp Lawton  
+- Complete a service project for Camp Lawton
 - Earn two merit badges or complete Model Camp  
 - Hike one approved camp trail  
 - Demonstrate Scout spirit
 
 ### Medicine Man — Third Year
 
-- Complete two hours of service  
+- Complete a service project
 - Earn two merit badges  
-- Provide at least one hour of approved leadership or program assistance  
+- Provide two hours of approved program assistance or peer tutoring
 - Hike two approved camp trails  
+- Attend a camp chapel service or unit-led spiritual meeting
 - Demonstrate Scout spirit
 
 ### Chief — Fourth Year
 
-- Complete three hours of service  
-- Earn three merit badges  
-- Provide approved program assistance and peer leadership  
+- Complete four hours of service projects
+- Earn four merit badges
+- Volunteer in an approved program area for four hours during camp
 - Hike two approved camp trails  
+- Attend a camp chapel service or unit-led spiritual meeting
 - Demonstrate Scout spirit
 
 ### Elder — Adult Leader or Fifth Year
 
 - Encourage Scouts working toward recognition  
-- Complete three hours of service  
-- Hike one approved camp trail  
-- Volunteer in a program area for at least one hour
+- Complete a service project
+- Hike two approved camp trails
+- Volunteer in an approved program area for four hours during camp
+- Attend a camp chapel service or unit-led spiritual meeting
 
 ### Guide — Staff Member
 
 - Serve on staff for more than one week  
-- Lead or assist with an approved service project  
-- Teach or directly support Scouts through assigned duties  
-- Visit assigned campsites consistently  
+- Lead or assist with a Tribe of Papago service project
+- Teach at least ten Scouts over a week, or fulfill assigned duties to the best of your ability when the role does not involve teaching
+- Visit a campsite at least once each day
 - Learn the program’s history and purpose  
-- Participate in an approved ceremony  
-- Receive appropriate unit and staff recommendations  
-- Participate in a chapel or unit reflection opportunity  
+- Participate in a ceremony
+- Obtain recommendations from a Scoutmaster and Area Director
+- Attend a chapel service or unit spiritual meeting during at least two weeks of staff service
 - Lead a unit on an approved camp trail
 
 Unit leaders track progress and submit completed forms. Patches, rockers, and current requirements are available through the Trading Post or program leadership.
 
 ## The Barker Standard
 
-Roy J. Barker was a longtime Scoutmaster, executive-board member, camp staff member, and mentor whose units were known for service and Scout spirit. The Barker Standard recognizes units that contribute meaningfully to the camp community.
+Roy J. Barker (1924–2012) was a longtime Scoutmaster, executive-board member, camp staff member, and mentor whose units were known for service and Scout spirit. The Barker Standard recognizes units that contribute meaningfully to the camp community.
 
 To earn the Barker Standard, a unit must:
 
@@ -835,18 +855,24 @@ To earn the Barker Standard, a unit must:
 5. Perform an approved skit, song, or story at a closing campfire.  
 6. Complete an assigned camp cleanup duty.  
 7. Complete an approved service project.  
-8. Consistently demonstrate Scout spirit and live the Scout Oath, Scout Law, motto, slogan, and Outdoor Code.  
+8. Consistently demonstrate Scout spirit and live the Scout Oath, Scout Law, motto, slogan, Leave No Trace principles, and Outdoor Code.
 9. Complete and submit the Barker Standard application.
 
-Every unit completing the published requirements may receive a Tribe of Papago rocker and ribbon for the unit flag. Staff may select one especially strong unit for additional recognition. Requirements may be adjusted to fit session length and camp needs.`,
+Every unit completing the published requirements may receive a Tribe of Papago rocker and ribbon for the unit flag. Staff may select one especially strong unit for additional recognition. Requirements may be adjusted to fit session length and camp needs.
+
+### Roy J. Barker’s wider legacy
+
+The supplied Barker biography records a life that joined entomology, environmental stewardship, and hands-on Scouting leadership. Barker (1924–2012) served as a Cubmaster, Scoutmaster, district chair, Catalina Council Executive Board member, Wood Badge instructor, and Camp Lawton physician. It records his 1969–2002 council-board service, his 1974 Silver Beaver Award, and a 2009 Otis H. Chidester Scout Museum honor. These biographical details are presented as working historical research and should receive source and family review before being treated as a final institutional biography.
+
+The Barker Standard carries that same ethic into unit life: service that improves camp, leadership that teaches by example, and Scout spirit that is visible in ordinary work.`,
   },
   {
     title: "Frequently Asked Questions", slug: "frequently-asked-questions", category: "Help", audience: "all", priority: "normal", updatedAt: reviewedAt,
-    summary: "Fast answers about aquatics, connectivity, fires, registration, and schedule guarantees.",
+    summary: "Fast answers about aquatics, connectivity, fires, registration, and 2027 program updates.",
     applicability: "All sessions", tags: ["faq", "help", "aquatics", "registration"],
-    body: `## How many merit badges can a Scout earn?
+    body: `## When will the merit badge list and class schedule be available?
 
-There are six scheduled periods on a standard program day, but registering for six badges is usually too much. Camp should include games, hiking, rest, service, friendships, and experiences Scouts cannot get at a weekly meeting. Choose a challenging but humane schedule.
+Camp Lawton is gathering unit interest before finalizing the 2027 program. The current survey topics are not a published offering list and should not be used to build individual schedules. Authorized offerings, times, capacities, fees, and prerequisites will be shared when program review is complete.
 
 ## How large is Camp Lawton?
 
@@ -856,9 +882,9 @@ Camp Lawton is approximately 60 acres. The compact layout helps Scouts learn the
 
 The former pool is no longer available. A future aquatics facility would require major funding, construction approval, and Forest Service authorization. Do not plan for swimming or boating in 2027\.
 
-## What happens if online program registration goes wrong?
+## Is the planning survey official registration?
 
-Contact camp before arrival when possible. Bring each Scout’s choices and alternates. Staff will work with the unit at check-in and do our best to make sure your scouts are taken care of.
+No. It helps staff estimate attendance and program demand, but it does not register participants, reserve campsites or classes, collect payment, or replace Black Pug. Follow the official registration instructions when they are released.
 
 ## Can our unit arrive early or leave late?
 

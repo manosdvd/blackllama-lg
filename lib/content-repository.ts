@@ -1,6 +1,6 @@
-import { and, asc, desc, eq, gt, isNull, lt, or } from "drizzle-orm";
+import { and, desc, eq, gt, isNull, lt, or } from "drizzle-orm";
 import { getDb } from "../db";
-import { alerts, articleRevisions, articles, events, locations } from "../db/schema";
+import { alerts, articleRevisions, articles, eventRevisions, events, locations } from "../db/schema";
 import {
   arrivalArticle,
   mondaySchedule,
@@ -9,9 +9,11 @@ import {
   type PublicNotice,
   type PublicScheduleEvent,
 } from "./public-content";
-import { bsaSchedule, cubSchedule, findGuideArticle } from "./camp-catalog";
+import { bsaSchedule, cubSchedule, findGuideArticle, guideArticles, type GuideArticle } from "./camp-catalog";
+import { isGuideArticlePublic } from "./site-features";
 
 export async function getPublishedArticle(slug: string): Promise<PublicArticle | null> {
+  if (!isGuideArticlePublic(slug)) return null;
   try {
     const [article] = await getDb().select().from(articles)
       .where(and(eq(articles.slug, slug), eq(articles.status, "published"))).limit(1);
@@ -28,23 +30,41 @@ export async function getPublishedArticle(slug: string): Promise<PublicArticle |
   return findGuideArticle(slug) ?? null;
 }
 
+export async function getPublishedGuideArticles(): Promise<GuideArticle[]> {
+  const publicArticles = guideArticles.filter((article) => isGuideArticlePublic(article.slug));
+  try {
+    const rows = await getDb().select().from(articles).where(eq(articles.status, "published"));
+    const published = new Map(rows.map((article) => [article.slug, article]));
+    return publicArticles.map((fallback) => {
+      const article = published.get(fallback.slug);
+      return article ? {
+        ...fallback,
+        title: article.title,
+        summary: article.summary,
+        body: article.body,
+        applicability: article.applicability ?? fallback.applicability,
+        priority: article.priority ?? fallback.priority,
+        updatedAt: article.reviewedAt ?? article.publishedAt ?? article.updatedAt,
+      } : fallback;
+    });
+  } catch {
+    return publicArticles;
+  }
+}
+
 export async function getArticleForEditor(slug: string) {
   try {
     const [article] = await getDb().select().from(articles).where(eq(articles.slug, slug)).limit(1);
     if (article) {
-      const revisions = await getDb().select({
-        revision: articleRevisions.revision,
-        status: articleRevisions.status,
-        author: articleRevisions.author,
-        createdAt: articleRevisions.createdAt,
-      }).from(articleRevisions).where(eq(articleRevisions.articleId, article.id))
+      const recentRevisions = await getDb().select().from(articleRevisions).where(eq(articleRevisions.articleId, article.id))
         .orderBy(desc(articleRevisions.revision)).limit(8);
+      const latest = recentRevisions[0];
       return {
         article: {
-          title: article.title, slug: article.slug, summary: article.summary, body: article.body,
-          applicability: article.applicability ?? "All sessions",
+          title: latest?.title ?? article.title, slug: article.slug, summary: latest?.summary ?? article.summary,
+          body: latest?.body ?? article.body, applicability: latest?.applicability ?? article.applicability ?? "All sessions",
         },
-        revisions,
+        revisions: recentRevisions.map(({ revision, status, author, createdAt }) => ({ revision, status, author, createdAt })),
       };
     }
   } catch {
@@ -56,32 +76,46 @@ export async function getArticleForEditor(slug: string) {
 export async function getEventForEditor(id: string) {
   try {
     const [event] = await getDb().select().from(events).where(eq(events.id, id)).limit(1);
-    if (event) return event;
+    if (event) {
+      const [latest] = await getDb().select().from(eventRevisions).where(eq(eventRevisions.eventId, event.id))
+        .orderBy(desc(eventRevisions.revision)).limit(1);
+      return latest ? { ...event, title: latest.title, summary: latest.summary, dayOfWeek: latest.dayOfWeek, startTime: latest.startTime, endTime: latest.endTime } : event;
+    }
   } catch {}
   const fallback = [...bsaSchedule, ...cubSchedule].find((event) => event.id === id) ?? bsaSchedule[0];
   return { id: fallback.id, title: fallback.title, summary: fallback.summary, kind: fallback.kind, dayOfWeek: fallback.day, startTime: fallback.startTime, endTime: fallback.endTime, audience: fallback.audience, isRequired: fallback.required, whatToBring: fallback.whatToBring, accessibilityNotes: fallback.accessibilityNotes };
 }
 
 export async function getPublishedSchedule(day: string): Promise<PublicScheduleEvent[]> {
+  const schedules = await getPublishedSchedules();
+  return schedules.bsaEvents.filter((event) => event.day === day);
+}
+
+export async function getPublishedSchedules(): Promise<{ bsaEvents: PublicScheduleEvent[]; cubEvents: PublicScheduleEvent[] }> {
   try {
     const rows = await getDb().select({ event: events, locationName: locations.name }).from(events)
       .leftJoin(locations, eq(events.locationId, locations.id))
-      .where(and(eq(events.dayOfWeek, day), eq(events.status, "published")))
-      .orderBy(asc(events.startTime));
+      .where(eq(events.status, "published"));
     if (rows.length) {
-      return rows.map(({ event, locationName }) => ({
-        id: event.id, day: event.dayOfWeek, startTime: event.startTime, endTime: event.endTime,
-        title: event.title, summary: event.summary, kind: event.kind,
-        location: locationName ?? "Location announced", audience: event.audience ?? "All camp",
-        required: event.isRequired ?? false, whatToBring: event.whatToBring,
-        accessibilityNotes: event.accessibilityNotes,
-      }));
+      const overrides = new Map(rows.map((row) => [row.event.id, row]));
+      const overlay = (canonical: PublicScheduleEvent[]) => canonical.map((fallback) => {
+        const row = overrides.get(fallback.id);
+        if (!row) return fallback;
+        const { event, locationName } = row;
+        return {
+          id: event.id, day: event.dayOfWeek, startTime: event.startTime, endTime: event.endTime,
+          title: event.title, summary: event.summary, kind: event.kind,
+          location: locationName ?? fallback.location, audience: event.audience ?? fallback.audience,
+          required: event.isRequired ?? fallback.required, whatToBring: event.whatToBring,
+          accessibilityNotes: event.accessibilityNotes,
+        };
+      });
+      return { bsaEvents: overlay(bsaSchedule), cubEvents: overlay(cubSchedule) };
     }
   } catch {
     // See the article fallback note above.
   }
-  const canonical = bsaSchedule.filter((event) => event.day === day);
-  return canonical.length ? canonical : day === "Monday" ? mondaySchedule : [];
+  return { bsaEvents: bsaSchedule.length ? bsaSchedule : mondaySchedule, cubEvents: cubSchedule };
 }
 
 export async function getActiveNotices(): Promise<PublicNotice[]> {

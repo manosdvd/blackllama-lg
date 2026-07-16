@@ -3,10 +3,10 @@ import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { getDb } from "../../../db";
 import { auditLogs, submissions } from "../../../db/schema";
-import { requireStaff } from "../../staff-auth";
+import { requireStaffRole } from "../../staff-auth";
 
 export async function updateSubmissionStatus(formData: FormData) {
-  const user = await requireStaff("/staff/submissions");
+  const user = await requireStaffRole("/staff/submissions", ["director"]);
   const id = String(formData.get("id") ?? "");
   const status = String(formData.get("status") ?? "");
   if (!id || !["new", "contacted", "follow-up", "ready", "closed", "withdrawn"].includes(status)) return;

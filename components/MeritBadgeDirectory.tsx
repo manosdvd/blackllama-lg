@@ -14,18 +14,11 @@ export type MeritBadgeDirectoryItem = {
   eagleRequired: boolean;
 };
 
-const completionLabels: Record<CampCompletion, string> = {
-  complete: "Complete at camp",
-  conditional: "Conditional",
-  partial: "Partial at camp",
-};
-
 const initialResultLimit = 18;
 
 export default function MeritBadgeDirectory({ items }: { items: MeritBadgeDirectoryItem[] }) {
   const [query, setQuery] = useState("");
   const [area, setArea] = useState("all");
-  const [completion, setCompletion] = useState("all");
   const [showAll, setShowAll] = useState(false);
   const areas = useMemo(() => [...new Set(items.map((item) => item.area))].sort(), [items]);
   const filtered = useMemo(() => {
@@ -33,21 +26,20 @@ export default function MeritBadgeDirectory({ items }: { items: MeritBadgeDirect
     return items.filter((item) => {
       const searchable = `${item.title} ${item.area} ${item.overview}`.toLowerCase();
       return (!normalizedQuery || searchable.includes(normalizedQuery))
-        && (area === "all" || item.area === area)
-        && (completion === "all" || item.completion === completion);
+        && (area === "all" || item.area === area);
     });
-  }, [area, completion, items, query]);
-  const filtering = Boolean(query.trim()) || area !== "all" || completion !== "all";
+  }, [area, items, query]);
+  const filtering = Boolean(query.trim()) || area !== "all";
   const visible = showAll || filtering ? filtered : filtered.slice(0, initialResultLimit);
 
   return (
     <section className="badge-directory" id="all-badge-guides" aria-labelledby="badge-directory-heading">
       <header>
         <div>
-          <p className="section-kicker">Full planning catalog</p>
-          <h2 id="badge-directory-heading">Explore all {items.length} badge field guides.</h2>
+          <p className="section-kicker">Survey reference library</p>
+          <h2 id="badge-directory-heading">Explore all {items.length} interest topics.</h2>
         </div>
-        <p>Search every badge in the unit-interest survey, including subjects that do not yet have a potential 2027 class.</p>
+        <p>Use these neutral subject guides to discuss unit interest. This library is intentionally broader than the eventual Camp Lawton offering list.</p>
       </header>
 
       <div className="badge-directory-tools">
@@ -62,15 +54,6 @@ export default function MeritBadgeDirectory({ items }: { items: MeritBadgeDirect
             {areas.map((item) => <option key={item}>{item}</option>)}
           </select>
         </label>
-        <label>
-          <span>Camp feasibility</span>
-          <select value={completion} onChange={(event) => setCompletion(event.target.value)}>
-            <option value="all">All statuses</option>
-            <option value="complete">Complete at camp</option>
-            <option value="conditional">Conditional</option>
-            <option value="partial">Partial at camp</option>
-          </select>
-        </label>
       </div>
 
       <div className="badge-directory-results" aria-live="polite">
@@ -82,20 +65,20 @@ export default function MeritBadgeDirectory({ items }: { items: MeritBadgeDirect
         {visible.map((item) => (
           <Link href={`/merit-badges/${item.id}`} key={item.id}>
             <div>
-              <span>{item.area} · Tier {item.tier}</span>
+              <span>{item.area} · Survey candidate</span>
               {item.eagleRequired && <i>Eagle</i>}
             </div>
             <h3>{item.title}</h3>
             <p>{item.overview}</p>
             <div className="badge-directory-card-footer">
-              <span className={`completion-${item.completion}`}>{completionLabels[item.completion]}</span>
-              <strong>Open guide →</strong>
+              <span>Not a published offering</span>
+              <strong>Open reference →</strong>
             </div>
           </Link>
         ))}
       </div>
 
-      {visible.length === 0 && <div className="badge-directory-empty"><h3>No field guides match.</h3><p>Try a broader search or reset the program-area and feasibility filters.</p></div>}
+      {visible.length === 0 && <div className="badge-directory-empty"><h3>No survey topics match.</h3><p>Try a broader search or reset the program-area filter.</p></div>}
       {!filtering && !showAll && filtered.length > initialResultLimit && <button className="badge-directory-more" type="button" onClick={() => setShowAll(true)}>Show all {filtered.length} field guides</button>}
     </section>
   );

@@ -174,11 +174,24 @@ export default function HistoryTimeline() {
                           <span>Why it matters</span>
                           <p>{event.significance}</p>
                         </div>
-                        <small><i aria-hidden="true" /> Synthesized from the Camp Lawton history collection</small>
+                        <small className="history-detail-sources">
+                          <span><i aria-hidden="true" /> Camp Lawton history collection synthesis</span>
+                          {event.sources?.map((source) => <a
+                            key={source.href}
+                            href={source.href}
+                            target="_blank"
+                            rel="noreferrer"
+                          >{source.label} <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>)}
+                        </small>
                       </div>
                       {event.image && <figure>
-                        <img src={event.image.src} alt={event.image.alt} loading="lazy" />
-                        <figcaption>{event.image.caption} <span>Present-day photo · 2026</span></figcaption>
+                        <img
+                          src={event.image.src}
+                          alt={event.image.alt}
+                          loading="lazy"
+                          style={{ objectFit: event.image.objectFit, objectPosition: event.image.objectPosition }}
+                        />
+                        <figcaption>{event.image.caption} <span>{event.image.label ?? "Present-day photo · 2026"}</span></figcaption>
                       </figure>}
                     </div>
                   </article>

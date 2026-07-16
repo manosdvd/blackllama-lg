@@ -115,11 +115,15 @@ test("survey UI, badge guides, API, staff report, and export share the generated
     readFile(new URL("app/staff/submissions/export/route.ts", root), "utf8"),
   ]);
   assert.match(client, /MeritBadgeSurveyStep/);
-  assert.match(surveyStep, /merit-badges\/\$\{badge\.id\}/);
+  assert.match(surveyStep, /Candidate only—not a published offering/);
+  assert.doesNotMatch(surveyStep, /Estimated class time|Source tier|Complete at camp/);
   assert.match(badgeDirectory, /Explore all/);
   assert.match(badgeDirectory, /Badge, skill, or topic/);
+  assert.match(badgeDirectory, /Not a published offering/);
   assert.match(badgeGuide, /getMeritBadgeResource/);
   assert.match(badgeGuide, /View official badge guide/);
+  assert.match(badgeGuide, /not the final Camp Lawton catalog/);
+  assert.doesNotMatch(badgeGuide, /programOfferings|Potential class times|Add to plan/);
   assert.match(markdown, /next\/link/);
   assert.match(catalog, /\[Astronomy merit badge\]\(\/merit-badges\/astronomy\)/);
   assert.match(catalog, /\[Archery merit badge\]\(\/merit-badges\/archery\)/);

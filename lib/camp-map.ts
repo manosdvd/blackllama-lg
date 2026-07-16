@@ -125,7 +125,7 @@ export const campMapLocations: CampMapLocation[] = [
     imageAlt: "Illustrated STEM program emblem with science and technology symbols",
     description: "The science and technology program area on the upper east side of the central camp loop.",
     nearby: "Below Navajo campsite and just north of the Camp Office.",
-    practical: "Program offerings and meeting times remain subject to the published session schedule.",
+    practical: "Use this map for orientation; activities and meeting times will appear only in final authorized program information.",
   },
   {
     id: "pima",
@@ -159,7 +159,7 @@ export const campMapLocations: CampMapLocation[] = [
     imageAlt: "Illustrated Eagle Quest program emblem",
     description: "A program area on the eastern edge of the central camp activity loop.",
     nearby: "East of the Camp Office and above First Aid.",
-    practical: "Check the final program catalog for the activities and age guidance offered during your session.",
+    practical: "Activities and age guidance remain in development; check the authorized program information when it is published.",
   },
   {
     id: "dining-hall",
@@ -167,6 +167,8 @@ export const campMapLocations: CampMapLocation[] = [
     category: "amenity",
     x: 57.4,
     y: 48.3,
+    image: "/images/history/dining-hall-aerial.jpg",
+    imageAlt: "Aerial view of Camp Lawton’s connected dining hall buildings and stone chimney",
     description: "Camp’s central meal and gathering building, positioned on the main north–south road.",
     nearby: "Beside the Parade Grounds and north of Nature.",
     practical: "The Dining Hall is the primary storm shelter unless staff directs otherwise. Continuous ringing of its large bell is the campwide emergency alarm.",
@@ -263,7 +265,7 @@ export const campMapLocations: CampMapLocation[] = [
     imageAlt: "Illustrated Handicraft program emblem with scissors, paintbrushes, yarn, and thread",
     description: "The craft program area on the east side of the central activity loop.",
     nearby: "East of Nature, west of First Aid, and north of Apache campsite.",
-    practical: "Some activities may require materials or project time; check the final program listing before building a Scout’s schedule.",
+    practical: "Potential activities are still under review. Wait for the authorized program listing before making individual plans.",
   },
   {
     id: "scoutcraft",
@@ -275,7 +277,7 @@ export const campMapLocations: CampMapLocation[] = [
     imageAlt: "Black line illustration of a pioneering tower for Scoutcraft",
     description: "The outdoor-skills program area in lower central camp.",
     nearby: "Below Nature, west of Handicraft, and north of Model Camp.",
-    practical: "Check the session schedule for skill instruction, project periods, and any equipment guidance.",
+    practical: "Final skill instruction, project periods, and equipment guidance will be published after program approval.",
   },
   {
     id: "apache",
@@ -311,7 +313,7 @@ export const campMapLocations: CampMapLocation[] = [
     imageAlt: "Illustrated Model Camp emblem with a tent and pine trees",
     description: "A lower-camp outdoor skills area shown between Scoutcraft and the range trail.",
     nearby: "Southeast of Hohokam and southwest of Apache campsite.",
-    practical: "A first-year or rank-skills track may be offered here. Confirm the final format before registration.",
+    practical: "This area may support first-year or rank skills; the final 2027 format has not been approved.",
   },
   {
     id: "cochise",
@@ -355,14 +357,14 @@ export const campMapLocations: CampMapLocation[] = [
     category: "program",
     x: 63.9,
     y: 81.3,
-    image: "/map/locations/chapel.webp",
-    imageAlt: "Illustrated chapel emblem with an open book and rising sun",
+    image: "/images/history/clayton-herbert-chapel.jpeg",
+    imageAlt: "The open-air Clayton Herbert Memorial Chapel with its stone altar and log benches among the pines",
     gallery: [
-      { src: "/map/locations/chapel-mark.webp", alt: "Alternate black line chapel mark" },
+      { src: "/map/locations/chapel.webp", alt: "Illustrated chapel emblem with an open book and rising sun" },
     ],
     description: "The open-air Clayton Herbert Memorial Chapel, a quiet reflection space in lower camp.",
     nearby: "Southwest of Cochise and north of the main campfire and ranges.",
-    practical: "Check the schedule for chapel, Scouts’ Own, or unit reflection opportunities during your session.",
+    practical: "Camp staff will announce any chapel, Scouts’ Own, or unit reflection opportunities for the session.",
   },
   {
     id: "archery",
@@ -374,7 +376,7 @@ export const campMapLocations: CampMapLocation[] = [
     imageAlt: "Black line illustration of an arrow in an archery target",
     description: "The archery range at the southwest end of the lower camp activity trail.",
     nearby: "Below the main campfire area and west of the Rifle Range.",
-    practical: "Archery is planned with qualified supervision and posted range procedures. Availability follows the final program schedule.",
+    practical: "Range availability is not final and always depends on approval, qualified supervision, and posted procedures.",
   },
   {
     id: "rifle-range",

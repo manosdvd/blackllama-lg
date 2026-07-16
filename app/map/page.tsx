@@ -32,7 +32,7 @@ export default function MapPage() {
       </div>
       <div className="map-hero-meta" aria-label="Map features">
         <div><span>01</span><strong>11 campsites</strong><small>See each site in camp context</small></div>
-        <div><span>02</span><strong>10 program areas</strong><small>Plan realistic transitions</small></div>
+        <div><span>02</span><strong>10 program areas</strong><small>Learn the camp layout</small></div>
         <div><span>03</span><strong>Key facilities</strong><small>Find assembly and support points</small></div>
       </div>
     </section>

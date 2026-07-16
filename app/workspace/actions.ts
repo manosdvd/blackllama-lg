@@ -3,6 +3,7 @@ import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { getDb } from "../../db";
 import { participants, unitWorkspaces, workspaceMembers } from "../../db/schema";
+import { PROGRAM_PLANNING_PUBLISHED } from "../../lib/site-features";
 import { requireChatGPTUser } from "../chatgpt-auth";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -17,6 +18,7 @@ async function canAccess(workspaceId: string, email: string) {
 }
 
 export async function createWorkspace(data: FormData) {
+  if (!PROGRAM_PLANNING_PUBLISHED) return;
   const user = await requireChatGPTUser("/workspace");
   const unitType = value(data, "unitType", 30), unitNumber = value(data, "unitNumber", 30);
   if (!unitType || !unitNumber) return;
@@ -27,6 +29,7 @@ export async function createWorkspace(data: FormData) {
 }
 
 export async function inviteMember(data: FormData) {
+  if (!PROGRAM_PLANNING_PUBLISHED) return;
   const user = await requireChatGPTUser("/workspace");
   const workspaceId = value(data, "workspaceId", 80), email = value(data, "email", 200).toLowerCase();
   const [workspace] = await getDb().select().from(unitWorkspaces).where(eq(unitWorkspaces.id, workspaceId)).limit(1);
@@ -37,6 +40,7 @@ export async function inviteMember(data: FormData) {
 }
 
 export async function addParticipant(data: FormData) {
+  if (!PROGRAM_PLANNING_PUBLISHED) return;
   const user = await requireChatGPTUser("/workspace");
   const workspaceId = value(data, "workspaceId", 80), displayName = value(data, "displayName", 80);
   if (!displayName || !await canAccess(workspaceId, user.email)) return;

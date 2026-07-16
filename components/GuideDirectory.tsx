@@ -9,12 +9,21 @@ export default function GuideDirectory({ articles }: { articles: GuideArticle[] 
   const [audience, setAudience] = useState("all");
   const visible = useMemo(() => articles.filter((article) => {
     const matchesAudience = audience === "all" || article.audience === "all" || article.audience === audience;
-    const text = `${article.title} ${article.summary} ${article.category} ${article.tags.join(" ")}`.toLowerCase();
+    const text = `${article.title} ${article.summary} ${article.category} ${article.tags.join(" ")} ${article.body}`.toLowerCase();
     return matchesAudience && text.includes(query.trim().toLowerCase());
   }), [articles, audience, query]);
   const categories = [...new Set(visible.map((article) => article.category))];
 
   return <>
+    <Link className="packing-feature-card" href="/guide/packing-list">
+      <span className="packing-feature-number" aria-hidden="true">01</span>
+      <div>
+        <span>Featured preparation tool</span>
+        <h2>Pack with confidence.</h2>
+        <p>Use the interactive Camp Lawton checklist, save progress on this device, add personal extras, and print a clean copy for the unit meeting.</p>
+      </div>
+      <strong>Open packing checklist <span aria-hidden="true">→</span></strong>
+    </Link>
     <div className="directory-tools">
       <label className="search-box"><span aria-hidden="true">⌕</span><span className="sr-only">Search guide</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search forms, arrival, fire..." /></label>
       <div className="segmented" aria-label="Filter by audience">{[["all", "All"], ["bsa", "BSA"], ["cub", "Cub"], ["leaders", "Leaders"]].map(([value, label]) => <button key={value} type="button" aria-pressed={audience === value} onClick={() => setAudience(value)}>{label}</button>)}</div>
