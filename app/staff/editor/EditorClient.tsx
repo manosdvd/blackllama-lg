@@ -41,7 +41,7 @@ export default function EditorClient({ article, revisions, scheduleEvent }: { ar
           </div>
           <ResultMessage result={articleResult} />
         </form>
-        {revisions.length > 0 && <div className="revision-history"><h3>Recent revisions</h3>{revisions.map((revision) => <div key={revision.revision}><strong>Revision {revision.revision}</strong><span>{revision.status} by {revision.author}</span><time>{new Date(revision.createdAt).toLocaleString()}</time></div>)}</div>}
+        {revisions.length > 0 && <div className="revision-history"><h3>Recent revisions</h3>{revisions.map((revision) => <div key={revision.revision}><strong>Revision {revision.revision}</strong><span>{revision.status} by {revision.author}</span><time>{new Date(revision.createdAt).toLocaleString("en-US", { timeZone: "America/Phoenix" })}</time></div>)}</div>}
       </section>
 
       {PROGRAM_PLANNING_PUBLISHED && <section className="editor-panel">

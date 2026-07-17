@@ -114,22 +114,31 @@ export default function Home() {
       <SiteHeader current="/" />
 
       <section className="hero" id="top">
-        <img src="/images/camp-hero.webp" width={2560} height={485} alt="The wooden Camp Lawton entrance sign among ponderosa pines" fetchPriority="high" />
+        <div className="hero-media">
+          <img src="/images/home-hero.webp" width={1920} height={1446} alt="Scouts sharing a hand-clapping game beneath the pines at Camp Lawton" fetchPriority="high" />
+          <p className="hero-photo-note"><span>Camp today</span> Friendship, skills, and a week lived outdoors.</p>
+          <figure className="hero-archive-card">
+            <img src="/images/history/camp-lawton-early-gate.jpeg" width={570} height={420} alt="The early stone entrance gate to Camp Lawton" />
+            <figcaption><span>From the camp archive</span> The early Boy Scouts gate</figcaption>
+          </figure>
+        </div>
         <div className="hero-shade" />
+        <div className="hero-contours" aria-hidden="true"><i /><i /><i /><i /><i /></div>
         <div className="hero-content">
-          <p className="eyebrow">Catalina Council · Scouting America</p>
-          <h1>Prepare for a week<br />that stays with them.</h1>
-          <p className="hero-copy">Everything leaders need to plan a safe, memorable 2027 summer camp in the Catalina Mountains.</p>
+          <p className="eyebrow"><span aria-hidden="true" /> Camp Lawton · Est. 1921</p>
+          <h1>A century of camp.<br /><em>One unforgettable week.</em></h1>
+          <p className="hero-copy">Bring your unit to the Santa Catalina Mountains for the kind of summer camp Scouts talk about for years. Everything leaders need to prepare for 2027 starts here.</p>
           <div className="hero-actions">
-            <Link className="button" href="/guide/packing-list">Open the packing checklist</Link>
-            <Link className="text-link" href="/pre-register">Help shape the program <span aria-hidden="true">→</span></Link>
+            <Link className="button" href="/guide/packing-list">Pack for the mountain</Link>
+            <Link className="text-link" href="/history">Explore 100+ years <span aria-hidden="true">→</span></Link>
           </div>
+          <div className="hero-estamp" aria-hidden="true"><span>Santa Catalina Mountains</span><strong>1921</strong><small>Camp Lawton · Arizona</small></div>
         </div>
         <div className="session-strip" aria-label="2027 session dates">
-          <div><span>Week 1</span><strong>Jun 1–5</strong><small>Tue–Sat · condensed</small></div>
-          <div><span>Week 2</span><strong>Jun 6–12</strong><small>Sun–Sat</small></div>
-          <div><span>Week 3</span><strong>Jun 13–19</strong><small>Sun–Sat</small></div>
-          <div className="session-meta"><span>Check-in</span><strong>1–3 PM</strong><small>Arrival day</small></div>
+          <div><span>2027 · Week 1</span><strong>Jun 1–5</strong><small>Tue–Sat · condensed</small></div>
+          <div><span>2027 · Week 2</span><strong>Jun 6–12</strong><small>Sun–Sat</small></div>
+          <div><span>2027 · Week 3</span><strong>Jun 13–19</strong><small>Sun–Sat</small></div>
+          <div className="session-meta"><span>Leader field note</span><strong>Check-in 1–3 PM</strong><small>On your unit&apos;s arrival day</small></div>
         </div>
       </section>
 
@@ -140,11 +149,37 @@ export default function Home() {
         <a href="#preregister"><span>04</span><strong>Tell us you’re interested</strong><small>Non-binding pre-registration</small></a>
       </section>
 
+      <section className="home-tradition" aria-labelledby="camp-character-title">
+        <div className="home-tradition-copy">
+          <p className="section-kicker">This is Camp Lawton</p>
+          <h2 id="camp-character-title">Pine needles underfoot. Camp songs after dark. Skills passed hand to hand.</h2>
+          <p>Camp Lawton is not a resort and it is not a convention center. It is a working Scout camp: weathered cabins, patrol spirit, mountain air, and a staff ready to help young people try something real.</p>
+          <div className="home-tradition-links">
+            <Link className="text-link" href="/map">Walk the camp map <span aria-hidden="true">→</span></Link>
+            <Link className="text-link" href="/history">Meet the generations before you <span aria-hidden="true">→</span></Link>
+          </div>
+        </div>
+        <div className="home-tradition-gallery" aria-label="Camp Lawton across generations">
+          <figure className="tradition-photo tradition-photo-main">
+            <img src="/images/home-disc-golf.webp" width={1400} height={1054} alt="Camp staff coaching a Scout at the disc golf basket" loading="lazy" />
+            <figcaption><span>Learn by doing</span> Staff coach, Scouts take the shot.</figcaption>
+          </figure>
+          <figure className="tradition-photo tradition-photo-detail">
+            <img src="/images/home-craft.webp" width={1200} height={903} alt="Scouts working together on colorful cord crafts at a camp table" loading="lazy" />
+            <figcaption><span>Handicraft</span> Made at camp.</figcaption>
+          </figure>
+          <figure className="tradition-photo tradition-photo-archive">
+            <img src="/images/history/camp-lawton-staff-1960.jpg" width={744} height={1024} alt="Camp Lawton staff standing together in the summer of 1960" loading="lazy" />
+            <figcaption><span>Summer 1960</span> A staff tradition carried forward.</figcaption>
+          </figure>
+        </div>
+      </section>
+
       <section className="section intro-section">
         <div className="section-kicker">Camp at a glance</div>
         <div className="intro-grid">
           <div>
-            <h2>A small camp with room for a big experience.</h2>
+            <h2>Small enough to know every Scout. Old enough to have traditions worth carrying.</h2>
             <p>Camp Lawton combines hands-on outdoor learning, mountain adventure, camp traditions, and the close-knit character of a century-old Scout camp.</p>
           </div>
           <div className="fact-grid">
@@ -202,7 +237,7 @@ export default function Home() {
       
 
       <section className="story-band">
-        <img src="/images/camp-story.webp" width={2000} height={1505} alt="Camp Lawton cabins arranged around a campsite fire ring" loading="lazy" />
+        <img src="/images/home-night.webp" width={1800} height={1355} alt="Scouts gathered outside Camp Lawton’s historic dining hall after dark" loading="lazy" />
         <div className="story-copy">
           <div className="section-kicker">A century on the mountain</div>
           <h2>Built by many hands.<br />Carried by generations.</h2>
