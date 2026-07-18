@@ -32,6 +32,7 @@ function startsBlock(lines: string[], index: number): boolean {
   return /^#{1,3}\s/.test(line)
     || /^-\s+/.test(line)
     || /^\d+\.\s+/.test(line)
+    || /^!\[[^\]]*\]\(.+\)$/.test(line)
     || (line.includes("|") && isTableDivider(lines[index + 1] ?? ""));
 }
 
@@ -48,6 +49,15 @@ export default function MarkdownContent({ source }: { source: string }) {
     }
 
     const key = blocks.length;
+    if (/^!\[[^\]]*\]\(.+\)$/.test(line)) {
+      const match = /^!\[([^\]]*)\]\((.+)\)$/.exec(line);
+      if (match) {
+        const [, alt, src] = match;
+        blocks.push(<img key={key} src={src} alt={alt} className="article-block-image" />);
+        index += 1;
+        continue;
+      }
+    }
     if (line.startsWith("### ")) {
       blocks.push(<h3 key={key}>{inlineContent(line.slice(4))}</h3>);
       index += 1;

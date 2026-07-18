@@ -24,9 +24,11 @@
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
+    "framer-motion": "^12.42.2",
     "next": "16.2.6",
     "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "react-dom": "19.2.6",
+    "react-zoom-pan-pinch": "^4.0.3"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.37.1",
@@ -40,6 +42,7 @@
     "drizzle-kit": "0.31.10",
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.6",
+    "pngjs": "^7.0.0",
     "react-server-dom-webpack": "19.2.6",
     "tailwindcss": "4.2.1",
     "tsx": "4.23.0",

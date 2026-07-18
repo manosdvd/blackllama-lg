@@ -31,7 +31,9 @@ export const guideArticles: GuideArticle[] = [
     title: "Arrival & Check-In", slug: "arrival-and-check-in", category: "Arrival", audience: "all", priority: "important", updatedAt: reviewedAt,
     summary: "Arrival windows, parking, paperwork, medication handoff, and required first-day briefings.",
     applicability: "BSA weeks and Cub Scout Weekend", tags: ["arrival", "check-in", "parking", "medications", "forms"],
-    body: `## Getting to Camp
+    body: `![Camp Lawton entrance sign](/images/coppersign.jpg)
+
+## Getting to Camp
 
 Camp Lawton is the first camp on Organization Ridge Road near Mile 20 of the Catalina Highway. If you reach the Palisades Ranger Station, you have gone too far.
 
@@ -317,7 +319,9 @@ Location-specific instructions will be covered during the arrival safety briefin
     title: "Daily Rhythm & Program", slug: "daily-rhythm-and-program", category: "Program", audience: "bsa", priority: "normal", updatedAt: reviewedAt,
     summary: "Six merit badge blocks, transition time, meetings, competitions, meals, and evening programs.",
     applicability: "BSA weeks", tags: ["program", "schedule", "merit badges", "evening"],
-    body: `## Program Philosophy
+    body: `![Vintage camp program](/images/history/vintagerangerprogram2009.jpg)
+
+## Program Philosophy
 
 Camp Lawton supplements the unit program. Staff provide instruction, facilities, special events, and a supportive camp community; unit leaders remain responsible for supervision, encouragement, and helping each Scout choose a healthy balance of challenge and fun.
 
@@ -379,6 +383,8 @@ Week 1 follows this arrival sequence on Tuesday.
 All fire-based programs depend on current USFS restrictions. A campfire program may continue without an actual flame.
 
 ## Funday and Friday Program
+
+![Scouts throwing tomahawks during Friday Funday](/images/history/vintageFundayTomahawk.jpg)
 
 Friday is designed for choice, completion, celebration, and closing experiences.
 
@@ -596,7 +602,9 @@ For routine matters, begin with the Troop Friend or appropriate Area Director. G
     title: "Fire, Weather & Wildlife", slug: "fire-weather-and-wildlife", category: "During camp", audience: "all", priority: "critical", updatedAt: reviewedAt,
     summary: "How to interpret online conditions and follow current staff and USFS direction.",
     applicability: "All sessions", tags: ["fire", "weather", "wildlife", "restrictions"],
-    body: `## Altitude, Hydration, Heat, and Cold
+    body: `![Mt. Bigelow forest canopy](/images/history/mtBigalow.jpg)
+
+## Altitude, Hydration, Heat, and Cold
 
 Camp sits more than 5,000 feet above Tucson. Some participants need time to adjust.
 
@@ -769,6 +777,8 @@ Personal electronics are brought at the owner’s risk.
 Camp Lawton exists to support the goals of your unit and the growth of each Scout. Our mission is to create safe, welcoming, and memorable outdoor experiences where Scouts learn by doing, practice leadership, build confidence, and strengthen their connection to Scouting and the outdoors.
 
 Advancement matters, but camp is not a merit-badge factory. The songs, games, campfires, hikes, service, challenges, friendships, and staff relationships are often what Scouts remember longest. The 2027 program is designed around both achievement and adventure.
+
+![Vintage Campfire Bowl at Camp Lawton](/images/history/vintageCampfireBowl.jpg)
 
 ## Pirate Crew Adventures
 

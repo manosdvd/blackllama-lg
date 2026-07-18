@@ -115,7 +115,7 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-media">
-          <img src="/images/home-hero.webp" width={1920} height={1446} alt="Scouts sharing a hand-clapping game beneath the pines at Camp Lawton" fetchPriority="high" />
+          <img src="/images/home-amphitheater.webp" width={1920} height={1446} alt="Scouts and leaders gathered in the Camp Lawton amphitheater beneath ponderosa pines" fetchPriority="high" />
           <p className="hero-photo-note"><span>Camp today</span> Friendship, skills, and a week lived outdoors.</p>
           <figure className="hero-archive-card">
             <img src="/images/history/camp-lawton-early-gate.jpeg" width={570} height={420} alt="The early stone entrance gate to Camp Lawton" />

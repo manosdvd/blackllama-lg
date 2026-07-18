@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import { historyEvents } from "../lib/camp-history.ts";
 
 const root = new URL("../", import.meta.url);
 const [page, timeline, data, header, css, traditionGallery, catalog] = await Promise.all([
@@ -21,8 +22,8 @@ test("history route turns the working documents into an accessible chronology", 
   assert.match(data, /A turning point for bear safety/);
   assert.match(data, /Anna Knochel/);
   assert.match(data, /July 25, 1996/);
-  assert.match(data, /Black bears remain part of the Santa Catalina ecosystem/);
-  assert.match(data, /sightings at Camp Lawton have been rare/);
+  assert.match(data, /Pima County’s 1997 ordinance/);
+  assert.match(data, /physically accessible to them/);
   assert.match(data, /wafwa\.org\/wp-content\/uploads\/2020\/09\/7th-WesternBlack-Bear-Workshop\.pdf/);
   assert.match(data, /Feeding or attracting bears prohibited/);
   assert.match(data, /Aspen Fire/);
@@ -57,6 +58,22 @@ test("history route turns the working documents into an accessible chronology", 
   assert.match(data, /air\.arizona\.edu\/fire-on-the-mountain/);
   assert.match(data, /fseprd1178610\.pdf/);
   assert.match(header, /History/);
+});
+
+test("fact-checked timeline corrections remain in place", () => {
+  const recovery = historyEvents.find((event) => event.id === "fire-hardening");
+  const current = historyEvents.find((event) => event.id === "independence-pivot");
+  const scoutsBsa = historyEvents.find((event) => event.id === "coed-program");
+  const accreditation = historyEvents.find((event) => event.id === "accreditation");
+
+  assert.ok(recovery);
+  assert.equal(recovery.image, undefined);
+  assert.ok(current);
+  assert.doesNotMatch(current.detail, /Model Camp|Eagle Quest|Order of the Arrow/);
+  assert.ok(scoutsBsa);
+  assert.doesNotMatch(`${scoutsBsa.summary} ${scoutsBsa.detail}`, /co-ed/i);
+  assert.ok(accreditation);
+  assert.doesNotMatch(accreditation.summary, /National Camping School accreditation/);
 });
 
 test("Tribe of Papago source material is presented as a credited leader-guide history", () => {
