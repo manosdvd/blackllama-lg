@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
 import GuideDirectory from "../../components/GuideDirectory";
 import { getPublishedGuideArticles } from "../../lib/content-repository";
+
+export const metadata: Metadata = {
+  title: "2027 Leader's Guide",
+  description: "Search Camp Lawton arrival, packing, safety, policy, and leader logistics for the 2027 season.",
+};
 
 export default async function GuidePage() {
   const articles = await getPublishedGuideArticles();

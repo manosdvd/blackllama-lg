@@ -344,8 +344,8 @@ export const historyEvents: HistoryEvent[] = [
     era: "building",
     image: {
       src: "/images/history/vintageBryceLimingLyleBull1957.jpg",
-      alt: "Bryce Liming, Lyle Bull, and others at the camp pool construction site in 1957",
-      caption: "Scouters Bryce Liming and Lyle Bull leading the ambitious pool construction in 1957.",
+      alt: "Scouters Bryce Liming and Lyle Bull standing beside Butler Hall at Camp Lawton in 1957",
+      caption: "Bryce Liming and Lyle Bull beside Butler Hall in 1957, the year before the alpine pool opened.",
       label: "Archival photograph · 1957",
     },
   },

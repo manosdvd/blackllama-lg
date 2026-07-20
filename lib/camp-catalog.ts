@@ -28,6 +28,165 @@ const reviewedAt = new Date("2026-07-11T00:00:00Z");
 
 export const guideArticles: GuideArticle[] = [
   {
+    title: "Camp Purpose & Outcomes", slug: "camp-purpose-and-outcomes", category: "Start here", audience: "all", priority: "important", updatedAt: reviewedAt,
+    summary: "Why Camp Lawton exists, what participants should gain, and the behaviors the program is designed to strengthen.",
+    applicability: "All participants and sessions", tags: ["welcome", "mission", "goals", "outcomes", "values", "youth development"],
+    body: `## Welcome to Camp Lawton
+
+Camp Lawton exists to give young people a safe, welcoming, and memorable mountain-camp experience grounded in the Scout Oath and Scout Law. Camp supports—not replaces—the year-round work of the unit. Staff members provide instruction, facilities, traditions, and challenges while unit leaders continue to know, guide, and encourage their Scouts.
+
+The program combines advancement, outdoor adventure, service, fellowship, and time for a unit to grow together. Participants learn by doing in a setting where preparation, good judgment, teamwork, and care for other people matter every day.
+
+## Goals and Behavioral Outcomes
+
+Camp Lawton’s overall goal is for participants to return home more capable, confident, connected, and ready to contribute to their unit. The camp experience is designed to help participants:
+
+- Practice leadership by making plans, communicating clearly, and following through on responsibilities.
+- Demonstrate the Scout Oath and Scout Law through respectful choices, service, and care for shared spaces.
+- Use the buddy system, hydration, proper equipment, and staff direction as normal safety habits.
+- Build confidence by attempting age-appropriate challenges and responding constructively when plans change.
+- Strengthen relationships within the unit through shared work, meals, traditions, and recreation.
+- Develop outdoor skills and personal responsibility that can be applied after camp.
+
+## How Leaders Support These Outcomes
+
+Leaders help most when they prepare Scouts before arrival, involve youth leaders in planning, preserve reasonable free time, encourage reflection, and treat advancement as one part of a larger camp experience. Use [Build Your Unit Program](/guide/build-your-unit-program) to turn these outcomes into a practical week plan.`,
+  },
+  {
+    title: "Build Your Unit Program", slug: "build-your-unit-program", category: "Plan the unit program", audience: "leaders", priority: "important", updatedAt: reviewedAt,
+    summary: "A leader workflow for balancing advancement, adventure, rest, service, and youth-led unit goals.",
+    applicability: "Unit leaders and youth leaders", tags: ["unit program", "program planning", "schedule", "balance", "first year", "games", "youth growth"],
+    body: `## Build a Balanced Unit Program
+
+Start with the unit’s goals and the needs of individual Scouts. Camp staff and published activities supplement the unit program; they do not remove the unit leader’s responsibility to build a realistic schedule.
+
+1. Ask Scouts what they want to learn, try, and contribute at camp.
+2. Identify unit goals for advancement, leadership, service, fellowship, and outdoor skills.
+3. Leave room for travel between areas, meals, rest, hydration, campsite duties, and unexpected changes.
+4. Avoid measuring a successful week only by the number of completed requirements.
+5. Prepare a first choice and an alternate for activities that may have limited capacity or change because of staffing, weather, fire restrictions, or safety conditions.
+6. Review the plan with youth leaders and revise it during camp when a different choice better supports growth.
+
+## Program Planning Checklist
+
+- Choose a reasonable activity load; a schedule packed from morning through evening leaves little room for recovery, unit life, or spontaneous opportunities.
+- Balance structured advancement with adventure, service, campwide traditions, and unstructured time.
+- Match activities to each Scout’s current skills, maturity, interests, and physical readiness.
+- Plan how adults will supervise while still giving youth leaders meaningful responsibility.
+- Keep alternate activities ready and follow only the final schedule published by camp.
+
+:::placeholder First-year camper options
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+:::placeholder Final age and physical restrictions
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+:::placeholder Additional program costs
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+:::placeholder Campwide games and competition preparation
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+## Next Planning Steps
+
+Review [Program Requirements & Materials](/guide/program-requirements-and-materials) before assigning advancement activities, and use [Preparation, Training & Risk Advisory](/guide/preparation-training-and-risk-advisory) to assess readiness.`,
+  },
+  {
+    title: "Preparation, Training & Risk Advisory", slug: "preparation-training-and-risk-advisory", category: "Prepare", audience: "all", priority: "critical", updatedAt: reviewedAt,
+    summary: "Readiness guidance for Camp Lawton’s elevation, terrain, weather, fire environment, and activity expectations.",
+    applicability: "All participants and sessions", tags: ["preparation", "training", "conditioning", "risk", "altitude", "weather", "fire", "wildlife"],
+    body: `## Preparation and Training
+
+Camp Lawton is a high-elevation mountain camp reached by a steep, winding road. Participants should arrive ready to walk on uneven and rocky ground, carry water and personal gear, manage cool evenings and rapid weather changes, and follow safety instructions without delay.
+
+Before camp, units should:
+
+- Practice regular walking or hiking appropriate to each participant’s ability.
+- Break in closed-toe footwear and practice carrying the day pack and water container that will be used at camp.
+- Reinforce hydration, sun protection, buddy-system, and lightning-safety habits.
+- Review personal health needs, accommodations, emergency medications, and activity limitations with the appropriate leader and healthcare professional.
+- Ensure adults complete all registration and training required by Scouting America and the final session materials.
+- Teach Scouts how to report illness, injury, unsafe behavior, changing conditions, and missing buddies promptly.
+
+:::placeholder Program-specific conditioning, experience, and training
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+## Risk Advisory
+
+Outdoor camping and program activities involve inherent risks. At Camp Lawton these can include altitude effects; strenuous walking; uneven terrain; falling branches or rocks; vehicle travel on mountain roads; heat, cold, rain, lightning, hail, and strong wind; wildfire and smoke; wildlife and insects; dehydration; and activity-specific hazards.
+
+Conditions can change quickly. Camp leadership may move, modify, delay, or cancel activities when weather, fire restrictions, staffing, equipment, health, or another safety concern requires it. Participants must use required protective equipment, remain within their abilities, follow staff direction, and report hazards or symptoms immediately. No guide can identify every risk, and participation does not eliminate the need for individual judgment and appropriate medical advice.
+
+For operating procedures, read [Fire, Weather & Wildlife](/guide/fire-weather-and-wildlife) and [Health, Safety & Youth Protection](/guide/health-safety-and-youth-protection).`,
+  },
+  {
+    title: "Program Requirements & Materials", slug: "program-requirements-and-materials", category: "Prepare", audience: "all", priority: "important", updatedAt: reviewedAt,
+    summary: "The canonical place to check equipment, prerequisites, and materials before assigning advancement activities.",
+    applicability: "Participants taking advancement or specialty programs", tags: ["equipment", "prerequisites", "materials", "merit badges", "advancement", "fishing", "trek"],
+    body: `## Equipment Needs
+
+Every participant should first follow the general [Packing List](/guide/packing-list). Activity-specific personal equipment—such as fishing gear, trek equipment, tools, protective clothing, or specialty supplies—must come only from the final published program catalog or registration instructions.
+
+:::placeholder Final activity-specific personal equipment
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+## Prerequisites
+
+:::placeholder Final merit badge and program prerequisites
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+## Materials Required
+
+:::placeholder Final advancement materials participants must bring
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+## Before Assigning Activities
+
+Do not use draft schedules, capacities, fees, or requirement lists to promise a seat or completion. Confirm the final catalog, then help each Scout complete published prerequisites and pack the listed materials before arrival. Interest forms on this site are planning tools only.`,
+  },
+  {
+    title: "Daily Camp Life", slug: "daily-camp-life", category: "Daily camp life", audience: "all", priority: "important", updatedAt: reviewedAt,
+    summary: "One practical overview of arrival, meals, campsites, visitors, the daily rhythm, and departure.",
+    applicability: "All participants, leaders, and approved visitors", tags: ["arrival", "departure", "schedule", "meals", "campsites", "visitors", "daily life"],
+    body: `## Daily Camp Life
+
+Camp life combines scheduled program, meals, unit responsibilities, travel time, rest, and campwide activities. Unit leaders remain responsible for supervision, accountability, and a healthy pace throughout the session.
+
+## Arrival and Departure
+
+Follow the published arrival window, back vehicles into assigned parking, complete roster and medical review, and attend required briefings. Before departure, clear the campsite, return issued equipment, complete checkout with staff, and keep emergency routes open. See [Arrival & Check-In](/guide/arrival-and-check-in) and the [Departure Checklist](/guide/departure-checklist).
+
+## Typical Daily Schedule
+
+:::placeholder Final typical daily schedule
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+## Meals
+
+Units should arrive at meals on time, follow Dining Hall directions, help with assigned responsibilities, and communicate dietary needs through the final published process. Food and scented items must be stored as directed; do not keep them unsecured in campsites.
+
+## Campsite Responsibilities
+
+Units care for their assigned site, keep routes clear, conserve water, manage trash and food safely, post the Fireguard Chart, respect quiet hours, and report hazards or damage. Review [Facilities & Campsites](/guide/facilities-and-campsites) for available amenities and current site practices.
+
+## Visitors
+
+Visitors require approval before arrival, sign in and out, follow all camp rules, and remain with their host unit or assigned escort. Overnight visitors must meet current registration, leadership, and medical requirements. See [Camp Policies](/guide/camp-policies#visitors-and-camp-security).
+
+## Leader Coordination
+
+Use the meetings, communication channels, headcounts, medication plan, and unit-duty procedures announced at check-in. [Leader Logistics](/guide/leader-logistics) provides the detailed operating checklist.`,
+  },
+  {
     title: "Arrival & Check-In", slug: "arrival-and-check-in", category: "Arrival", audience: "all", priority: "important", updatedAt: reviewedAt,
     summary: "Arrival windows, parking, paperwork, medication handoff, and required first-day briefings.",
     applicability: "BSA weeks and Cub Scout Weekend", tags: ["arrival", "check-in", "parking", "medications", "forms"],
@@ -82,7 +241,7 @@ Before evening program begins, leaders should:
 - Establish unit expectations for hydration, uniforms, devices, quiet hours, and free time`,
   },
   {
-    title: "Dates, Fees & Registration", slug: "dates-fees-and-registration", category: "Start here", audience: "all", priority: "important", updatedAt: reviewedAt,
+    title: "Dates, Fees & Registration", slug: "dates-fees-and-registration", category: "Register & pay", audience: "all", priority: "important", updatedAt: reviewedAt,
     summary: "2027 session dates, planning status, fee publication, and the Black Pug registration boundary.",
     applicability: "All 2027 sessions", tags: ["dates", "fees", "registration", "black pug"],
     body: `| Camp Information | Details |
@@ -101,9 +260,25 @@ Before evening program begins, leaders should:
 | **Future Dates** | **2028:** Scout weeks May 30–June 17 · Cub weekend June 23–25. **2029:** Scout weeks May 29–June 16 · Cub weekend June 22–24. |
 
 
-## Registration boundary
+## Registration and Financial Planning
 
-Interest forms on this site are non-binding planning tools. They do not reserve a campsite, register a participant, guarantee a merit badge seat, or collect payment. Official registration will be completed separately through Black Pug in spring.`,
+Interest forms on this site are non-binding planning tools. They do not reserve a campsite, register a participant, guarantee a merit badge seat, or collect payment. Official registration will be completed separately through Black Pug in spring.
+
+:::placeholder Final reservation and registration process, timeline, and key dates
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+:::placeholder Participant fees and payment schedule
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+:::placeholder Refund policy
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+:::placeholder Financial assistance and campership options
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::`,
   },
   {
     title: "Packing List", slug: "packing-list", category: "Prepare", audience: "all", priority: "important", updatedAt: new Date("2026-07-16T00:00:00Z"),
@@ -166,7 +341,7 @@ The final registration packet and current camp instructions control if they diff
 - Anything inconsistent with the Scout Oath, Scout Law, or final camp rules`,
   },
   {
-    title: "Camp Policies", slug: "camp-policies", category: "Policies", audience: "all", priority: "critical", updatedAt: reviewedAt,
+    title: "Camp Policies", slug: "camp-policies", category: "Health & safety", audience: "all", priority: "critical", updatedAt: reviewedAt,
     summary: "National Forest permit requirements, vehicles, wildlife, prohibited items, and quiet operation.",
     applicability: "All visitors and sessions", tags: ["policies", "usfs", "vehicles", "wildlife", "prohibited"],
     body: `## Campwide Rules at a Glance
@@ -236,7 +411,15 @@ Visitors must be approved before arrival.
     title: "Health, Safety & Youth Protection", slug: "health-safety-and-youth-protection", category: "Health & safety", audience: "all", priority: "critical", updatedAt: reviewedAt,
     summary: "Medical records, medication control, two-deep leadership, buddy system, and incident reporting.",
     applicability: "All sessions", tags: ["health", "safety", "ypt", "buddy system", "medical"],
-    body: `## Safeguarding Youth
+    body: `## Health and Safety Planning
+
+Bring current health records, disclose relevant accommodations and dietary needs through the final approved process, and arrive with medications in original labeled containers. Unit leaders must maintain required supervision and be prepared to account for every participant during routine movement and emergencies.
+
+:::placeholder Medical form and dietary-request submission deadlines
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+:::
+
+## Safeguarding Youth
 
 All participants are responsible for maintaining Scouting America’s youth-safety standards.
 
@@ -465,7 +648,7 @@ Friday includes arrival, campsite setup, safety briefing, dinner, and staff camp
 The climbing wall is limited to Group C, Webelos and Arrow of Light, with certified supervision. Tigers, Wolves, and Bears may not enter the climbing activity area.`,
   },
   {
-    title: "Leader Logistics", slug: "leader-logistics", category: "During camp", audience: "leaders", priority: "normal", updatedAt: reviewedAt,
+    title: "Leader Logistics", slug: "leader-logistics", category: "Daily camp life", audience: "leaders", priority: "normal", updatedAt: reviewedAt,
     summary: "Daily meetings, camp communications, issued equipment, and unit responsibilities.",
     applicability: "Unit and den leaders", tags: ["leaders", "spl", "radio", "meetings", "communication"],
     body: `## SPL and Leaders Meeting
@@ -599,7 +782,7 @@ For routine matters, begin with the Troop Friend or appropriate Area Director. G
 - [ ] Descend the mountain safely`,
   },
   {
-    title: "Fire, Weather & Wildlife", slug: "fire-weather-and-wildlife", category: "During camp", audience: "all", priority: "critical", updatedAt: reviewedAt,
+    title: "Fire, Weather & Wildlife", slug: "fire-weather-and-wildlife", category: "Health & safety", audience: "all", priority: "critical", updatedAt: reviewedAt,
     summary: "How to interpret online conditions and follow current staff and USFS direction.",
     applicability: "All sessions", tags: ["fire", "weather", "wildlife", "restrictions"],
     body: `![Mt. Bigelow forest canopy](/images/history/mtBigalow.jpg)
@@ -686,7 +869,7 @@ For a bear or mountain lion, do not run. Make yourself recognizable as a human, 
 Final Saturday departure is no later than **11:30 AM** unless camp leadership publishes another session-specific time.`,
   },
   {
-    title: "Facilities & Campsites", slug: "facilities-and-campsites", category: "About Lawton", audience: "all", priority: "normal", updatedAt: reviewedAt,
+    title: "Facilities & Campsites", slug: "facilities-and-campsites", category: "Daily camp life", audience: "all", priority: "normal", updatedAt: reviewedAt,
     summary: "Sleeping platforms, shared facilities, parking limits, and campsite expectations.",
     applicability: "All sessions", tags: ["facilities", "campsites", "sleeping", "parking"],
     body: `## Campsite Amenities

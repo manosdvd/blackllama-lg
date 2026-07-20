@@ -3,6 +3,27 @@ import Link from "next/link";
 
 const inlineToken = /(\*\*[^*\n]+\*\*|\*[^*\n]+\*|_[^_\n]+_|\[[^\]]+\]\((?:\/|https:\/\/)[^)]+\))/;
 
+export type MarkdownHeading = { level: 1 | 2 | 3; text: string; id: string };
+
+export function markdownHeadingId(text: string): string {
+  return text
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[*_]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export function extractMarkdownHeadings(source: string): MarkdownHeading[] {
+  return source.split(/\r?\n/).flatMap((line) => {
+    const match = /^(#{1,3})\s+(.+)$/.exec(line.trim());
+    if (!match) return [];
+    const level = match[1].length as 1 | 2 | 3;
+    const text = match[2].replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[*_]/g, "");
+    return [{ level, text, id: markdownHeadingId(text) }];
+  });
+}
+
 function inlineContent(text: string): ReactNode[] {
   return text.split(inlineToken).filter(Boolean).map((part, index) => {
     if (part.startsWith("**") && part.endsWith("**")) return <strong key={index}>{part.slice(2, -2)}</strong>;
@@ -30,6 +51,7 @@ function isTableDivider(line: string): boolean {
 function startsBlock(lines: string[], index: number): boolean {
   const line = lines[index] ?? "";
   return /^#{1,3}\s/.test(line)
+    || line.startsWith(":::placeholder ")
     || /^-\s+/.test(line)
     || /^\d+\.\s+/.test(line)
     || /^!\[[^\]]*\]\(.+\)$/.test(line)
@@ -49,6 +71,25 @@ export default function MarkdownContent({ source }: { source: string }) {
     }
 
     const key = blocks.length;
+    if (line.startsWith(":::placeholder ")) {
+      const title = line.slice(":::placeholder ".length).trim();
+      const body: string[] = [];
+      index += 1;
+      while (index < lines.length && lines[index].trim() !== ":::") {
+        if (lines[index].trim()) body.push(lines[index].trim());
+        index += 1;
+      }
+      if (lines[index]?.trim() === ":::") index += 1;
+      blocks.push(
+        <aside className="guide-placeholder" role="note" key={key}>
+          <span>Placeholder · awaiting approved 2027 information</span>
+          <h3>{title}</h3>
+          <strong>Approved 2027 information has not yet been published. Do not rely on this section for planning.</strong>
+          {body.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{inlineContent(paragraph)}</p>)}
+        </aside>,
+      );
+      continue;
+    }
     if (/^!\[[^\]]*\]\(.+\)$/.test(line)) {
       const match = /^!\[([^\]]*)\]\((.+)\)$/.exec(line);
       if (match) {
@@ -59,17 +100,20 @@ export default function MarkdownContent({ source }: { source: string }) {
       }
     }
     if (line.startsWith("### ")) {
-      blocks.push(<h3 key={key}>{inlineContent(line.slice(4))}</h3>);
+      const text = line.slice(4);
+      blocks.push(<h3 id={markdownHeadingId(text)} key={key}>{inlineContent(text)}</h3>);
       index += 1;
       continue;
     }
     if (line.startsWith("## ")) {
-      blocks.push(<h2 key={key}>{inlineContent(line.slice(3))}</h2>);
+      const text = line.slice(3);
+      blocks.push(<h2 id={markdownHeadingId(text)} key={key}>{inlineContent(text)}</h2>);
       index += 1;
       continue;
     }
     if (line.startsWith("# ")) {
-      blocks.push(<h1 key={key}>{inlineContent(line.slice(2))}</h1>);
+      const text = line.slice(2);
+      blocks.push(<h1 id={markdownHeadingId(text)} key={key}>{inlineContent(text)}</h1>);
       index += 1;
       continue;
     }
