@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import SiteFooter from "../../components/SiteFooter";
 import SiteHeader from "../../components/SiteHeader";
+
+export const metadata: Metadata = {
+  title: "Accessibility",
+  description: "Accessibility support and barrier-reporting guidance for the Camp Lawton Leader Hub.",
+};
 
 export default function AccessibilityPage() {
   return <main>

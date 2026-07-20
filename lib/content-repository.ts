@@ -11,9 +11,11 @@ import {
 } from "./public-content";
 import { bsaSchedule, cubSchedule, findGuideArticle, guideArticles, type GuideArticle } from "./camp-catalog";
 import { isGuideArticlePublic } from "./site-features";
+import { hasLeaderGuideRequirements } from "./leader-guide-requirements";
 
 export async function getPublishedArticle(slug: string): Promise<PublicArticle | null> {
   if (!isGuideArticlePublic(slug)) return null;
+  const fallback = findGuideArticle(slug);
   try {
     const [article] = await getDb().select().from(articles)
       .where(and(eq(articles.slug, slug), eq(articles.status, "published"))).limit(1);
@@ -22,12 +24,13 @@ export async function getPublishedArticle(slug: string): Promise<PublicArticle |
         title: article.title, slug: article.slug, summary: article.summary, body: article.body,
         applicability: article.applicability ?? "All sessions", priority: article.priority ?? "normal",
         updatedAt: article.reviewedAt ?? article.publishedAt ?? article.updatedAt,
+        ...(fallback && hasLeaderGuideRequirements(slug) ? { body: fallback.body } : {}),
       };
     }
   } catch {
     // The canonical fallback keeps the public guide usable before local D1 is migrated.
   }
-  return findGuideArticle(slug) ?? null;
+  return fallback ?? null;
 }
 
 export async function getPublishedGuideArticles(): Promise<GuideArticle[]> {
@@ -41,7 +44,7 @@ export async function getPublishedGuideArticles(): Promise<GuideArticle[]> {
         ...fallback,
         title: article.title,
         summary: article.summary,
-        body: article.body,
+        body: hasLeaderGuideRequirements(fallback.slug) ? fallback.body : article.body,
         applicability: article.applicability ?? fallback.applicability,
         priority: article.priority ?? fallback.priority,
         updatedAt: article.reviewedAt ?? article.publishedAt ?? article.updatedAt,

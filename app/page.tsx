@@ -8,10 +8,23 @@ import SiteHeader from "../components/SiteHeader";
 
 const guideSections = [
   {
+    id: "purpose",
+    title: "Camp purpose & outcomes",
+    summary: "The big picture, core values, and behavioral outcomes the camp experience is designed to strengthen.",
+    tags: "welcome purpose mission goals outcomes values youth development PD-101",
+    href: "/guide/camp-purpose-and-outcomes",
+    body: [
+      "Camp combines advancement, outdoor adventure, service, fellowship, and unit growth.",
+      "Participants practice leadership, responsible safety habits, confidence, service, and care for shared spaces.",
+      "Staff supplement the unit program while unit leaders continue to know and guide their Scouts.",
+    ],
+  },
+  {
     id: "arrival",
     title: "Arrival & check-in",
     summary: "Arrival windows, parking, forms, medication handoff, and the required safety briefing.",
     tags: "arrival paperwork vehicles medication",
+    href: "/guide/arrival-and-check-in",
     body: [
       "Week 1 arrives Tuesday; Weeks 2 and 3 arrive Sunday. Check-in is 1:00–3:00 PM.",
       "Back vehicles into marked spaces. Vehicles are not permitted beyond the designated parking area.",
@@ -24,6 +37,7 @@ const guideSections = [
     title: "Camp policies",
     summary: "National Forest requirements, Leave No Trace, vehicles, wildlife, and prohibited items.",
     tags: "policies usfs leave no trace fire wildlife",
+    href: "/guide/camp-policies",
     body: [
       "Camp Lawton operates on National Forest land under a USFS Special Use Permit; permit conditions prevail.",
       "Stay on established trails, pack out waste, never feed wildlife, and store food and scented items as directed.",
@@ -36,6 +50,7 @@ const guideSections = [
     title: "Health, safety & youth protection",
     summary: "Medical forms, buddy system, two-deep leadership, emergency procedures, and reporting.",
     tags: "health safety youth protection buddy medical emergency",
+    href: "/guide/health-safety-and-youth-protection",
     body: [
       "All adults must be registered Scouting America members with current Youth Protection Training.",
       "Two-deep leadership and the buddy system are required. One-on-one adult/youth contact is prohibited.",
@@ -48,6 +63,7 @@ const guideSections = [
     title: "Packing & paperwork",
     summary: "The high-priority documents and practical items leaders should verify before departure.",
     tags: "packing paperwork forms roster checklist",
+    href: "/guide/packing-list",
     body: [
       "Organize the roster, current health records, emergency contacts, accommodation information, and medication materials required by final registration and check-in guidance.",
       "Confirm the current adult registration and training documentation required for the session.",
@@ -60,6 +76,7 @@ const guideSections = [
     title: "Leader logistics",
     summary: "Daily meetings, camp communications, equipment returns, and departure clearance.",
     tags: "leader spl meeting communication departure radio",
+    href: "/guide/daily-camp-life",
     body: [
       "SPL and leader meetings are held daily at 12:55 PM for 30 minutes.",
       "Cell service may be limited. Camp communications are the primary channel while on site.",
@@ -71,7 +88,8 @@ const guideSections = [
     id: "program",
     title: "2027 program input",
     summary: "How unit interest can help Camp Lawton shape a strong 2027 program.",
-    tags: "program merit badges interest survey activities",
+    tags: "program merit badges interest survey activities prerequisites materials equipment first year age restrictions fees games",
+    href: "/guide/build-your-unit-program",
     body: [
       "The merit badge list and class schedule are still in development.",
       "Unit interest helps staff prioritize instructors, equipment, and appropriate capacity.",
@@ -115,7 +133,7 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-media">
-          <img src="/images/home-hero.webp" width={1920} height={1446} alt="Scouts sharing a hand-clapping game beneath the pines at Camp Lawton" fetchPriority="high" />
+          <img src="/images/home-amphitheater.webp" width={1920} height={1446} alt="Scouts and leaders gathered in the Camp Lawton amphitheater beneath ponderosa pines" fetchPriority="high" />
           <p className="hero-photo-note"><span>Camp today</span> Friendship, skills, and a week lived outdoors.</p>
           <figure className="hero-archive-card">
             <img src="/images/history/camp-lawton-early-gate.jpeg" width={570} height={420} alt="The early stone entrance gate to Camp Lawton" />
@@ -209,7 +227,7 @@ export default function Home() {
           <label className="search-box">
             <span className="sr-only">Search the leader’s guide</span>
             <span aria-hidden="true">⌕</span>
-            <input value={guideQuery} onChange={(event) => setGuideQuery(event.target.value)} placeholder="Search forms, fire, arrival…" />
+            <input value={guideQuery} onChange={(event) => setGuideQuery(event.target.value)} placeholder="Search fees, forms, prerequisites…" />
           </label>
         </div>
         <div className="guide-layout">
@@ -221,8 +239,7 @@ export default function Home() {
                   <span className="round-arrow" aria-hidden="true">+</span>
                 </summary>
                 <ul>{item.body.map((line) => <li key={line}>{line}</li>)}</ul>
-                {item.id === "arrival" && <Link className="guide-article-link" href="/guide/arrival-and-check-in">Read the reviewed article →</Link>}
-                {item.id === "packing" && <Link className="guide-article-link" href="/guide/packing-list">Build your packing checklist →</Link>}
+                <Link className="guide-article-link" href={item.href}>{item.id === "packing" ? "Build your packing checklist" : "Read the full guidance"} →</Link>
               </details>
             ))}
             {filteredGuide.length === 0 && <p className="empty-state">No guide sections match “{guideQuery}”. Try a broader term.</p>}

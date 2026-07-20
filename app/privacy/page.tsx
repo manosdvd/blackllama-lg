@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import SiteHeader from "../../components/SiteHeader";
 import SiteFooter from "../../components/SiteFooter";
+
+export const metadata: Metadata = {
+  title: "Privacy",
+  description: "How the Camp Lawton Leader Hub collects, uses, protects, and deletes 2027 planning information.",
+};
 
 export default function PrivacyPage() { return <main><SiteHeader /><article className="policy-page"><p className="section-kicker">Site policy</p><h1>Privacy</h1><p className="policy-lead">Camp Lawton collects only the information needed to estimate 2027 attendance, understand program interest, and follow up with units.</p><h2>What the pre-registration form collects</h2><p>Unit identity, aggregate youth and adult counts, adult contact information, merit badge interest counts and priorities, optional unit-level badge interest notes, and an accommodation follow-up request without health details. Badge notes must not contain Scout names, health details, or other personal information.</p><h2>What it does not collect</h2><p>The form does not collect youth names, payment information, birth dates, medical records, medication details, safeguarding documents, or official registration data.</p><h2>Use and access</h2><p>Pre-registration submissions are available only to authorized Camp Lawton staff. Adult names and contact details must not be placed in public URLs, public analytics, or email subject lines. Aggregate attendance and badge interest may be used to guide staffing, capacity, and the eventual 2027 program; survey candidates are not a final badge list or schedule.</p><h2>Retention</h2><p>2027 pre-registration submissions are scheduled for deletion after the summer season and administrative closeout, no later than August 31, 2027 unless a shorter retention period is adopted.</p><h2>Official registration</h2><p>This non-binding survey does not replace Black Pug. Official registration, participant records, and payment are handled separately.</p><p className="policy-updated">Last reviewed July 16, 2026. Final council privacy review is required before public data collection opens.</p></article><SiteFooter /></main>; }

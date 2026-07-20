@@ -14,6 +14,7 @@ import {
   type CampMapLocation,
   type MapCategory,
 } from "../lib/camp-map";
+import MarkdownContent from "./MarkdownContent";
 
 type CategoryFilter = "all" | MapCategory;
 type MobileView = "map" | "list";
@@ -304,7 +305,7 @@ export default function InteractiveCampMap() {
           style={{ transform: `translate(calc(-50% + ${pan.x}px), calc(-50% + ${pan.y}px)) scale(${zoom})` }}
         >
           <div className="map-artwork" aria-hidden="true">
-            <img src="/map/camp-lawton-map.webp" width={2400} height={3164} alt="" draggable={false} />
+            <img src="/map/Camp-Lawton-Map.png" width={2400} height={3164} alt="" draggable={false} />
           </div>
           {filteredLocations.flatMap((location) => (location.points ?? [{ x: location.x, y: location.y }]).map((point, pointIndex) => (
             <button
@@ -353,7 +354,15 @@ export default function InteractiveCampMap() {
           <div className="map-detail-copy">
             <div className={`map-detail-category category-${selected.category}`}><CategorySymbol category={selected.category} /><span>{mapCategoryLabels[selected.category]}</span></div>
             <h3 ref={detailTitleRef} tabIndex={-1}>{selected.title}</h3>
-            <p>{selected.description}</p>
+            <div className="map-detail-description"><MarkdownContent source={selected.description} /></div>
+            {(selected.capacity != null || selected.access) && <div className="map-detail-quick-stats">
+              {selected.capacity != null && selected.capacity > 0 && <div className="map-stat-badge"><strong>Capacity</strong><span>{selected.capacity} campers</span></div>}
+              {selected.access && <div className="map-stat-badge"><strong>Access</strong><span>{selected.access}</span></div>}
+            </div>}
+            {selected.meritBadges?.length ? <div className="map-detail-badges-list">
+              <h4>Potential program subjects</h4>
+              <div className="map-badge-chips">{selected.meritBadges.map((badge) => <span className="map-badge-chip" key={badge}>{badge}</span>)}</div>
+            </div> : null}
             <dl>
               <div><dt>Orientation</dt><dd>{selected.nearby}</dd></div>
             </dl>

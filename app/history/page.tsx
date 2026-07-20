@@ -5,7 +5,7 @@ import SiteHeader from "../../components/SiteHeader";
 import { historyEvents, historySourceDocuments } from "../../lib/camp-history";
 
 export const metadata: Metadata = {
-  title: "A Century on the Mountain · Camp Lawton History",
+  title: "A Century on the Mountain · History",
   description: "Explore an interactive timeline of Camp Lawton from its 1921 founding through a century of service, resilience, and renewal.",
 };
 
