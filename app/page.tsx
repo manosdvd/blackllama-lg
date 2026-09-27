@@ -6,7 +6,8 @@ import { ConditionsHud, FireSummaryCard, WeatherSummaryCard, useLiveConditions }
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
-import { OFFICIAL_REGISTRATION_URL, WEEK1_REGISTRATION_URL, WEEK2_REGISTRATION_URL } from "../lib/registration";
+import { OFFICIAL_REGISTRATION_URL, WEEK1_REGISTRATION_URL, WEEK2_REGISTRATION_URL, MEDICAL_FORM_URL } from "../lib/registration";
+import { PREPARATION_TIMELINE } from "../data/timeline-data";
 
 const guideSections = [
   {
@@ -106,6 +107,8 @@ type CampNotice = { id: string; title: string; summary: string; urgency: string;
 export default function Home() {
   const [guideQuery, setGuideQuery] = useState("");
   const [campNotice, setCampNotice] = useState<CampNotice | null>(null);
+  const [activeTrack, setActiveTrack] = useState<"considering" | "preparing">("considering");
+  const [timelineFilter, setTimelineFilter] = useState<"all" | "leader" | "parent" | "scout">("all");
   const conditionsState = useLiveConditions();
 
   useEffect(() => {
@@ -120,6 +123,11 @@ export default function Home() {
     if (!query) return guideSections;
     return guideSections.filter((item) => `${item.title} ${item.summary} ${item.tags} ${item.body.join(" ")}`.toLowerCase().includes(query));
   }, [guideQuery]);
+
+  const filteredMilestones = useMemo(() => {
+    if (timelineFilter === "all") return PREPARATION_TIMELINE;
+    return PREPARATION_TIMELINE.filter((m) => m.responsible.includes(timelineFilter));
+  }, [timelineFilter]);
 
   return (
     <main>
@@ -189,6 +197,221 @@ export default function Home() {
         <Link href="/register"><span>02</span><strong>Fees &amp; early bird credits</strong><small>In-council &amp; out-of-council rates</small></Link>
         <Link href="/merit-badges"><span>03</span><strong>Merit badge program</strong><small>Catalog &amp; Feb 1 open date</small></Link>
         <Link href="/guide/packing-list"><span>04</span><strong>Interactive packing list</strong><small>Check off, save &amp; print</small></Link>
+      </section>
+
+      <section className="two-track-funnel" id="camp-pathways" aria-label="Camp Lawton pathways">
+        <div className="track-tabs" role="tablist">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTrack === "considering"}
+            onClick={() => setActiveTrack("considering")}
+            className={`track-tab ${activeTrack === "considering" ? "active" : ""}`}
+          >
+            <span className="track-badge">Track A · Prospective Units</span>
+            <strong>Considering Camp Lawton</strong>
+            <small>Why bring your troop to 7,900 feet this summer</small>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTrack === "preparing"}
+            onClick={() => setActiveTrack("preparing")}
+            className={`track-tab ${activeTrack === "preparing" ? "active" : ""}`}
+          >
+            <span className="track-badge">Track B · Registered Units</span>
+            <strong>Already Registered · Getting Ready</strong>
+            <small>Prep timeline, medical forms, parent guide &amp; packing</small>
+          </button>
+        </div>
+
+        {activeTrack === "considering" ? (
+          <div className="track-content considering-track" role="tabpanel">
+            <div className="track-intro">
+              <p className="section-kicker">High-Altitude Mountain Camp · 7,900 Feet</p>
+              <h2>Cool pine breezes. Zero desert heat. Real mountain scoutcraft.</h2>
+              <p className="track-lead">
+                High in the Santa Catalina Mountains on Mt. Lemmon, Camp Lawton is an escape from 105°F desert heat into 75°F pine-shaded days and crisp 50°F campfire evenings. With strictly 150-youth capped sessions, your Scouts won&apos;t get lost in mega-camp crowds. Experience natural rock climbing, marksmanship, dark-sky astronomy, and patrol traditions that build genuine leadership.
+              </p>
+            </div>
+
+            <div className="considering-features-grid">
+              <div className="feature-highlight-card">
+                <span className="feature-num">01</span>
+                <h4>Intimate 150-Youth Capped Sessions</h4>
+                <p>No 50-person classes. Small merit badge cohorts guarantee personal attention from enthusiastic staff and tight patrol camaraderie.</p>
+              </div>
+              <div className="feature-highlight-card">
+                <span className="feature-num">02</span>
+                <h4>Early Bird: In-Council $200 Paid In Full</h4>
+                <p>Register before 12/31/26: pay $200 (including deposit) and receive a $200 credit ($400 value). Out-of-council youth save $50.</p>
+              </div>
+              <div className="feature-highlight-card">
+                <span className="feature-num">03</span>
+                <h4>Real Badges &amp; 2027 Pirate Crew Adventures</h4>
+                <p>Natural granite rock climbing, dark-sky astronomy, pioneering, and our 2027 Pirate theme: Campsites are Ships, Dining Hall is the Galley!</p>
+              </div>
+            </div>
+
+            <div className="day-in-the-life-box">
+              <div className="day-heading">
+                <span className="section-kicker">A Day on the Mountain</span>
+                <h3>A Day in the Life at Camp Lawton</h3>
+                <p>A typical summer day lived outdoors at 7,900 feet:</p>
+              </div>
+              <div className="day-schedule-grid">
+                <div className="day-time-block">
+                  <span className="time">7:00 AM</span>
+                  <strong>Reveille &amp; Mountain Air</strong>
+                  <p>Wake up to crisp 55°F pine breezes, birdsong, and campsite patrol prep.</p>
+                </div>
+                <div className="day-time-block">
+                  <span className="time">7:45 AM</span>
+                  <strong>Morning Flag &amp; Breakfast</strong>
+                  <p>Troop assembly at the parade field, flag ceremony, and hot breakfast in the Galley.</p>
+                </div>
+                <div className="day-time-block">
+                  <span className="time">9:00 AM – 12:00 PM</span>
+                  <strong>Morning Merit Badge Blocks</strong>
+                  <p>Hands-on instruction across Scoutcraft, Climbing, Shooting Sports, and Ecology.</p>
+                </div>
+                <div className="day-time-block">
+                  <span className="time">12:30 PM</span>
+                  <strong>Lunch &amp; 12:55 PM Leader Huddle</strong>
+                  <p>Dining hall meal, followed by the daily 30-minute SPL and leader coordination meeting.</p>
+                </div>
+                <div className="day-time-block">
+                  <span className="time">1:30 PM – 4:30 PM</span>
+                  <strong>Afternoon Badges &amp; Open Program</strong>
+                  <p>Afternoon class blocks, open archery/rifle practice, handicraft tooling, and patrol hikes.</p>
+                </div>
+                <div className="day-time-block">
+                  <span className="time">5:45 PM</span>
+                  <strong>Evening Retreat &amp; Dinner</strong>
+                  <p>Lowering the colors, camp announcements, evening meal, and clean-up rotation.</p>
+                </div>
+                <div className="day-time-block">
+                  <span className="time">7:00 PM – 8:15 PM</span>
+                  <strong>Twilight Games &amp; Tribe Service</strong>
+                  <p>Campwide patrol games, disc golf, and Tribe of Papago return-camper service projects.</p>
+                </div>
+                <div className="day-time-block highlight">
+                  <span className="time">8:30 PM</span>
+                  <strong>Campfire Bowl &amp; Stargazing</strong>
+                  <p>Historic amphitheater campfires with troop skits and songs, followed by dark-sky astronomy.</p>
+                </div>
+                <div className="day-time-block">
+                  <span className="time">10:00 PM</span>
+                  <strong>Taps &amp; Mountain Quiet</strong>
+                  <p>Quiet hours and restful sleep on wooden tent platforms beneath tall ponderosa pines.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="track-actions">
+              <a className="button button-large" href={OFFICIAL_REGISTRATION_URL} target="_blank" rel="noreferrer">
+                Claim Your Campsite on Black Pug ↗
+              </a>
+              <a className="button button-secondary" href={WEEK1_REGISTRATION_URL} target="_blank" rel="noreferrer">
+                Save a Spot — Week 1 ↗
+              </a>
+              <a className="button button-secondary" href={WEEK2_REGISTRATION_URL} target="_blank" rel="noreferrer">
+                Save a Spot — Week 2 ↗
+              </a>
+              <Link className="button button-secondary" href="/register">
+                View All Fees &amp; Discounts →
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <div className="track-content preparing-track" role="tabpanel">
+            <div className="track-intro">
+              <p className="section-kicker">Departure-Ready Roadmap</p>
+              <h2>Step-by-Step Camp Preparation Timeline</h2>
+              <p className="track-lead">
+                Follow key deadlines from early bird registration to Sunday arrival. Filter by role to view exact tasks for Unit Leaders, Parents, or Scouts.
+              </p>
+            </div>
+
+            <div className="timeline-filter-bar">
+              <span>Filter By:</span>
+              {[
+                ["all", "All Milestones"],
+                ["leader", "Unit Leaders"],
+                ["parent", "Parents & Families"],
+                ["scout", "Scouts"],
+              ].map(([filterKey, filterLabel]) => (
+                <button
+                  key={filterKey}
+                  type="button"
+                  className={`filter-chip ${timelineFilter === filterKey ? "active" : ""}`}
+                  onClick={() => setTimelineFilter(filterKey as typeof timelineFilter)}
+                >
+                  {filterLabel}
+                </button>
+              ))}
+            </div>
+
+            <div className="milestones-timeline-grid">
+              {filteredMilestones.map((milestone) => (
+                <article key={milestone.id} className="milestone-card">
+                  <div className="milestone-header">
+                    <span className="milestone-timeframe">{milestone.timeframe}</span>
+                    <div className="milestone-roles">
+                      {milestone.responsible.map((r) => (
+                        <span key={r} className={`role-tag ${r}`}>
+                          {r === "leader" ? "Leader" : r === "parent" ? "Parent" : "Scout"}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <h3>{milestone.title}</h3>
+                  <p className="milestone-summary">{milestone.summary}</p>
+                  <ul className="milestone-bullets">
+                    {milestone.details.map((detail, idx) => (
+                      <li key={idx}>{detail}</li>
+                    ))}
+                  </ul>
+                  <div className="milestone-action">
+                    {milestone.actionUrl.startsWith("http") ? (
+                      <a href={milestone.actionUrl} target="_blank" rel="noreferrer" className="text-link">
+                        {milestone.actionText}
+                      </a>
+                    ) : (
+                      <Link href={milestone.actionUrl} className="text-link">
+                        {milestone.actionText}
+                      </Link>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="departure-cards-grid">
+              <div className="prep-quick-card">
+                <h4>Medical Forms (Parts A, B &amp; C)</h4>
+                <p>Annual physical signed by a licensed healthcare provider within 12 months is mandatory for all youth and adults.</p>
+                <a className="button button-small" href={MEDICAL_FORM_URL} target="_blank" rel="noreferrer">
+                  Download Form ABC (PDF) ↗
+                </a>
+              </div>
+              <div className="prep-quick-card">
+                <h4>Interactive Packing List</h4>
+                <p>Track mountain gear on this device with checked progress saved locally, gear warnings, and printable format.</p>
+                <Link className="button button-small button-secondary" href="/guide/packing-list">
+                  Open Packing Checklist →
+                </Link>
+              </div>
+              <div className="prep-quick-card">
+                <h4>Parent Portal &amp; Roster Lookup</h4>
+                <p>Manage your unit reservation, submit individual Scout information, and pay in installments on Black Pug.</p>
+                <a className="button button-small button-secondary" href={OFFICIAL_REGISTRATION_URL} target="_blank" rel="noreferrer">
+                  Open Parent Portal ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       <section className="home-tradition" aria-labelledby="camp-character-title">

@@ -1105,51 +1105,63 @@ The Barker Standard carries that same ethic into unit life: service that improve
     applicability: "All sessions", tags: ["faq", "help", "aquatics", "registration"],
     body: `## When will the merit badge list and class schedule be available?
 
-Official registration is open at https://scoutingevent.com/011-ScoutCamp2027. The SBSA Summer 2027 Merit Badge Catalog document has been published, and merit badge class registration opens on February 1, 2027 on Black Pug. Class sizes are limited.
+Official registration is open at https://scoutingevent.com/011-ScoutCamp2027. The SBSA Summer 2027 Merit Badge Catalog document has been published on OneDrive, and merit badge class registration opens on **February 1, 2027** on Black Pug. Class sizes are strictly limited to keep instructor-to-Scout ratios small.
 
-## How large is Camp Lawton?
+## Is it really 25 to 30 degrees cooler on Mt. Lemmon than down in Tucson or Phoenix?
 
-Camp Lawton is approximately 60 acres. The compact layout helps Scouts learn the property and know the staff, but the elevation and steep terrain make distances feel longer.
+Yes. Camp Lawton sits at roughly 7,900 feet elevation inside the Coronado National Forest. While Tucson and Phoenix are baking at 100°F–105°F+ in June, daytime camp temperatures are usually in the comfortable mid-70s with pine breezes. At night, it regularly drops into the 50s. You will definitely need warm sleeping layers and a light fleece or hoodie for campfire nights.
 
-## Why is there no aquatics program?
+## What does the 7,900-foot altitude mean for our Scouts?
 
-The former pool is no longer available. A future aquatics facility would require major funding, construction approval, and Forest Service authorization. Do not plan for swimming or boating in 2027\.
+Mountain air is thinner, cooler, and drier. Your body expels water faster than in the valley, and physical activity takes a little more effort during the first 24–48 hours. The number-one rule at Camp Lawton is hydration: every Scout and leader must carry a refillable water bottle everywhere, drink before feeling thirsty, and apply sunscreen generously. After day one, everyone adapts and hits their mountain stride.
 
-## Where do we register for 2027 Summer Camp?
+## What is the cell phone and electronics policy at camp?
 
-Official registration is completed online through the Black Pug system at https://scoutingevent.com/011-ScoutCamp2027. Early bird discounts and credits are available for registrations completed before December 31, 2026 and March 31, 2027. Registration is open to Units as well as Provisional Scouts and Adults.
+Camp Lawton is an intentional digital detox. Once you pass Mile Marker 6 on the Catalina Highway, cellular service fades out anyway. Scouts keep their phones tucked away in their packs during camp. This is not punitive — it is why camp friendships form so fast when kids talk, laugh, hike trails, and play cards around the picnic table. Unit leaders carry designated emergency communication devices and stay in contact with the camp office.
 
-## Can our unit arrive early or leave late?
+## How do you handle homesickness and emotional wellbeing?
 
-Only by prior arrangement with the Camp Director. The Staff need turnaround time to prepare the property safely.
+Homesickness is 100% normal, even for seasoned Scouts. Our staff and troop leaders use a proven, compassionate approach: keep Scouts engaged, active, and supported by their patrol buddies. Calling home on a smuggled phone usually makes homesickness spike. Instead, write real physical camp mail before the week begins! A letter from home waiting at mail call is magic. Send mail to: *Scout Name & Unit #, Camp Lawton, PO Box 786, Mt. Lemmon, AZ 85619*.
 
-## Can leaders drive gear to the campsite?
+## What is the food like? Can you accommodate food allergies and dietary needs?
 
-Not unless the Camp Director or Ranger specifically authorizes the vehicle. Assume you will be carrying gear from the parking area to your campsite. Navajo campsite has direct vehicle access, but is usually reserved for special needs units.
+We serve hearty, kid-tested camp meals three times daily in the dining hall (or 'the Galley' during our 2027 Pirate Crew season). We take food allergies, celiac disease, dairy intolerance, and religious dietary needs seriously. When you register on Black Pug, specify dietary needs in advance. Our kitchen team coordinates directly with the Camp Health Officer to prepare safe, cross-contamination-free alternatives so no Scout goes hungry. You may not cook or store food in campsites to prevent attracting wildlife.
+
+## Where do we register and how do Early Bird discounts work?
+
+Official registration is completed online through the Black Pug system at https://scoutingevent.com/011-ScoutCamp2027. Early bird discounts and credits are available for registrations completed before December 31, 2026 and March 31, 2027:
+- **In-Council Scouts:** Pay $200 before 12/31/26 (includes $40 deposit) and receive a $200 credit (*Paid In Full*). Pay $300 before 3/31/27 and receive a $100 credit.
+- **Out-of-Council Scouts:** $50 discount before 12/31/26; $25 discount before 3/31/27.
+- **Adult Leaders:** $100 per leader.
+- **Installment Payments:** Pay over time is available for all registrations through Black Pug.
+
+## What if a family can't afford camp fees?
+
+No Scout should miss out on summer camp because of money. Catalina Council offers campership assistance up to $360 per Scout. The application is confidential and handled directly through the council office. Reach out to your Scoutmaster or unit leader early in the spring to submit a campership request.
+
+## Can an individual Scout attend if our home troop isn't going?
+
+Yes! Camp Lawton welcomes Provisional campers. If your unit is not attending or is going a different week, individual Scouts can register as a *Provisional Scout* ($400 in-council / $450 out-of-council) on Black Pug. We pair provisional campers with approved host units and seasoned adult leadership so they experience the full troop camp atmosphere.
+
+## Why do vehicles stay in the parking area? Can we drive gear to our campsite?
+
+Camp Lawton operates on National Forest land under a strict USFS Special Use Permit. Beyond the designated gate, camp roads must remain clear for emergency vehicle access and youth pedestrian safety. Every participant carries their own gear from the parking lot to their campsite platform. Pack in backpacks, duffels, or sturdy wheeled totes that your Scout can handle. Navajo campsite has direct vehicle access reserved for special accommodation needs.
+
+## Why is there no aquatics or swimming program?
+
+Camp Lawton is a high-altitude mountain forest camp at 7,900 feet with no lake or swimming pool on property. We lean 100% into what our mountain terrain does best: rugged outdoor pioneer craft, natural rock climbing, marksmanship on dedicated ranges, ecology and astronomy under crystal-clear dark skies, and hands-on scoutcraft.
 
 ## Will we be allowed a campfire in our campsite?
 
-Possibly, but do not count on it. Fire restrictions are set by the Forest Service and can change quickly. Bring a complete no-flame plan. 
-
-## Is food provided? Can we make our own?
-
-Food is provided in the dining hall three meals each day. You may NOT cook or have food in your campsite at any time to prevent attracting wildlife. If you desire to cook your own treats or meals, make arrangements to use the fireplace at the dining hall.   
+Possibly, but do not count on it. Fire restrictions are set by the U.S. Forest Service and Coronado National Forest, and conditions can change rapidly. Always bring a complete no-flame alternative for campsite evening activities. Campwide campfires in the historic bowl are conducted in coordination with the Camp Ranger under USFS guidelines.
 
 ## Can families or friends visit?
 
-Only with advance approval. Visitors must sign in, follow all camp rules, remain with an escort or host unit, and sign out before leaving.
+Only with advance approval from camp administration. Visitors must sign in at the camp office, follow all camp rules, remain with an escort or host unit, and sign out before leaving. Overnight visitors must meet adult registration and Youth Protection Training standards.
 
-## Is there laundry in camp?
+## Who should receive a safety or health concern?
 
-No washing machine or laundry service is available. Pack enough clothing for the full session.
-
-## What should we do when a Scout is struggling emotionally?
-
-Stay calm, remain present, protect privacy, and involve the appropriate unit and camp leaders. Attend to basics such as water, food, rest, sensory load, and physical illness. Contact camp leadership promptly when a Scout needs more support than the unit can safely provide. In an immediate safety crisis, notify the Camp Health Officer or Camp Director at once.
-
-## Who should receive a complaint or safety concern?
-
-Routine issues may go through the Troop Friend or an Area Director. Health, safeguarding-youth, serious conduct, emergency, or property concerns should go directly to the Administration. If you feel the issue requires escalation beyond camp administration, we kindly request you inform us but your priority is to the safety of your scouts.`,
+Routine questions may go through your Troop Friend or an Area Director. Health, youth safeguarding, serious conduct, emergency, or property concerns should go directly to the Camp Director or Camp Health Officer in the Health Lodge. The health lodge is staffed 24/7 during camp sessions.`,
   },
 ];
 
