@@ -11,7 +11,7 @@ const [html, css, js] = await Promise.all([
 ]);
 
 test("preview includes the primary product sections", () => {
-  for (const id of ["guide", "schedule", "badges", "alerts", "preregister"]) {
+  for (const id of ["guide", "schedule", "badges", "alerts", "registration-callout"]) {
     assert.match(html, new RegExp(`id=["']${id}["']`));
   }
   assert.match(html, /Camp Lawton Leader Hub/);
@@ -23,7 +23,9 @@ test("preview includes real interactions rather than dead controls", () => {
   assert.match(js, /renderSchedule/);
   assert.match(js, /showModal/);
   assert.match(js, /renderPlan/);
-  assert.match(js, /interest-form/);
+  assert.doesNotMatch(js, /interest-form|form-success/);
+  assert.doesNotMatch(html, /pre.?registration|<form/i);
+  assert.match(html, /https:\/\/scoutingevent\.com\/011-ScoutCamp2027/);
 });
 
 test("preview has mobile and reduced-motion support", () => {

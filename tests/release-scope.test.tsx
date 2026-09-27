@@ -17,15 +17,16 @@ test("current navigation promotes approved release priorities only", () => {
   assert.match(html, /Leader's Guide|Leader&#x27;s guide/);
   assert.match(html, /href="\/guide\/packing-list"/);
   assert.match(html, /Packing checklist/);
-  assert.match(html, /Badge Survey|Merit badge survey/);
-  assert.match(html, /Pre-register/);
+  assert.match(html, /Registration/);
+  assert.match(html, /https:\/\/scoutingevent\.com\/011-ScoutCamp2027/);
+  assert.doesNotMatch(html, /pre.?register|survey/i);
   assert.doesNotMatch(html, /href="\/(?:schedule|my-plan|workspace)"/);
 
   const urls = sitemap().map((entry) => new URL(entry.url).pathname);
-  for (const path of ["/schedule", "/my-plan", "/workspace", "/guide/daily-rhythm-and-program", "/guide/cub-weekend-program"]) {
+  for (const path of ["/pre-register", "/schedule", "/my-plan", "/workspace", "/guide/daily-rhythm-and-program", "/guide/cub-weekend-program"]) {
     assert.ok(!urls.includes(path), `${path} must not be advertised in the sitemap`);
   }
-  for (const path of ["/guide", "/merit-badges", "/pre-register", "/history", "/tribe-of-papago"]) assert.ok(urls.includes(path));
+  for (const path of ["/guide", "/merit-badges", "/register", "/history", "/tribe-of-papago"]) assert.ok(urls.includes(path));
 });
 
 test("packing checklist is promoted from the primary public planning surfaces", async () => {
@@ -42,8 +43,9 @@ test("packing checklist is promoted from the primary public planning surfaces", 
 test("old planning URLs explain the pause and mutation paths are gated", async () => {
   const paused = renderToStaticMarkup(createElement(ProgramPlanningPaused, { tool: "schedule" }));
   assert.match(paused, /schedule is in development/);
-  assert.match(paused, /not final/);
-  assert.match(paused, /Start the planning survey/);
+  assert.match(paused, /Official registration is now open/);
+  assert.match(paused, /Register on Black Pug/);
+  assert.match(paused, /https:\/\/scoutingevent\.com\/011-ScoutCamp2027/);
 
   const [schedulePage, plannerPage, workspacePage, workspaceActions, editorActions] = await Promise.all([
     readFile(new URL("app/schedule/page.tsx", root), "utf8"),

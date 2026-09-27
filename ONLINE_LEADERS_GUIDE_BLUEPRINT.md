@@ -14,7 +14,7 @@ Build one mobile-first website that helps a leader move from interest to arrival
 3. Explore the week and merit badge offerings.
 4. Build a conflict-free schedule for each Scout.
 5. See urgent weather, fire, and camp notices.
-6. Submit a non-binding unit pre-registration and merit badge interest survey.
+6. Register units and provisional participants through the official council event page.
 
 The site should feel like Camp Lawton: historic, personal, outdoorsy, and energetic. It should not feel like a PDF placed on a webpage. The online guide becomes the canonical source; printable/PDF editions become exports or companion documents.
 
@@ -27,7 +27,7 @@ The site should feel like Camp Lawton: historic, personal, outdoorsy, and energe
 - Session-aware week schedule and merit badge catalog.
 - Personal schedule builder with conflict warnings and alternatives.
 - Weather, fire-danger, and staff-created alert center.
-- Unit pre-registration, roster, contact information, and ranked merit badge survey.
+- Official registration links, published fees, session deadlines, and council merit badge catalog.
 - Staff publishing tools for the Camp Director and Program Director.
 - Responsive, accessible, printable pages.
 
@@ -44,7 +44,7 @@ The site should feel like Camp Lawton: historic, personal, outdoorsy, and energe
 | Audience | Needs | Access |
 | --- | --- | --- |
 | Prospective family or leader | Understand the experience, dates, fees, and next steps | Public, no login |
-| Unit leader | Read the guide, plan schedules, submit pre-registration and roster | Public reading; authenticated workspace for saved/submitted data |
+| Unit leader | Read the guide and follow official registration links | Public reading; registration handled on Black Pug |
 | Scout or parent | Read shared information and view a leader-provided schedule | Public or read-only share link; no account required in phase 1 |
 | Program Director | Manage programs, badges, schedules, program notices, and guide content | Staff editor |
 | Camp Director | All editorial controls, policies, fees, alerts, submissions, and publishing | Staff administrator |
@@ -62,7 +62,7 @@ The site should feel like Camp Lawton: historic, personal, outdoorsy, and energe
 4. **Schedule**
 5. **Merit Badges**
 6. **Alerts**
-7. **Pre-Register**
+7. **Registration**
 
 On mobile, the most-used actions should remain visible: **Search**, **Today**, **My Plan**, and **Alerts**.
 
@@ -93,11 +93,7 @@ On mobile, the most-used actions should remain visible: **Search**, **Today**, *
 │   └── /:badge-slug
 ├── /my-plan
 ├── /alerts
-├── /pre-register
-│   ├── /unit
-│   ├── /roster
-│   ├── /interest-survey
-│   └── /review
+├── /register
 ├── /privacy
 ├── /accessibility
 └── /staff
@@ -105,7 +101,6 @@ On mobile, the most-used actions should remain visible: **Search**, **Today**, *
     ├── /program
     ├── /schedule
     ├── /alerts
-    ├── /submissions
     └── /settings
 ```
 
@@ -118,7 +113,7 @@ In under 20 seconds, a visitor should understand what Camp Lawton offers, when c
 ### Section order
 
 1. **Utility alert bar** — only appears when an active notice exists; urgency controls color and prominence.
-2. **Hero** — “A century of mountain adventure. Your 2027 crew starts here.” Primary actions: **Explore the program** and **Pre-register your unit**.
+2. **Hero** — “A century of mountain adventure. Your 2027 crew starts here.” Primary actions: **Explore the program** and **Register on Black Pug**.
 3. **2027 at a glance** — dates, program types, location, key limitations, and official-registration note.
 4. **Choose your camp** — week-long BSA, condensed session, and Cub weekend cards.
 5. **The Lawton experience** — program, advancement, campwide fun, history, and personal-scale advantages.
@@ -126,7 +121,7 @@ In under 20 seconds, a visitor should understand what Camp Lawton offers, when c
 7. **Program-area gallery** — badges and activities grouped by area.
 8. **History and spirit** — Camp Lawton since 1921, Tribe of Papago, traditions, and stewardship, with culturally sensitive wording reviewed before publication.
 9. **Prepare with confidence** — packing, paperwork, policies, fees, and arrival shortcuts.
-10. **Call to action** — merit badge interest survey and unit pre-registration.
+10. **Call to action** — official camp registration and the council merit badge catalog.
 11. **Footer** — council/camp contact, emergency-use phone note, address, privacy, accessibility, copyright, and “last updated.”
 
 ### Motion direction
@@ -270,43 +265,13 @@ Each alert contains title, plain-language summary, instructions, source, issued 
 
 **Implemented July 12, 2026:** the normalized live-conditions route, full public report, compact homepage summary, per-feed freshness states, warm-isolate last-success fallback, and conservative fire handling are complete. Scheduled staff notices are also live. Authenticated opt-in notifications remain a later Phase 4 item.
 
-## 9. Pre-registration and merit badge survey
+## 9. Official registration
 
-### Required disclaimer
+The site links to [Catalina Council’s Black Pug event page](https://scoutingevent.com/011-ScoutCamp2027) for unit and provisional registration. The registration page summarizes published session dates, fees, early bird savings, deadlines, and attachments. Merit badge class registration opens February 1, 2027.
 
-Display before the form and again before submission:
+The council event page and its badge catalog govern camp offerings. General badge guides remain educational references. Participant registration and payments are handled on Black Pug.
 
-> This is a non-binding pre-registration and planning survey. It does not reserve a campsite, register participants, guarantee merit badge seats, or collect payment. Official registration will be available through Black Pug in spring.
-
-### Step-by-step flow
-
-1. **Unit:** council, unit type and number, city/state, selected session, estimated youth/adults, accessibility/accommodation follow-up request.
-2. **Contacts:** primary and alternate adult leader name, email, phone, preferred contact method, authorization checkbox.
-3. **Roster:** Scout display name or first name/last initial by default, age/rank/program, optional planning notes. Do not collect birth dates or health details.
-4. **Interest survey:** enter the number of interested Scouts for each merit badge and rank overall viability/priority for the unit.
-5. **Review:** summary, privacy notice, disclaimer, consent, and submit.
-6. **Confirmation:** reference number, emailed receipt, edit link with expiration, and official-registration reminder.
-
-### Survey design
-
-The merit badge survey should be a structured grid with search and program-area filters. Each badge records:
-
-- Number interested.
-- Unit priority: must-have, strong interest, nice-to-have, or no interest.
-- Optional note.
-
-The staff dashboard aggregates demand by badge, session, unit, and program area. It must label all results as planning demand, not enrollment.
-
-**Implemented July 12, 2026:** `masterMB.csv` now drives a separate 84-badge survey catalog with search, area/feasibility/tier filters, count, priority, optional privacy-bounded notes, API allowlisting, attendance caps, backward-compatible snapshot parsing, staff session/priority aggregation, and long-form demand export. The smaller scheduled-offering catalog remains separate for the explorer and conflict planner.
-
-### Roster privacy
-
-- Collect the minimum useful youth information.
-- Keep rosters private to authorized unit leaders and designated camp staff.
-- Encrypt data in transit and at rest.
-- Never expose roster data in public URLs, analytics, logs, or email subject lines.
-- Define and publish a retention schedule; recommended default is deletion after the season plus an administrative closeout period.
-- Provide export and deletion controls to authorized staff.
+Shared links and published sessions are maintained in `lib/registration.ts`. Existing database records retain their established access controls and retention dates.
 
 ## 10. Staff workspace
 
@@ -315,7 +280,7 @@ The staff dashboard aggregates demand by badge, session, unit, and program area.
 - Drafts awaiting review.
 - Scheduled publications and alerts.
 - Failed/stale data integrations.
-- Pre-registration totals and demand snapshot.
+- Link to the official council registration event.
 - Broken links, missing alt text, and content due for review.
 - Recent audit activity.
 
@@ -324,7 +289,7 @@ The staff dashboard aggregates demand by badge, session, unit, and program area.
 **Publish an article:** Draft → preview → validation → publish now/schedule → revision recorded.  
 **Change a schedule:** Edit structured event → system shows affected personal plans → publish → optional notice to affected leaders.  
 **Send a notice:** Select urgency/audience/session → compose → preview → set start/end → publish → audit record.  
-**Process a pre-registration:** New → contacted → follow-up needed → ready for official registration → closed/withdrawn.
+**Registration:** Direct visitors to Black Pug for unit or provisional registration.
 
 High-impact urgent/emergency alerts should require re-authentication and, if practical, a second staff confirmation.
 
@@ -447,8 +412,8 @@ Use privacy-conscious analytics without placing youth or roster information in e
 - Homepage → program/guide engagement.
 - Packing, paperwork, fees, and arrival-page completion.
 - Schedule plans created and conflict-free plans completed.
-- Pre-registration starts, completions, and abandonment by step.
-- Merit badge survey coverage by expected session.
+- Visits to the registration information page.
+- Visits to general badge reference guides.
 
 ### Operational measures
 
@@ -490,9 +455,9 @@ Use privacy-conscious analytics without placing youth or roster information in e
 
 **Exit:** a leader can produce a conflict-free plan from current program data.
 
-### Phase 3 — demand and pre-registration
+### Phase 3 — official registration information
 
-- Unit workspace, contacts, minimal roster, interest survey, review, receipt, and staff dashboard.
+- Official session dates, fees, deadlines, registration links, and badge catalog.
 - Export/retention controls and Black Pug handoff messaging.
 
 **Exit:** camp leadership can forecast attendance and badge demand without implying official enrollment.
@@ -523,7 +488,7 @@ The first public release is ready when:
 - Unsafe HTML and unapproved embeds are rejected.
 - Active urgent notices appear across relevant public pages and expire automatically.
 - Public pages pass keyboard, contrast, responsive, print, and reduced-motion checks.
-- No pre-registration or roster field is publicly accessible or recorded in analytics.
+- Registration and roster data are handled by Black Pug.
 
 Later planning releases add these criteria:
 
@@ -531,7 +496,7 @@ Later planning releases add these criteria:
 - Clicking an event reveals complete details without losing schedule context.
 - The planner identifies all exact overlaps and required-transition conflicts.
 - Every alternative is based on current structured offerings and explains why it was suggested.
-- The pre-registration confirmation clearly states that Black Pug registration is still required.
+- Registration calls to action lead to the official council event.
 
 ## 19. Open decisions before implementation
 
@@ -545,12 +510,12 @@ Later planning releases add these criteria:
 	I'm thinking a anyone can create a user, create a troop "group" and then invite anyone to get in to plan their scout's merit badge schedule, etc. 
 5. What minimum Scout identifier is truly needed for planning?
 	Not much, just knowing what troop their joining. We don't want to store any personal information about the scouts besides a name.
-6. How long should submitted rosters and surveys be retained?
-	Submitted rosters should just be a number at this time (scouts & leaders with genders) and rosters and surveys should be archived after the summer is complete (end of July at the latest) 
+6. How long should archived records be retained?
+	Follow the established retention dates for archived records; new registration data is handled on Black Pug.
 7. Which camp staff may view/export unit rosters and contact data?
 	Camp Director and/or a designated user. 
 8. Is schedule capacity informational, or will staff maintain live remaining-seat counts?
-	For the merit badge survey, it's just informational to help plan the schedule and choose which badges to teach. The actual merit badge class scheduling tool will need a back end to assign class sizes - usually default to 10)
+	Class availability and capacity are managed through the official council registration system.
 9. What are the official weather point/station and authoritative fire restriction sources?
 	Weather (nws QSLA3)
 	Fire Danger (Coronado National Forest alerts)

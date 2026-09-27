@@ -20,10 +20,10 @@ test("the application source contains the Camp Lawton product", () => {
   assert.match(page, /Camp Lawton/);
   assert.match(page, /Leader’s guide/);
   assert.match(schedule, /ProgramPlanningPaused/);
-  assert.match(meritBadges, /Merit badge interest survey/);
+  assert.match(meritBadges, /2027 Merit Badge Program/);
   assert.doesNotMatch(meritBadges, /ProgramExplorer|programOfferings/);
   assert.match(page, /Conditions & notices/);
-  assert.match(page, /Start the planning survey/);
+  assert.match(page, /href=\{OFFICIAL_REGISTRATION_URL\}/);
 });
 
 test("active interactions and archived planning code remain intentional", () => {
@@ -33,7 +33,8 @@ test("active interactions and archived planning code remain intentional", () => 
   assert.match(scheduleExplorer, /aria-pressed/);
   assert.match(programExplorer, /aria-pressed/);
   assert.match(features, /PROGRAM_PLANNING_PUBLISHED = false/);
-  assert.match(header, /Badge Survey/);
+  assert.match(header, /href=\{OFFICIAL_REGISTRATION_URL\}/);
+  assert.match(header, /Registration/);
   assert.match(sitemap, /"\/merit-badges"/);
   assert.doesNotMatch(sitemap, /"\/schedule"|"\/my-plan"|programOfferings/);
 });

@@ -1,6 +1,6 @@
 # Camp Lawton Leader Hub
 
-The public-facing 2027 Camp Lawton information and interest site for unit leaders, Scouts, and authorized camp staff. It centers Camp promotion, the working Leader's Guide, privacy-minimized pre-registration, the merit badge interest survey, camp history and maps, and live operational conditions.
+The public-facing 2027 Camp Lawton information site for unit leaders, Scouts, and authorized camp staff. It includes the working Leader's Guide, official council registration links and fees, merit badge references, camp history and maps, and live operational conditions.
 
 ## Application
 
@@ -8,10 +8,10 @@ The public-facing 2027 Camp Lawton information and interest site for unit leader
 - Product blueprint: [ONLINE_LEADERS_GUIDE_BLUEPRINT.md](ONLINE_LEADERS_GUIDE_BLUEPRINT.md)
 - Operations and release procedure: [OPERATIONS.md](OPERATIONS.md)
 - Live conditions integration: [docs/LIVE_CONDITIONS.md](docs/LIVE_CONDITIONS.md)
-- Merit badge survey catalog: [docs/MERIT_BADGE_SURVEY.md](docs/MERIT_BADGE_SURVEY.md)
+- Official registration and badge references: [docs/REGISTRATION.md](docs/REGISTRATION.md)
 - Archived schedule-planning release gate: [docs/PROGRAM_PLANNING_ARCHIVE.md](docs/PROGRAM_PLANNING_ARCHIVE.md)
 
-The draft badge catalog, class schedule, personal planner, and unit scheduling workspace remain archived in source but are disabled in the current public release. The 84 survey subjects are broad interest candidates—not Camp Lawton's final offering list.
+The draft badge catalog, class schedule, personal planner, and unit scheduling workspace remain archived in source but are disabled in the current public release. The 84 general badge guides are reference material. The council's [official event page](https://scoutingevent.com/011-ScoutCamp2027) provides registration and the camp's merit badge catalog.
 
 ## Run locally
 

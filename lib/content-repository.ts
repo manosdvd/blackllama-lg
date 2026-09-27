@@ -13,9 +13,14 @@ import { bsaSchedule, cubSchedule, findGuideArticle, guideArticles, type GuideAr
 import { isGuideArticlePublic } from "./site-features";
 import { hasLeaderGuideRequirements } from "./leader-guide-requirements";
 
+// These pages now follow the published council event. Older D1 copies must not
+// restore the previous registration workflow or obsolete dates.
+const registrationGuideSlugs = new Set(["dates-fees-and-registration", "arrival-and-check-in", "frequently-asked-questions"]);
+
 export async function getPublishedArticle(slug: string): Promise<PublicArticle | null> {
   if (!isGuideArticlePublic(slug)) return null;
   const fallback = findGuideArticle(slug);
+  if (fallback && registrationGuideSlugs.has(slug)) return fallback;
   try {
     const [article] = await getDb().select().from(articles)
       .where(and(eq(articles.slug, slug), eq(articles.status, "published"))).limit(1);
@@ -39,6 +44,7 @@ export async function getPublishedGuideArticles(): Promise<GuideArticle[]> {
     const rows = await getDb().select().from(articles).where(eq(articles.status, "published"));
     const published = new Map(rows.map((article) => [article.slug, article]));
     return publicArticles.map((fallback) => {
+      if (registrationGuideSlugs.has(fallback.slug)) return fallback;
       const article = published.get(fallback.slug);
       return article ? {
         ...fallback,
@@ -130,11 +136,12 @@ export async function getActiveNotices(): Promise<PublicNotice[]> {
       or(isNull(alerts.endTime), gt(alerts.endTime, now)),
     )).orderBy(desc(alerts.updatedAt));
     if (rows.length) {
-      return rows.map((notice) => ({
+      const currentRows = rows.filter((notice) => !/pre.?registration|pre-register|merit badge (?:interest )?survey|planning survey/i.test(`${notice.title} ${notice.content} ${notice.instructions ?? ""}`));
+      return currentRows.length ? currentRows.map((notice) => ({
         id: notice.id, title: notice.title, summary: notice.content,
         instructions: notice.instructions, urgency: notice.urgency,
         source: notice.source, updatedAt: notice.updatedAt,
-      }));
+      })) : [planningNotice];
     }
   } catch {
     // Local and first-deploy databases may not have migrations applied yet.

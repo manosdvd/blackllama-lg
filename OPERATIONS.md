@@ -42,48 +42,47 @@ Confirm that the response contains the Camp Lawton point, station `QSLA3`, forec
 
 See [docs/LIVE_CONDITIONS.md](docs/LIVE_CONDITIONS.md) for the full source contract, freshness rules, selectors, safety invariants, and maintenance checklist.
 
-## Merit badge survey catalog
+## Registration and badge references
 
-`masterMB.csv` is the canonical source for the 84-badge interest survey. Those subjects are survey candidates, not the final Camp Lawton list. Provisional offerings in `lib/camp-catalog.ts` remain archived from public use.
+Registration is handled on the [official Catalina Council event page](https://scoutingevent.com/011-ScoutCamp2027). Shared links and the two published sessions live in `lib/registration.ts`. Confirm fees, dates, and catalog links against the live event page when updating them; indexed search results can be stale.
+
+`masterMB.csv` supplies names and areas for the 84 general badge references. These guides do not establish Camp Lawton offerings, capacity, completion, or class times.
 
 After changing the source CSV, run:
 
 ```bash
-npm run survey:generate
-npm run survey:check
+npm run badges:generate
+npm run badges:check
 npm test
 ```
 
-The generated catalog is committed at `lib/merit-badge-survey.generated.ts`. `npm test` and `npm run build` verify that it has not drifted from the CSV. Review [docs/MERIT_BADGE_SURVEY.md](docs/MERIT_BADGE_SURVEY.md) for the field mapping, stable-ID rules, privacy boundary, and staff reporting contract.
-
-Before using demand for a program decision, export the long-form staff CSV and compare totals by badge and session with the dashboard. Treat every result as planning demand rather than enrollment or reserved capacity.
+The generated reference is committed at `lib/merit-badge-reference.generated.ts`. `npm test` and `npm run build` verify it against the CSV. See [docs/REGISTRATION.md](docs/REGISTRATION.md).
 
 ## Production release
 
 1. The production D1 database is provisioned as `camp-lawton-leader-hub` in WNAM and bound as `DB` in `wrangler.json` (database ID `13226e36-f71a-489c-bf0b-e7277588a249`). If the database is ever replaced, update that ID or set `CLOUDFLARE_D1_DATABASE_ID` in the Cloudflare Workers Builds environment.
 2. Set `CAMP_STAFF_EMAILS` as a comma-separated Worker secret or environment variable for the initial Camp Director and Program Director accounts.
-3. Apply migrations before describing pre-registration or the badge survey as open:
+3. Apply migrations before enabling staff publishing:
 
 ```bash
 npm run db:migrate:remote
 ```
 
 4. Build and deploy through the configured hosting project. The build output is under `dist/`, and database migrations are copied to `dist/.openai/drizzle/`.
-5. Verify `/api/conditions` against both official sources, `/api/notices`, a complete test pre-registration with at least one badge candidate, staff demand aggregation, staff authorization, and the long-form CSV export in the deployed environment. Confirm the submission contains no youth names.
+5. Verify `/api/conditions`, `/api/notices`, staff authorization, and the official links on `/register`, `/plan`, and `/merit-badges`. Confirm legacy registration URLs redirect and the retired submission endpoint returns HTTP 410 without storing data.
 
-If no real D1 UUID is configured, the build intentionally omits the invalid placeholder binding so the public informational site can deploy with its reviewed fallback content. Database-backed pre-registration and staff publishing remain unavailable until the binding is configured and migrations are applied; do not promote the survey as open in that state.
+If no real D1 UUID is configured, the build intentionally omits the invalid placeholder binding so the public informational site can deploy with its reviewed fallback content. Staff publishing requires the binding and migrations; official registration links work independently of D1.
 
 ## Required launch approvals
 
 - Council approval of 2027 dates, fees, refund terms, policies, and registration language.
 - Camp Director operational approval of the validated QSLA3/Camp Lawton point integration and the Coronado National Forest fallback workflow.
-- Privacy and retention review before collecting real adult unit contacts. The current public form does not collect youth names.
 - Public-use approval and release verification for photography showing recognizable people.
 - Cultural and historical review for expanded Tribe of Papago interpretation.
 
 ## Data retention
 
-Planning submissions carry a `delete_after` date of August 31, 2027. An authorized administrator must run and audit the seasonal deletion process. The site does not collect medical records, birth dates, payment data, or official registration records.
+Existing database records and migration history are retained. Archived submissions carry a `delete_after` date of August 31, 2027; an authorized administrator must run and audit the seasonal deletion process. This update does not delete stored records. New camp registration and payment data are handled by Black Pug.
 
 ## Staff access
 

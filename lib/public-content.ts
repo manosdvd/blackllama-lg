@@ -37,7 +37,7 @@ export const arrivalArticle: PublicArticle = {
   title: "Arrival & Check-In",
   slug: "arrival-and-check-in",
   summary: "Arrival windows, parking, paperwork, medication handoff, and the required first-day safety briefing.",
-  applicability: "BSA week-long, condensed BSA, and Cub weekend",
+  applicability: "Scouts BSA Summer Camp Weeks 1 and 2",
   priority: "important",
   updatedAt: new Date("2026-07-11T00:00:00Z"),
   body: `## Before you leave
@@ -48,7 +48,7 @@ export const arrivalArticle: PublicArticle = {
 
 ## Arrival window
 
-Week 1 arrives Tuesday. Weeks 2 and 3 arrive Sunday. The standard check-in window is **1:00-3:00 PM**. Follow session-specific instructions if staff publish a change.
+Week 1 begins Sunday, June 6, 2027; Week 2 begins Sunday, June 13, 2027. Both sessions start at **2:00 PM MST**. Follow the [official council event page](https://scoutingevent.com/011-ScoutCamp2027) and session-specific staff instructions.
 
 ## Parking and gear
 
@@ -77,10 +77,10 @@ export const mondaySchedule: PublicScheduleEvent[] = [
 
 export const planningNotice: PublicNotice = {
   id: "planning-notice",
-  title: "Help shape Camp Lawton's 2027 program",
-  summary: "The final merit badge list and class schedule are still in development. Units can share non-binding attendance and badge interest now.",
-  instructions: "Complete the planning survey and return for authorized program details when they are published.",
+  title: "2027 Summer Camp Registration is Open",
+  summary: "Official registration for Scouts BSA Summer Camp 2027 is now open on Black Pug for Week 1 (June 6–12) and Week 2 (June 13–19).",
+  instructions: "Register online at https://scoutingevent.com/011-ScoutCamp2027 to secure your unit or provisional spot.",
   urgency: "information",
-  source: "Camp Lawton staff",
-  updatedAt: new Date("2026-07-11T00:00:00Z"),
+  source: "Catalina Council · Black Pug",
+  updatedAt: new Date("2026-09-26T00:00:00Z"),
 };

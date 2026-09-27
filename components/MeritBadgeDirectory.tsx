@@ -2,14 +2,11 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { CampCompletion, SurveyTier } from "../lib/merit-badge-survey.generated";
 
 export type MeritBadgeDirectoryItem = {
   id: string;
   title: string;
   area: string;
-  tier: SurveyTier;
-  completion: CampCompletion;
   overview: string;
   eagleRequired: boolean;
 };
@@ -36,10 +33,10 @@ export default function MeritBadgeDirectory({ items }: { items: MeritBadgeDirect
     <section className="badge-directory" id="all-badge-guides" aria-labelledby="badge-directory-heading">
       <header>
         <div>
-          <p className="section-kicker">Survey reference library</p>
-          <h2 id="badge-directory-heading">Explore all {items.length} interest topics.</h2>
+          <p className="section-kicker">Merit badge reference library</p>
+          <h2 id="badge-directory-heading">Explore all {items.length} merit badge subjects.</h2>
         </div>
-        <p>Use these neutral subject guides to discuss unit interest. This library is intentionally broader than the eventual Camp Lawton offering list.</p>
+        <p>Browse general badge overviews and official requirements. This reference library is not the Camp Lawton offering list; use the council catalog above to choose courses.</p>
       </header>
 
       <div className="badge-directory-tools">
@@ -65,20 +62,20 @@ export default function MeritBadgeDirectory({ items }: { items: MeritBadgeDirect
         {visible.map((item) => (
           <Link href={`/merit-badges/${item.id}`} key={item.id}>
             <div>
-              <span>{item.area} · Survey candidate</span>
+              <span>{item.area} · Merit Badge</span>
               {item.eagleRequired && <i>Eagle</i>}
             </div>
             <h3>{item.title}</h3>
             <p>{item.overview}</p>
             <div className="badge-directory-card-footer">
               <span>Not a published offering</span>
-              <strong>Open reference →</strong>
+              <strong>View badge guide →</strong>
             </div>
           </Link>
         ))}
       </div>
 
-      {visible.length === 0 && <div className="badge-directory-empty"><h3>No survey topics match.</h3><p>Try a broader search or reset the program-area filter.</p></div>}
+      {visible.length === 0 && <div className="badge-directory-empty"><h3>No merit badges match.</h3><p>Try a broader search or reset the program-area filter.</p></div>}
       {!filtering && !showAll && filtered.length > initialResultLimit && <button className="badge-directory-more" type="button" onClick={() => setShowAll(true)}>Show all {filtered.length} field guides</button>}
     </section>
   );

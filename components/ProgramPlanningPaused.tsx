@@ -2,6 +2,8 @@ import Link from "next/link";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
 
+import { OFFICIAL_REGISTRATION_URL } from "../lib/registration";
+
 export default function ProgramPlanningPaused({ tool }: { tool: "schedule" | "planner" }) {
   const isPlanner = tool === "planner";
   return <main>
@@ -10,28 +12,28 @@ export default function ProgramPlanningPaused({ tool }: { tool: "schedule" | "pl
       <div>
         <p className="section-kicker">2027 program update</p>
         <h1>{isPlanner ? "Personal schedule planning is paused." : "The 2027 schedule is in development."}</h1>
-        <p>Merit badge offerings and class times are not final. We have taken the working schedule and planner out of public use so units do not make decisions from draft information.</p>
+        <p>Official camp registration is open, and merit badge class registration opens February 1, 2027. We have taken the working schedule and planner out of public use so units do not make decisions from draft times.</p>
       </div>
     </section>
     <section className="page-content planning-paused">
       <div>
-        <p className="section-kicker">Help shape the program</p>
-        <h2>Tell us what would make camp valuable for your Scouts.</h2>
-        <p>The non-binding planning survey collects estimated attendance and merit badge interest. Staff can use that demand to make better program, staffing, and equipment decisions.</p>
+        <p className="section-kicker">Summer Camp 2027</p>
+        <h2>Official registration is now open.</h2>
+        <p>Official registration for Camp Lawton Summer Camp 2027 is live on Black Pug for Week 1 (June 6–12) and Week 2 (June 13–19). Merit badge class registration opens February 1, 2027.</p>
         <div className="planning-paused-actions">
-          <Link className="button" href="/pre-register">Start the planning survey</Link>
-          <Link className="button button-secondary" href="/merit-badges">About the badge survey</Link>
+          <a className="button" href={OFFICIAL_REGISTRATION_URL} target="_blank" rel="noreferrer">Register on Black Pug ↗</a>
+          <Link className="button button-secondary" href="/register">View registration details &amp; fees</Link>
         </div>
       </div>
       <aside>
         <strong>What is available now</strong>
         <ul>
-          <li>The working Leader&apos;s Guide, with policies and arrival preparation</li>
-          <li>2027 session dates and non-binding pre-registration</li>
-          <li>Merit badge interest collection—not a class reservation</li>
-          <li>Camp history, map, conditions, and official notices</li>
+          <li>Official registration on Black Pug for Week 1 (June 6–12) and Week 2 (June 13–19)</li>
+          <li>Early Bird credits ($200 before 12/31/26; $100 before 3/31/27)</li>
+          <li>The Leader&apos;s Guide with policies, packing lists, and arrival preparation</li>
+          <li>Camp history, map, mountain conditions, and official notices</li>
         </ul>
-        <Link href="/guide">Open the Leader&apos;s Guide →</Link>
+        <a href={OFFICIAL_REGISTRATION_URL} target="_blank" rel="noreferrer">Open registration site ↗</a>
       </aside>
     </section>
     <SiteFooter />

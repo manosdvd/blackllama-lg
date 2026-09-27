@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { siteOrigin } from "../lib/site-url";
 import "./globals.css";
 
-const description = "Discover Camp Lawton, explore the working 2027 Leader's Guide, share unit and merit badge interest, and check camp history, maps, notices, and mountain conditions.";
+const description = "Discover Camp Lawton, explore the 2027 Leader's Guide, find official registration details and the merit badge catalog, and check camp history, maps, notices, and mountain conditions.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),

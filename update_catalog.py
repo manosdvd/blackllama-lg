@@ -43,7 +43,7 @@ def main():
     # Combine the table from intro and the existing text
     table_match = re.search(r"(\| Camp Information \|.*?\n(?:\|.*?\|\n)+)", intro, re.DOTALL)
     table = table_match.group(1) if table_match else ""
-    dates_body = table + "\n\n## Registration boundary\n\nInterest forms on this site are non-binding planning tools. They do not reserve a campsite, register a participant, guarantee a merit badge seat, or collect payment. Official registration will be completed separately through Black Pug in spring."
+    dates_body = table + "\n\n## Official registration\n\nRegister through [Catalina Council's Black Pug event page](https://scoutingevent.com/011-ScoutCamp2027). See [registration and fees](/register) for published dates, fees, deadlines, and the merit badge catalog."
 
     # 3. Packing List
     packing = extract_subsection(sec_II, "## Packing for Camp Lawton")

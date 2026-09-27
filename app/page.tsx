@@ -6,6 +6,8 @@ import { ConditionsHud, FireSummaryCard, WeatherSummaryCard, useLiveConditions }
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
+import { OFFICIAL_REGISTRATION_URL, WEEK1_REGISTRATION_URL, WEEK2_REGISTRATION_URL } from "../lib/registration";
+
 const guideSections = [
   {
     id: "purpose",
@@ -23,10 +25,10 @@ const guideSections = [
     id: "arrival",
     title: "Arrival & check-in",
     summary: "Arrival windows, parking, forms, medication handoff, and the required safety briefing.",
-    tags: "arrival paperwork vehicles medication",
+    tags: "arrival paperwork vehicles medication check-in Sunday",
     href: "/guide/arrival-and-check-in",
     body: [
-      "Week 1 arrives Tuesday; Weeks 2 and 3 arrive Sunday. Check-in is 1:00–3:00 PM.",
+      "Week 1 starts Sunday, June 6; Week 2 starts Sunday, June 13. Both sessions start at 2:00 PM MST.",
       "Back vehicles into marked spaces. Vehicles are not permitted beyond the designated parking area.",
       "Bring a signed unit roster, current health forms, accommodation information, and medications in original labeled containers.",
       "All Scouts and leaders attend the 3:00 PM safety briefing.",
@@ -65,7 +67,7 @@ const guideSections = [
     tags: "packing paperwork forms roster checklist",
     href: "/guide/packing-list",
     body: [
-      "Organize the roster, current health records, emergency contacts, accommodation information, and medication materials required by final registration and check-in guidance.",
+      "Organize the roster, current health records (Parts A, B, C), emergency contacts, and medications in original labeled containers.",
       "Confirm the current adult registration and training documentation required for the session.",
       "Plan to carry all gear from the parking area to the assigned campsite.",
       "A sleeping pad and sleeping bag are recommended for the wooden sleeping platforms.",
@@ -85,16 +87,16 @@ const guideSections = [
     ],
   },
   {
-    id: "program",
-    title: "2027 program input",
-    summary: "How unit interest can help Camp Lawton shape a strong 2027 program.",
-    tags: "program merit badges interest survey activities prerequisites materials equipment first year age restrictions fees games",
-    href: "/guide/build-your-unit-program",
+    id: "registration",
+    title: "2027 Registration & fees",
+    summary: "Official session dates, in-council and out-of-council fees, and early bird discounts.",
+    tags: "registration fees black pug early bird camperships dates",
+    href: "/guide/dates-fees-and-registration",
     body: [
-      "The merit badge list and class schedule are still in development.",
-      "Unit interest helps staff prioritize instructors, equipment, and appropriate capacity.",
-      "Survey selections do not create a class, reserve a seat, or guarantee completion.",
-      "Final authorized program information will replace draft planning material when it is ready.",
+      "Week 1 is June 6–12, 2027; Week 2 is June 13–19, 2027 (150 youth limit per session).",
+      "In-council fee is $400/Scout ($200 before 12/31/26; $300 before 3/31/27 with Early Bird credits).",
+      "Out-of-council fee is $450/Scout ($50 discount before 12/31/26; $25 discount before 3/31/27).",
+      "Adult leader fee is $100. Merit badge registration opens February 1, 2027.",
     ],
   },
 ];
@@ -118,15 +120,16 @@ export default function Home() {
     if (!query) return guideSections;
     return guideSections.filter((item) => `${item.title} ${item.summary} ${item.tags} ${item.body.join(" ")}`.toLowerCase().includes(query));
   }, [guideQuery]);
+
   return (
     <main>
       <ConditionsHud state={conditionsState} />
-      
+
       <div className="notice-bar" role="status">
         <span className="notice-dot" aria-hidden="true" />
-        <strong>{campNotice?.title ?? "Planning notice"}</strong>
-        <span>{campNotice?.summary ?? "2027 program planning is underway. Share your unit’s interests while the final badge list and schedule are developed."}</span>
-        <a href="#alerts">View notices</a>
+        <strong>2027 Registration Open</strong>
+        <span>Official registration for Summer Camp 2027 at Camp Lawton is now open on Black Pug.</span>
+        <a href={OFFICIAL_REGISTRATION_URL} target="_blank" rel="noreferrer">Register now ↗</a>
       </div>
 
       <SiteHeader current="/" />
@@ -147,24 +150,45 @@ export default function Home() {
           <h1>A century of camp.<br /><em>One unforgettable week.</em></h1>
           <p className="hero-copy">Bring your unit to the Santa Catalina Mountains for the kind of summer camp Scouts talk about for years. Everything leaders need to prepare for 2027 starts here.</p>
           <div className="hero-actions">
-            <Link className="button" href="/guide/packing-list">Pack for the mountain</Link>
+            <a className="button" href={OFFICIAL_REGISTRATION_URL} target="_blank" rel="noreferrer">Register for 2027 ↗</a>
+            <Link className="button button-secondary" href="/guide/packing-list">Pack for the mountain</Link>
             <Link className="text-link" href="/history">Explore 100+ years <span aria-hidden="true">→</span></Link>
           </div>
           <div className="hero-estamp" aria-hidden="true"><span>Santa Catalina Mountains</span><strong>1921</strong><small>Camp Lawton · Arizona</small></div>
         </div>
         <div className="session-strip" aria-label="2027 session dates">
-          <div><span>2027 · Week 1</span><strong>Jun 1–5</strong><small>Tue–Sat · condensed</small></div>
-          <div><span>2027 · Week 2</span><strong>Jun 6–12</strong><small>Sun–Sat</small></div>
-          <div><span>2027 · Week 3</span><strong>Jun 13–19</strong><small>Sun–Sat</small></div>
-          <div className="session-meta"><span>Leader field note</span><strong>Check-in 1–3 PM</strong><small>On your unit&apos;s arrival day</small></div>
+          <div>
+            <span>2027 · Week 1</span>
+            <strong>Jun 6–12</strong>
+            <small>Sun–Sat · 150 youth limit</small>
+            <a href={WEEK1_REGISTRATION_URL} target="_blank" rel="noreferrer" className="session-strip-link">Save a Spot ↗</a>
+          </div>
+          <div>
+            <span>2027 · Week 2</span>
+            <strong>Jun 13–19</strong>
+            <small>Sun–Sat · 150 youth limit</small>
+            <a href={WEEK2_REGISTRATION_URL} target="_blank" rel="noreferrer" className="session-strip-link">Save a Spot ↗</a>
+          </div>
+          <div>
+            <span>Early Bird</span>
+            <strong>Dec 31, 2026</strong>
+            <small>Save up to $200 (In-Council $200 Paid In Full)</small>
+            <Link href="/register" className="session-strip-link">View Fees →</Link>
+          </div>
+          <div className="session-meta">
+            <span>Leader field note</span>
+            <strong>Check-in 2:00 PM</strong>
+            <small>Sunday arrival · checkout Sat 10 AM · Limit 1 per unit</small>
+            <Link href="/guide/arrival-and-check-in" className="session-strip-link">Arrival Guide →</Link>
+          </div>
         </div>
       </section>
 
       <section className="quick-links" aria-label="Leader shortcuts">
-        <Link href="/guide/packing-list"><span>01</span><strong>Interactive packing list</strong><small>Check off, save & print</small></Link>
-        <Link href="/guide"><span>02</span><strong>Read the full guide</strong><small>Search reviewed camp information</small></Link>
-        <Link href="/merit-badges"><span>03</span><strong>Shape the badge program</strong><small>About the unit-interest survey</small></Link>
-        <a href="#preregister"><span>04</span><strong>Tell us you’re interested</strong><small>Non-binding pre-registration</small></a>
+        <a href={OFFICIAL_REGISTRATION_URL} target="_blank" rel="noreferrer"><span>01</span><strong>Register for 2027</strong><small>Official council registration site ↗</small></a>
+        <Link href="/register"><span>02</span><strong>Fees &amp; early bird credits</strong><small>In-council &amp; out-of-council rates</small></Link>
+        <Link href="/merit-badges"><span>03</span><strong>Merit badge program</strong><small>Catalog &amp; Feb 1 open date</small></Link>
+        <Link href="/guide/packing-list"><span>04</span><strong>Interactive packing list</strong><small>Check off, save &amp; print</small></Link>
       </section>
 
       <section className="home-tradition" aria-labelledby="camp-character-title">
@@ -193,6 +217,61 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section why-camp-section" id="why-camp-lawton">
+        <div className="section-heading">
+          <div>
+            <p className="section-kicker">Experience the Mountain</p>
+            <h2>Why Camp Lawton? Four Mountain Reasons to Bring Your Troop in 2027</h2>
+          </div>
+          <p className="heading-note">
+            High in the Santa Catalina Mountains on Mt. Lemmon, Camp Lawton delivers an authentic, close-knit Scouting experience that youth remember for a lifetime.
+          </p>
+        </div>
+
+        <div className="why-camp-grid">
+          <div className="why-camp-card">
+            <span className="card-num">01</span>
+            <h3>Beat the Desert Heat at 7,900 Feet</h3>
+            <p>
+              When summer temperatures in Tucson and Phoenix top 100°F+, Camp Lawton rests high in the Coronado National Forest. Enjoy 75°F daytime breezes under towering Ponderosa pines and crisp 50°F nights around the campfire.
+            </p>
+          </div>
+          <div className="why-camp-card">
+            <span className="card-num">02</span>
+            <h3>The Small-Camp Advantage (150 Youth Capped)</h3>
+            <p>
+              No mega-camp crowds or 50-person classes. Each week is strictly limited to 150 youth participants, ensuring small merit badge classes, personal mentorship from enthusiastic staff, and tight patrol camaraderie.
+            </p>
+          </div>
+          <div className="why-camp-card">
+            <span className="card-num">03</span>
+            <h3>Real Mountain Scoutcraft &amp; Badges</h3>
+            <p>
+              From natural rock climbing and archery/rifle shooting to outdoor pioneering, handicraft, ecology, and dark-sky astronomy under some of the clearest skies in North America—experience hands-on Scouting every day.
+            </p>
+          </div>
+          <div className="why-camp-card">
+            <span className="card-num">04</span>
+            <h3>Campfire Spirit &amp; 2027 Pirate Crew Adventures</h3>
+            <p>
+              Traditions live here: troop skits, yells, and songs echoing off canyon walls in the historic campfire bowl. In 2027, join our Pirate Crew Adventures (Campsites are Ships, Dining Hall is the Galley!), and strive for the prestigious Barker Standard!
+            </p>
+          </div>
+        </div>
+
+        <div className="why-camp-actions">
+          <a className="button" href={OFFICIAL_REGISTRATION_URL} target="_blank" rel="noreferrer">
+            Register on Black Pug ↗
+          </a>
+          <Link className="button button-secondary" href="/register">
+            View All Fees &amp; Discounts →
+          </Link>
+          <Link className="text-link" href="/merit-badges">
+            Browse 2027 Merit Badges <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </section>
+
       <section className="section intro-section">
         <div className="section-kicker">Camp at a glance</div>
         <div className="intro-grid">
@@ -202,8 +281,8 @@ export default function Home() {
           </div>
           <div className="fact-grid">
             <div><strong>1921</strong><span>Camp established</span></div>
-            <div><strong>2027</strong><span>Program taking shape</span></div>
-            <div><strong>Your input</strong><span>Guides staff planning</span></div>
+            <div><strong>2027</strong><span>Registration open</span></div>
+            <div><strong>$200</strong><span>Early Bird in-council</span></div>
             <div><strong>USFS</strong><span>National Forest land</span></div>
           </div>
         </div>
@@ -217,6 +296,65 @@ export default function Home() {
               <li><strong>Fire restrictions:</strong> Conditions can change without warning; always plan a no-flame alternative.</li>
               <li><strong>Medications:</strong> Prescription medications go to the Camp Health Officer at check-in.</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="prep-audience-section" id="prepare">
+        <div className="prep-audience-inner">
+          <div className="prep-audience-header">
+            <p className="section-kicker">Get Departure-Ready</p>
+            <h2>Prepared for the Mountain: Scouts · Leaders · Parents</h2>
+            <p>
+              Everything each part of your Scouting family needs to know, pack, and prepare for an exceptional week at 7,900 feet.
+            </p>
+          </div>
+
+          <div className="prep-audience-grid">
+            <article className="prep-audience-card scouts">
+              <span className="prep-badge">For Scouts</span>
+              <h3>Be Prepared &amp; Have Fun</h3>
+              <ul>
+                <li><strong>High-Altitude Hydration:</strong> Drink plenty of water before and during camp; mountain elevation dehydrates faster. Bring a reusable water bottle and sunscreen.</li>
+                <li><strong>Pack for Mountain Nights:</strong> Days are warm and sunny, but nights drop into the 50s. Bring warm sleeping layers and a sleeping pad for wooden platforms.</li>
+                <li><strong>Merit Badge Readiness:</strong> Browse the 2027 catalog early and check prerequisites before badge registration opens February 1, 2027.</li>
+                <li><strong>Camp Life &amp; Patrol Spirit:</strong> Enjoy flag ceremonies, dining hall meals, patrol competitions, campfires, and brotherhood.</li>
+              </ul>
+              <Link className="text-link" href="/guide/packing-list">
+                Interactive packing list <span aria-hidden="true">→</span>
+              </Link>
+            </article>
+
+            <article className="prep-audience-card leaders">
+              <span className="prep-badge">For Unit Leaders</span>
+              <h3>Command Your Unit</h3>
+              <ul>
+                <li><strong>Save Your Spot on Black Pug:</strong> Sessions are capped at 150 youth. Units (2+ adults) and Provisional Scouts/Adults are welcome. Limit one registration per unit.</li>
+                <li><strong>Required Paperwork:</strong> Signed unit roster, Annual Health and Medical Record (Parts A, B, and C) completed within 12 months for all participants.</li>
+                <li><strong>Two-Deep Leadership:</strong> At least two registered adult leaders with current Youth Protection Training (YPT) are required.</li>
+                <li><strong>Arrival Day Logistics:</strong> Arrive Sunday at 2:00 PM MST sharp, back into parking spaces, gear carried into campsites, and attend the 3:00 PM safety briefing.</li>
+                <li><strong>USFS Regulations:</strong> Follow Leave No Trace and fire restrictions; always bring a no-flame alternative!</li>
+                <li><strong>Unit Excellence:</strong> Daily SPL &amp; leader meetings at 12:55 PM; checkout Saturday by 10:00 AM MST. Strive for the Barker Standard!</li>
+              </ul>
+              <Link className="text-link" href="/guide">
+                Explore leader&apos;s guide <span aria-hidden="true">→</span>
+              </Link>
+            </article>
+
+            <article className="prep-audience-card parents">
+              <span className="prep-badge">For Parents &amp; Families</span>
+              <h3>Peace of Mind &amp; Support</h3>
+              <ul>
+                <li><strong>Provisional Campers Welcome:</strong> If your unit isn&apos;t attending, individual Scouts can register as provisional campers with approved host leadership.</li>
+                <li><strong>Black Pug Parent Portal:</strong> Look up existing registrations, submit individual Scout information, and make installment payments online.</li>
+                <li><strong>Camperships Available:</strong> Catalina Council provides financial assistance up to $360 per Scout so every youth can attend.</li>
+                <li><strong>Health &amp; Safety:</strong> A full-time Camp Health Officer is on duty 24/7 in the Health Lodge; all medications are securely turned in in original containers.</li>
+                <li><strong>Camp Mail:</strong> Keep in touch! Send mail to: Scout Name &amp; Unit #, Camp Lawton, PO Box 786, Mt. Lemmon, AZ 85619.</li>
+              </ul>
+              <Link className="text-link" href="/register">
+                Fees, discounts &amp; parent details <span aria-hidden="true">→</span>
+              </Link>
+            </article>
           </div>
         </div>
       </section>
@@ -251,8 +389,6 @@ export default function Home() {
         </div>
       </section>
 
-      
-
       <section className="story-band">
         <img src="/images/home-night.webp" width={1800} height={1355} alt="Scouts gathered outside Camp Lawton’s historic dining hall after dark" loading="lazy" />
         <div className="story-copy">
@@ -271,19 +407,55 @@ export default function Home() {
         <div className="alert-grid">
           <WeatherSummaryCard state={conditionsState} />
           <FireSummaryCard state={conditionsState} />
-          <article><span className="alert-icon green">i</span><div><small>{campNotice?.source ?? "Camp Lawton staff"}</small><h3>{campNotice?.title ?? "2027 program planning is underway"}</h3><p>{campNotice?.summary ?? "The badge list and class schedule are not yet final. Share unit interest now and use only later authorized program details for individual planning."}</p></div></article>
+          <article>
+            <span className="alert-icon green">i</span>
+            <div>
+              <small>{campNotice?.source ?? "Camp Lawton staff"}</small>
+              <h3>{campNotice?.title ?? "2027 Summer Camp Registration is Open"}</h3>
+              <p>{campNotice?.summary ?? "Official registration is live on Black Pug. Secure your unit or provisional spot for Week 1 (June 6–12) or Week 2 (June 13–19). Early Bird credits apply through December 31, 2026."}</p>
+              <a href={OFFICIAL_REGISTRATION_URL} target="_blank" rel="noreferrer">Register on Black Pug ↗</a>
+            </div>
+          </article>
         </div>
       </section>
 
-      <section className="preregister" id="preregister">
-        <div className="preregister-image"><img src="/images/camp-program.webp" width={1594} height={1200} alt="Scouts and leaders taking part in an outdoor camp activity" loading="lazy" /></div>
-        <div className="preregister-copy">
-          <div className="section-kicker">Plan with us</div>
-          <h2>Help shape the 2027 program.</h2>
-          <p>Share your unit’s estimated attendance and program interests. This early signal helps camp staff plan staffing and program capacity.</p>
-          <div className="disclaimer"><strong>Planning only</strong><span>This is not official registration, does not reserve a campsite or badge seat, and does not collect payment. Official registration will be available through Black Pug in spring.</span></div>
-          <div className="preregister-features"><span>Compare all four 2027 sessions.</span><span>Share aggregate youth and adult estimates.</span><span>Rank merit badge demand without claiming seats.</span><span>Save progress privately in this browser.</span></div>
-          <Link className="button" href="/pre-register">Start the planning survey</Link>
+      <section className="registration-callout" id="register">
+        <div className="registration-callout-image">
+          <img src="/images/camp-program.webp" width={1594} height={1200} alt="Scouts and leaders taking part in an outdoor camp activity" loading="lazy" />
+        </div>
+        <div className="registration-callout-copy">
+          <div className="section-kicker">Summer Camp 2027</div>
+          <h2>Registration is now open.</h2>
+          <p>Join us at Camp Lawton for Summer Camp 2027! Enjoy an unforgettable week of adventure, learning, and leadership development in the Santa Catalina Mountains. Open to units and provisional Scouts.</p>
+
+          <div className="disclaimer">
+            <strong>Official Registration · Black Pug</strong>
+            <span>Sessions are limited to 150 youth participants each. Register early to secure your spot and take advantage of Early Bird discounts.</span>
+          </div>
+
+          <div className="registration-callout-features">
+            <span>Week 1: June 6–12, 2027 (Sun–Sat)</span>
+            <span>Week 2: June 13–19, 2027 (Sun–Sat)</span>
+            <span>In-Council: $400/Scout ($200 before 12/31)</span>
+            <span>Out-of-Council: $450/Scout ($50 off before 12/31)</span>
+            <span>Adult fee: $100 &bull; $40 youth deposit</span>
+            <span>Merit badge registration opens Feb 1, 2027</span>
+          </div>
+
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "16px" }}>
+            <a className="button" href={OFFICIAL_REGISTRATION_URL} target="_blank" rel="noreferrer">
+              Register on Black Pug ↗
+            </a>
+            <a className="button button-secondary" href={WEEK1_REGISTRATION_URL} target="_blank" rel="noreferrer">
+              Save a Spot — Week 1 ↗
+            </a>
+            <a className="button button-secondary" href={WEEK2_REGISTRATION_URL} target="_blank" rel="noreferrer">
+              Save a Spot — Week 2 ↗
+            </a>
+            <Link className="button button-secondary" href="/register">
+              View all camp fees &amp; details
+            </Link>
+          </div>
         </div>
       </section>
 

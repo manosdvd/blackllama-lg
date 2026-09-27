@@ -1,4 +1,5 @@
 import type { PublicArticle, PublicScheduleEvent } from "./public-content";
+import { registrationSessions, REGISTRATION_REVIEWED_AT } from "./registration";
 
 export type CampSession = {
   id: string; name: string; shortName: string; program: "bsa" | "cub";
@@ -18,9 +19,8 @@ export type ProgramOffering = {
 };
 
 export const sessions: CampSession[] = [
-  { id: "bsa-week-1", name: "BSA Week 1", shortName: "Week 1", program: "bsa", dates: "June 1-5, 2027", arrival: "Tuesday, 1:00-3:00 PM", departure: "Saturday by 11:30 AM", note: "Condensed five-day program" },
-  { id: "bsa-week-2", name: "BSA Week 2", shortName: "Week 2", program: "bsa", dates: "June 6-12, 2027", arrival: "Sunday, 1:00-3:00 PM", departure: "Saturday by 11:30 AM", note: "Full Sunday-arrival week" },
-  { id: "bsa-week-3", name: "BSA Week 3", shortName: "Week 3", program: "bsa", dates: "June 13-19, 2027", arrival: "Sunday, 1:00-3:00 PM", departure: "Saturday by 11:30 AM", note: "Full Sunday-arrival week" },
+  ...registrationSessions,
+  { id: "bsa-week-3", name: "BSA Week 3 (Planning Draft)", shortName: "Week 3", program: "bsa", dates: "June 13-19, 2027", arrival: "Sunday, 1:00-3:00 PM", departure: "Saturday by 11:30 AM", note: "Consolidated into Week 2" },
   { id: "cub-weekend", name: "Cub Scout Weekend", shortName: "Cub Weekend", program: "cub", dates: "June 25-27, 2027", arrival: "Friday, 2:00-3:00 PM", departure: "Sunday after 10:55 AM", note: "Three-day family weekend" },
 ];
 
@@ -150,7 +150,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 ## Before Assigning Activities
 
-Do not use draft schedules, capacities, fees, or requirement lists to promise a seat or completion. Confirm the final catalog, then help each Scout complete published prerequisites and pack the listed materials before arrival. Interest forms on this site are planning tools only.`,
+Do not use draft schedules, capacities, fees, or requirement lists to promise a seat or completion. Confirm the final catalog, then help each Scout complete published prerequisites and pack the listed materials before arrival. Official registration is completed online at https://scoutingevent.com/011-ScoutCamp2027.`,
   },
   {
     title: "Daily Camp Life", slug: "daily-camp-life", category: "Daily camp life", audience: "all", priority: "important", updatedAt: reviewedAt,
@@ -189,7 +189,7 @@ Use the meetings, communication channels, headcounts, medication plan, and unit-
   {
     title: "Arrival & Check-In", slug: "arrival-and-check-in", category: "Arrival", audience: "all", priority: "important", updatedAt: reviewedAt,
     summary: "Arrival windows, parking, paperwork, medication handoff, and required first-day briefings.",
-    applicability: "BSA weeks and Cub Scout Weekend", tags: ["arrival", "check-in", "parking", "medications", "forms"],
+    applicability: "Scouts BSA Summer Camp 2027 (Weeks 1 & 2)", tags: ["arrival", "check-in", "parking", "medications", "forms"],
     body: `![Camp Lawton entrance sign](/images/coppersign.jpg)
 
 ## Getting to Camp
@@ -208,10 +208,10 @@ The Catalina Highway is paved and safe when driven attentively, but it is steep 
 
 ## Arrival Window
 
-Arrive between **1:00 and 3:00 PM** on your session’s first day.
+Both published sessions begin at **2:00 PM MST on Sunday**, as listed on the [official council event page](https://scoutingevent.com/011-ScoutCamp2027).
 
-- **Week 1:** Tuesday, June 1  
-- **Weeks 2 and 3:** Sunday  
+- **Week 1:** Sunday, June 6, 2027
+- **Week 2:** Sunday, June 13, 2027
 - Do not arrive early; staff will still be preparing camp.  
 - Contact the Camp Director before the session when a special arrival time is unavoidable.
 
@@ -241,42 +241,80 @@ Before evening program begins, leaders should:
 - Establish unit expectations for hydration, uniforms, devices, quiet hours, and free time`,
   },
   {
-    title: "Dates, Fees & Registration", slug: "dates-fees-and-registration", category: "Register & pay", audience: "all", priority: "important", updatedAt: reviewedAt,
-    summary: "2027 session dates, planning status, fee publication, and the Black Pug registration boundary.",
+    title: "Dates, Fees & Registration", slug: "dates-fees-and-registration", category: "Register & pay", audience: "all", priority: "important", updatedAt: REGISTRATION_REVIEWED_AT,
+    summary: "Official 2027 session dates, fees, discounts, deadlines, and Black Pug registration links.",
     applicability: "All 2027 sessions", tags: ["dates", "fees", "registration", "black pug"],
     body: `| Camp Information | Details |
 | :---- | :---- |
-| **Session Dates** | **Week 1:** June 1–5, 2027 (Tuesday–Saturday, condensed five-day session) · **Week 2:** June 6–12, 2027 (Sunday–Saturday) · **Week 3:** June 13–19, 2027 (Sunday–Saturday) |
+| **Session Dates** | **Week 1:** June 6–12, 2027 (Sunday 2:00 PM – Saturday 10:00 AM MST) · **Week 2:** June 13–19, 2027 (Sunday 2:00 PM – Saturday 10:00 AM MST) |
+| **Registration URL** | [scoutingevent.com/011-ScoutCamp2027](https://scoutingevent.com/011-ScoutCamp2027) |
+| **Capacity** | Each session is strictly limited to 150 youth participants · Limit one registration per unit |
+| **Registration Closes** | Week 1: May 23, 2027 at 11:59 PM MST · Week 2: May 30, 2027 at 11:59 PM MST |
 | **Staff Training** | May 28–30, 2027 |
 | **Property** | Camp Lawton · Catalina Council, Scouting America · Coronado National Forest · United States Forest Service special-use property |
-| **Location** | 32.39806° N, 110.725° W · First camp on Organization Ridge Road near Mile 20 of the Catalina Highway |
+| **Location** | 32.4033251, -110.7214508 · 12900 E. Organization Ridge Rd, Tucson, AZ 85619 |
 | **Mailing Address** | Scout’s Name and Unit Number · Camp Lawton · PO Box 786 · Mt. Lemmon, AZ 85619 |
-| **Camp Phone** | 520-576-1263 · Urgent camp-season messages only; leave a message if no one answers |
-| **Check-In** | Arrival day, 1:00–3:00 PM · Back vehicles into spaces · No unauthorized vehicles inside camp |
-| **Check-Out** | Final Saturday by 11:30 AM unless camp leadership publishes a different session schedule |
+| **Council / Camp Phone** | 520-750-0385 (Council office) · 520-576-1263 (Camp season urgent messages) |
+| **Check-In** | Sunday, 2:00 PM MST, as listed on the official event page |
+| **Check-Out** | Saturday by 10:00 AM MST |
 | **2027 Theme** | Pirate Crew Adventures · Campsites are Ships · Dining Hall is the Galley |
-| **NCAP Status** | Planned under the 2026 National Camp Accreditation Program standards and the current Short-Term Camp Administrator assessment; final current requirements control |
-| **Program Status** | The 2027 merit badge list, class schedule, capacities, and fees are still in development · Unit interest survey open |
+| **Registration Status** | Official registration is open on Black Pug · Merit badge registration opens February 1, 2027 |
 | **Future Dates** | **2028:** Scout weeks May 30–June 17 · Cub weekend June 23–25. **2029:** Scout weeks May 29–June 16 · Cub weekend June 22–24. |
 
 
 ## Registration and Financial Planning
 
-Interest forms on this site are non-binding planning tools. They do not reserve a campsite, register a participant, guarantee a merit badge seat, or collect payment. Official registration will be completed separately through Black Pug in spring.
+Official registration for Summer Camp 2027 is completed online through the Black Pug system:
 
-:::placeholder Final reservation and registration process, timeline, and key dates
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-:::
+- **Official Registration Portal:** [https://scoutingevent.com/011-ScoutCamp2027](https://scoutingevent.com/011-ScoutCamp2027)
+- **Week 1 Direct Registration:** [https://scoutingevent.com/011-116731-272748](https://scoutingevent.com/011-116731-272748)
+- **Week 2 Direct Registration:** [https://scoutingevent.com/011-116731-272749](https://scoutingevent.com/011-116731-272749)
 
-:::placeholder Participant fees and payment schedule
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-:::
+These details were checked against the official event page on September 26, 2026. Confirm current availability and terms there before registering.
 
-:::placeholder Refund policy
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-:::
+Registration is open to **Provisional Scouts and Adults** (individuals or units with fewer than two adult leaders) as well as **Units** (two or more adults required).
 
-:::placeholder Financial assistance and campership options
+### In-Council Fees (Catalina Council)
+
+- **Scout Fee:** $400 per Scout
+- **Adult Leader Fee:** $100 per Adult
+- **Youth Deposit:** $40 deposit per youth participant
+- **Early Bird Credits for In-Council Youth:**
+  - Register before **December 31, 2026**: You pay **$200** (including deposit) and receive a $200 credit (*Paid In Full*).
+  - Register before **March 31, 2027**: You pay **$300** (including deposit) and receive a $100 credit (*Paid In Full*).
+  - Pay over time is available.
+  - Camperships up to $360 per Scout are available through Catalina Council.
+
+### Out-of-Council Fees
+
+- **Scout Fee:** $450 per Scout
+- **Adult Leader Fee:** $100 per Adult
+- **Youth Deposit:** $40 deposit per youth participant
+- **Early Bird Discounts for Out-of-Council Youth:**
+  - **$50 discount** when you register and pay the full fee by December 31, 2026.
+  - **$25 discount** when you register and pay the full fee by March 31, 2027.
+  - Pay over time is available.
+
+### What Is Included
+
+- Camping Fees, official summer camp T-shirt, patches, merit badge instruction, basic meal plan in the dining hall, and camp activities.
+- *Note 1:* Some merit badges have additional fees for materials/supplies, charged at merit badge registration.
+- *Note 2:* Other meal plans may be available and may have upcharges.
+
+### Merit Badge Registration
+
+Merit badge class sizes are limited. Register early to secure your spot. **Merit badge registration opens February 1, 2027 (2/1/27)** on Black Pug.
+
+- **Merit Badge Catalog:** [SBSA Summer 2027 Merit Badge Catalog (OneDrive)](https://1drv.ms/w/c/6d737b217ad523c0/IQB2ga1luoQQSJ4c4WdIL9O_AbtphBH2cBMBzctNXCaGVI4?e=92uqlH)
+- **Medical Forms:** [Scouting America Annual Health and Medical Record (Parts A, B & C)](https://filestore.scouting.org/filestore/HealthSafety/pdf/680-001_ABC.pdf)
+
+### Cancellation and Refund Policy
+
+- **30+ Days Prior to Event:** Full 100% refund.
+- **Between 2 Weeks and 30 Days Prior:** 50% refund.
+- **Within 2 Weeks of Event:** Refund is at the discretion of the event coordinator or staff advisor (usually only granted in cases of emergency).
+
+:::placeholder Dietary and special meal-plan upcharge details
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 :::`,
   },
@@ -738,7 +776,7 @@ For routine matters, begin with the Troop Friend or appropriate Area Director. G
 - [ ] Organize health forms and emergency contacts  
 - [ ] Submit dietary and accommodation needs  
 - [ ] Check medication labels and instructions  
-- [ ] Share merit badge interests in the non-binding survey; wait for the authorized catalog before building individual plans  
+- [ ] Complete online unit registration at https://scoutingevent.com/011-ScoutCamp2027 and review the merit badge catalog
 - [ ] Review the packing list and mountain weather  
 - [ ] Brief Scouts on vehicles, buddies, privacy, camp rules, and Leave No Trace  
 - [ ] Download directions and inspect vehicles  
@@ -1062,12 +1100,12 @@ Away from Scouting, Dr. Barker was a pioneering entomologist. His 1958 study tra
 The Barker Standard carries that same ethic into unit life: service that improves camp, leadership that teaches by example, and Scout spirit that is visible in ordinary work.`,
   },
   {
-    title: "Frequently Asked Questions", slug: "frequently-asked-questions", category: "Help", audience: "all", priority: "normal", updatedAt: reviewedAt,
+    title: "Frequently Asked Questions", slug: "frequently-asked-questions", category: "Help", audience: "all", priority: "normal", updatedAt: REGISTRATION_REVIEWED_AT,
     summary: "Fast answers about aquatics, connectivity, fires, registration, and 2027 program updates.",
     applicability: "All sessions", tags: ["faq", "help", "aquatics", "registration"],
     body: `## When will the merit badge list and class schedule be available?
 
-Camp Lawton is gathering unit interest before finalizing the 2027 program. The current survey topics are not a published offering list and should not be used to build individual schedules. Authorized offerings, times, capacities, fees, and prerequisites will be shared when program review is complete.
+Official registration is open at https://scoutingevent.com/011-ScoutCamp2027. The SBSA Summer 2027 Merit Badge Catalog document has been published, and merit badge class registration opens on February 1, 2027 on Black Pug. Class sizes are limited.
 
 ## How large is Camp Lawton?
 
@@ -1077,9 +1115,9 @@ Camp Lawton is approximately 60 acres. The compact layout helps Scouts learn the
 
 The former pool is no longer available. A future aquatics facility would require major funding, construction approval, and Forest Service authorization. Do not plan for swimming or boating in 2027\.
 
-## Is the planning survey official registration?
+## Where do we register for 2027 Summer Camp?
 
-No. It helps staff estimate attendance and program demand, but it does not register participants, reserve campsites or classes, collect payment, or replace Black Pug. Follow the official registration instructions when they are released.
+Official registration is completed online through the Black Pug system at https://scoutingevent.com/011-ScoutCamp2027. Early bird discounts and credits are available for registrations completed before December 31, 2026 and March 31, 2027. Registration is open to Units as well as Provisional Scouts and Adults.
 
 ## Can our unit arrive early or leave late?
 

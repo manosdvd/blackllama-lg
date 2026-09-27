@@ -37,13 +37,13 @@ content = content.replace(
         <a href="#guide"><span>01</span><strong>Before you leave</strong><small>Packing, forms & policies</small></a>
         <a href="#schedule"><span>02</span><strong>Plan the week</strong><small>Schedules & transitions</small></a>
         <a href="#badges"><span>03</span><strong>Build a Scout plan</strong><small>Programs & conflicts</small></a>
-        <a href="#preregister"><span>04</span><strong>Tell us you’re interested</strong><small>Non-binding pre-registration</small></a>
+        <a href="https://scoutingevent.com/011-ScoutCamp2027"><span>04</span><strong>Register for 2027</strong><small>Official council registration</small></a>
       </section>''',
 '''      <section className="quick-links" aria-label="Leader shortcuts">
         <a href="#guide"><span>01</span><strong>Before you leave</strong><small>Packing, forms & policies</small></a>
         <a href="/schedule"><span>02</span><strong>Plan the week</strong><small>Schedules & transitions</small></a>
         <a href="/merit-badges"><span>03</span><strong>Build a Scout plan</strong><small>Programs & conflicts</small></a>
-        <a href="#preregister"><span>04</span><strong>Tell us you’re interested</strong><small>Non-binding pre-registration</small></a>
+        <a href="https://scoutingevent.com/011-ScoutCamp2027"><span>04</span><strong>Register for 2027</strong><small>Official council registration</small></a>
       </section>'''
 )
 
