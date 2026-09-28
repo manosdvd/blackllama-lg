@@ -2,7 +2,7 @@ import Link from "next/link";
 import { count, eq } from "drizzle-orm";
 import { getDb } from "../../db";
 import { alerts, articles } from "../../db/schema";
-import { OFFICIAL_REGISTRATION_URL } from "../../lib/registration";
+import { OFFICIAL_REGISTRATION_URL, STAFF_APPLICATION_URL } from "../../lib/registration";
 import { requireStaff } from "../staff-auth";
 
 export default async function StaffDashboard() {
@@ -34,6 +34,7 @@ export default async function StaffDashboard() {
     <nav className="staff-tools" aria-label="Staff tools">
       {canPublish && <Link href="/staff/content"><span>Content</span><h2>Guide inventory</h2><p>Select any canonical article to draft, validate, publish, and review.</p></Link>}
       <a href={OFFICIAL_REGISTRATION_URL} target="_blank" rel="noreferrer"><span>Registration</span><h2>Official council event ↗</h2><p>Open Black Pug for 2027 registration, session details, and the merit badge catalog.</p></a>
+      <a href={STAFF_APPLICATION_URL} target="_blank" rel="noreferrer"><span>Recruitment</span><h2>Staff application form ↗</h2><p>Share or access the official Jotform application for new and returning staff.</p></a>
     </nav>
     {!canPublish && <p className="staff-data-warning">Your assigned role does not include publishing access.</p>}
   </div></main>;

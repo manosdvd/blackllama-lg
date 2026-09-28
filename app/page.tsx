@@ -6,7 +6,7 @@ import { ConditionsHud, FireSummaryCard, WeatherSummaryCard, useLiveConditions }
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
-import { OFFICIAL_REGISTRATION_URL, WEEK1_REGISTRATION_URL, WEEK2_REGISTRATION_URL, MEDICAL_FORM_URL } from "../lib/registration";
+import { OFFICIAL_REGISTRATION_URL, WEEK1_REGISTRATION_URL, WEEK2_REGISTRATION_URL, MEDICAL_FORM_URL, STAFF_APPLICATION_URL } from "../lib/registration";
 import { PREPARATION_TIMELINE } from "../data/timeline-data";
 
 const guideSections = [
@@ -639,6 +639,106 @@ export default function Home() {
               <a href={OFFICIAL_REGISTRATION_URL} target="_blank" rel="noreferrer">Register on Black Pug ↗</a>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section className="section staff-promo-section" id="join-staff" aria-labelledby="staff-promo-title">
+        <div className="section-heading">
+          <div>
+            <p className="section-kicker">Join the Team · Est. 1921</p>
+            <h2 id="staff-promo-title">Join the Camp Lawton Staff. Shape the Future.</h2>
+          </div>
+          <p className="heading-note">
+            Few experiences in life provide the leadership experience and personal development that being on camp staff provides. Spend your summer at 7,900 feet making a lasting difference.
+          </p>
+        </div>
+
+        <div className="staff-promo-grid">
+          <div className="staff-promo-story">
+            <div className="staff-promo-badges">
+              <span className="staff-badge-pill primary">Catalina Council, BSA</span>
+              <span className="staff-badge-pill">Staff Hill · Mt. Lemmon</span>
+            </div>
+
+            <div className="staff-promo-narrative">
+              <p className="staff-quote-lead">
+                Since the first Scouts arrived in 1921, our purpose has remained consistent: to transform lives through the power of the outdoor experience. You are how we fulfill that promise to the youth of Catalina Council and beyond.
+              </p>
+              <p>
+                As a staff member, your daily actions and personal conduct serve as the living embodiment of the Scouting brand. You are the role models who make a simple camping trip into a life-altering experience. Your role is so much more than teaching merit badges and singing silly songs &mdash; you are shaping the future.
+              </p>
+              <p>
+                Just as important is the impact this experience will have on you. Few experiences in life provide the leadership experience and personal development that being on camp staff provides. If you embrace what is asked of you this summer, you will leave a different person. I can&apos;t say for certain who that person will be, but it will be more than you are now. That may sound like hyperbole now, but read this again in August and tell me I&apos;m wrong.
+              </p>
+            </div>
+
+            <div className="staff-promo-cta-box">
+              <div className="staff-promo-cta-text">
+                <h3>Ready to make a difference?</h3>
+                <p>Apply today or complete your onboarding files to secure your place in Camp Lawton&apos;s history.</p>
+              </div>
+              <div className="staff-promo-cta-buttons">
+                <a
+                  className="button button-large"
+                  href={STAFF_APPLICATION_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Apply for Camp Staff ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <aside className="staff-promo-sidebar">
+            <figure className="staff-promo-photo">
+              <img
+                src="/images/map/staffHillCabins2004.jpg"
+                width={800}
+                height={600}
+                alt="Rustic staff cabins among the tall ponderosa pines at Camp Lawton"
+                loading="lazy"
+              />
+              <figcaption>
+                <strong>Staff Hill Cabins</strong>
+                <span>Living among the pines at 7,900 feet in the Santa Catalina Mountains.</span>
+              </figcaption>
+            </figure>
+
+            <div className="staff-highlights">
+              <article className="staff-highlight-item">
+                <span className="highlight-index">01</span>
+                <div>
+                  <h4>Real Leadership Development</h4>
+                  <p>Gain hands-on experience in public speaking, outdoor safety management, and mentoring that sets college applications and resumes apart.</p>
+                </div>
+              </article>
+
+              <article className="staff-highlight-item">
+                <span className="highlight-index">02</span>
+                <div>
+                  <h4>Room &amp; Board on Mt. Lemmon</h4>
+                  <p>Escape 105°F desert heat for 75°F pine breezes. Seasonal staff receive weekly compensation, rustic cabin lodging, and hot meals in the Galley.</p>
+                </div>
+              </article>
+
+              <article className="staff-highlight-item">
+                <span className="highlight-index">03</span>
+                <div>
+                  <h4>Camp Spirit &amp; Brotherhood</h4>
+                  <p>Join a multi-generational legacy of fellowship, twilight traditions, canyon campfire skits, and friendships that last a lifetime.</p>
+                </div>
+              </article>
+
+              <article className="staff-highlight-item">
+                <span className="highlight-index">04</span>
+                <div>
+                  <h4>Open Opportunities Across Camp</h4>
+                  <p>Roles available in Scoutcraft, Climbing &amp; Rappelling, Shooting Sports, Nature &amp; Ecology, Handicraft, Galley Dining, and Health Lodge.</p>
+                </div>
+              </article>
+            </div>
+          </aside>
         </div>
       </section>
 

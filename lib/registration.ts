@@ -4,6 +4,7 @@ export const WEEK1_REGISTRATION_URL = "https://scoutingevent.com/011-116731-2727
 export const WEEK2_REGISTRATION_URL = "https://scoutingevent.com/011-116731-272749";
 export const MERIT_BADGE_CATALOG_URL = "https://1drv.ms/w/c/6d737b217ad523c0/IQB2ga1luoQQSJ4c4WdIL9O_AbtphBH2cBMBzctNXCaGVI4?e=92uqlH";
 export const MEDICAL_FORM_URL = "https://filestore.scouting.org/filestore/HealthSafety/pdf/680-001_ABC.pdf";
+export const STAFF_APPLICATION_URL = "https://form.jotform.com/262665701090051";
 export const REGISTRATION_REVIEWED_AT = new Date("2026-09-26T00:00:00Z");
 
 export const registrationSessions = [
